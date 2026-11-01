@@ -40,3 +40,38 @@ test("a job records the totals", () => {
   runIngestJob(store, "j1", "langchain", [build(page("Version one of this section, long enough to keep."))], "MIT");
   expect(store.job("langchain", "j1")).toMatchObject({ status: "done", added: 2 });
 });
+
+test("a changed file keeps unchanged chunks and deletes only the stale ones", () => {
+  ingestDocument(store, "langchain", build(page("Version one of this section, long enough to keep.")), "MIT");
+  const keepId = store.chunks("langchain").find((c) => c.heading === "Keep")!.chunkId;
+  const r = ingestDocument(store, "langchain", build(page("Version two of this section, long enough to keep.")), "MIT");
+  expect(r).toMatchObject({ added: 1, removed: 1, unchanged: 1 });
+  expect(store.chunks("langchain").map((c) => c.chunkId)).toContain(keepId);
+  expect(r.changes.map((c) => c.change).sort()).toEqual(["added", "removed"]);
+});
+
+test("index versions bump only on change, and pruning removes deleted documents", () => {
+  const a = build(page("Version one of this section, long enough to keep."));
+  expect(runIngestJob(store, "j1", "langchain", [a], "MIT").indexVersion).toBe(1);
+  expect(runIngestJob(store, "j2", "langchain", [a], "MIT").indexVersion).toBe(1);
+  const r = runIngestJob(store, "j3", "langchain", [], "MIT", { prune: true });
+  expect(r).toMatchObject({ removed: 2, indexVersion: 2 });
+  expect(store.chunks("langchain")).toHaveLength(0);
+  expect(store.documents("langchain")).toHaveLength(0);
+  expect(store.indexChanges("langchain", 2).every((c) => c.change === "removed")).toBe(true);
+});
+
+test("old LangChain docs -> new docs: real update diff", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { buildCorpus } = await import("../corpus/build");
+  const load = (c: string) => buildCorpus("langchain", `fixtures/${c}`, JSON.parse(readFileSync(`fixtures/${c}/source_manifest.json`, "utf8")));
+  runIngestJob(store, "old", "langchain", load("langchain-old"), "MIT", { prune: true });
+  const r = runIngestJob(store, "new", "langchain", load("langchain"), "MIT", { prune: true });
+  expect(r.indexVersion).toBe(2);
+  expect(r.added).toBeGreaterThan(0);
+  expect(r.removed).toBeGreaterThan(0);
+  expect(r.unchanged).toBeGreaterThan(0);
+  // After the update, the index holds exactly the new corpus: nothing stale is left.
+  const fresh = new Set(load("langchain").flatMap((d) => d.chunks.map((c) => c.chunkId)));
+  expect(store.chunks("langchain").every((c) => fresh.has(c.chunkId))).toBe(true);
+});

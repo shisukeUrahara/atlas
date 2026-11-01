@@ -22,6 +22,18 @@ CREATE TABLE IF NOT EXISTS chunks (
   PRIMARY KEY (workspace_id, chunk_id)
 );
 CREATE INDEX IF NOT EXISTS chunks_by_document ON chunks(document_id);
+CREATE TABLE IF NOT EXISTS index_versions (
+  workspace_id TEXT NOT NULL REFERENCES workspaces(id),
+  version INTEGER NOT NULL, job_id TEXT NOT NULL,
+  added INTEGER NOT NULL, removed INTEGER NOT NULL, unchanged INTEGER NOT NULL,
+  PRIMARY KEY (workspace_id, version)
+);
+CREATE TABLE IF NOT EXISTS index_changes (
+  workspace_id TEXT NOT NULL, version INTEGER NOT NULL, chunk_id TEXT NOT NULL,
+  change TEXT NOT NULL CHECK (change IN ('added', 'removed')),
+  title TEXT NOT NULL, heading TEXT NOT NULL,
+  PRIMARY KEY (workspace_id, version, chunk_id)
+);
 CREATE TABLE IF NOT EXISTS jobs (
   id TEXT PRIMARY KEY,
   workspace_id TEXT NOT NULL REFERENCES workspaces(id),
@@ -31,6 +43,13 @@ CREATE TABLE IF NOT EXISTS jobs (
 `;
 
 type Row = Record<string, unknown>;
+
+export interface IndexChange {
+  chunkId: string;
+  change: "added" | "removed";
+  title: string;
+  heading: string;
+}
 
 const toDoc = (r: Row) =>
   Doc.parse({
@@ -102,6 +121,43 @@ export class Store {
     });
   }
 
+  deleteDocument(workspaceId: WorkspaceId, id: string): void {
+    this.tx(() => {
+      this.db.prepare("DELETE FROM chunks WHERE workspace_id = ? AND document_id = ?").run(workspaceId, id);
+      this.db.prepare("DELETE FROM documents WHERE workspace_id = ? AND id = ?").run(workspaceId, id);
+    });
+  }
+
+  /** 0 when nothing has been indexed yet. */
+  indexVersion(workspaceId: WorkspaceId): number {
+    const r = this.db.prepare("SELECT MAX(version) v FROM index_versions WHERE workspace_id = ?").get(workspaceId);
+    return Number(r?.v ?? 0);
+  }
+
+  addIndexVersion(
+    workspaceId: WorkspaceId,
+    jobId: string,
+    counts: { added: number; removed: number; unchanged: number },
+    changes: readonly IndexChange[],
+  ): number {
+    return this.tx(() => {
+      const version = this.indexVersion(workspaceId) + 1;
+      this.db
+        .prepare("INSERT INTO index_versions VALUES (?, ?, ?, ?, ?, ?)")
+        .run(workspaceId, version, jobId, counts.added, counts.removed, counts.unchanged);
+      const stmt = this.db.prepare("INSERT OR IGNORE INTO index_changes VALUES (?, ?, ?, ?, ?, ?)");
+      for (const c of changes) stmt.run(workspaceId, version, c.chunkId, c.change, c.title, c.heading);
+      return version;
+    });
+  }
+
+  indexChanges(workspaceId: WorkspaceId, version: number): IndexChange[] {
+    return this.db
+      .prepare("SELECT chunk_id, change, title, heading FROM index_changes WHERE workspace_id = ? AND version = ? ORDER BY change, title, heading")
+      .all(workspaceId, version)
+      .map((r) => ({ chunkId: String(r.chunk_id), change: r.change as "added" | "removed", title: String(r.title), heading: String(r.heading) }));
+  }
+
   chunkIdsOf(documentId: string): string[] {
     return this.db.prepare("SELECT chunk_id FROM chunks WHERE document_id = ?").all(documentId).map((r) => String(r.chunk_id));
   }
@@ -111,6 +167,10 @@ export class Store {
     this.tx(() => {
       for (const id of chunkIds) stmt.run(workspaceId, id);
     });
+  }
+
+  chunksOf(documentId: string): Chunk[] {
+    return this.db.prepare("SELECT * FROM chunks WHERE document_id = ? ORDER BY rowid").all(documentId).map(toChunk);
   }
 
   chunks(workspaceId: WorkspaceId): Chunk[] {
