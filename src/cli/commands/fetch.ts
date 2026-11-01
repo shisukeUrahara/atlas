@@ -1,18 +1,19 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { parseArgs } from "node:util";
-import { blobUrl, rawUrl, sha256Hex, SourceList, type ManifestFile, type SourceManifest } from "@/core/corpus/sources";
+import { blobUrl, CorpusName, rawUrl, resolveInside, sha256Hex, SourceList, type ManifestFile, type SourceManifest } from "@/core/corpus/sources";
 import type { Command } from "../deps";
 import { EXIT } from "../exit";
 
 /** atlas fetch --corpus <name>: download every pinned file into fixtures/<name>/snapshot/. */
 export const fetchCorpus: Command = async (argv, deps) => {
   const { values } = parseArgs({ args: argv, options: { corpus: { type: "string" } } });
-  if (!values.corpus) {
-    deps.err("usage: atlas fetch --corpus <name>");
+  const corpus = CorpusName.safeParse(values.corpus);
+  if (!corpus.success) {
+    deps.err("usage: atlas fetch --corpus <name>  (name is a lowercase slug)");
     return EXIT.USAGE;
   }
-  const dir = path.join(deps.dataDir, "fixtures", values.corpus);
+  const dir = path.join(deps.dataDir, "fixtures", corpus.data);
   const list = SourceList.parse(JSON.parse(readFileSync(path.join(dir, "sources.json"), "utf8")));
 
   const files: ManifestFile[] = [];
@@ -24,7 +25,7 @@ export const fetchCorpus: Command = async (argv, deps) => {
       deps.err(`missing at ${list.commit.slice(0, 7)}: ${p}`);
       continue;
     }
-    const target = path.join(dir, "snapshot", p);
+    const target = resolveInside(path.join(dir, "snapshot"), p);
     mkdirSync(path.dirname(target), { recursive: true });
     writeFileSync(target, body);
     files.push({ path: p, url: blobUrl(list, p), bytes: body.byteLength, sha256: sha256Hex(body) });

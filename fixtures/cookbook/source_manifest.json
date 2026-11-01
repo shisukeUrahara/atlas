@@ -3,7 +3,7 @@
   "repo": "openai/openai-cookbook",
   "commit": "f5819076643583e2c2a77268e7fe522e927499d0",
   "license": "MIT",
-  "retrievedAtUtc": "2026-11-01T08:22:47.166Z",
+  "retrievedAtUtc": "2026-11-01T08:24:06.363Z",
   "files": [
     {
       "path": "examples/Code_search_using_embeddings.ipynb",

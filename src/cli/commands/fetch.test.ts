@@ -55,3 +55,8 @@ test("no --corpus is a usage error", async () => {
   const { deps } = setup({});
   expect(await fetchCorpus([], deps)).toBe(EXIT.USAGE);
 });
+
+test("a corpus name with path tricks is refused", async () => {
+  const { deps } = setup({});
+  expect(await fetchCorpus(["--corpus", "../demo"], deps)).toBe(EXIT.USAGE);
+});
