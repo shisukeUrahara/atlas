@@ -44,5 +44,19 @@ Empty, loading, not enough evidence, denied (no access to workspace), stale (doc
 ## Copy rule
 Every Stitch prompt carries exact text. Numbers in the designs are **sample data** and are labeled "sample" in the prompt. The built pages read only real run folders. No avatars, no dates, no invented customer claims, no "live" tags.
 
-## Screens
-Filled in as screens are generated and approved.
+## Project
+- Stitch project: `projects/4703916948598782669` ("Atlas", private to the owner)
+- Design system created in this project from the Afterglow brief: `assets/5aa75a9a159b4b948f49d1802f80cf91`
+
+## Concepts (1 Nov 2026, dark)
+Two directions, generated before any UI code. PNGs in `concepts/`.
+
+| Concept | Ask | Overview |
+|---|---|---|
+| A: ops console (three-pane Ask, left-aligned hero, status tiles, incident cards) | `6d55697f1363454c8ddbedac6ba5a0d4` | `7f3c49e0a0ad4f8889a064610532a56d` |
+| B: editorial (one reading column + evidence drawer, centered hero with a try-it box) | `ae6ab6b2c358415caa21f05b3514be98` | `92a578370d594362b79941b1aa8e7c2b` |
+
+What Stitch invented and the build will not use: "Atlas Ops" name, "Relevance score 0.94", "Confidence: High", "Latency 284ms", precision/latency/intercepts stats on the finding cards, marketing lines under the KPI cards.
+
+## Approved screens
+Filled in after the owner picks a direction.
