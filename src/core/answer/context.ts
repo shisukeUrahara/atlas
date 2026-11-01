@@ -18,7 +18,11 @@ export interface AssembledContext {
 
 export const DEFAULT_CONTEXT_TOKENS = 3000;
 
-const render = (label: string, c: Chunk) => `[${label}] ${c.title}${c.heading ? ` > ${c.heading}` : ""}\n${c.text}`;
+/** Document text can never open or close the <passages> block that holds it. */
+export const neutralizeTags = (text: string) => text.replace(/<\s*\/?\s*passages\s*>/gi, "[passages tag removed]");
+
+const render = (label: string, c: Chunk) =>
+  neutralizeTags(`[${label}] ${c.title}${c.heading ? ` > ${c.heading}` : ""}\n${c.text}`);
 
 /**
  * Adds chunks in rank order while they fit the token budget. A chunk that does not fit is
