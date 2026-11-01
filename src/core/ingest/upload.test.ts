@@ -21,6 +21,7 @@ describe("buildUpload", () => {
     const doc = await buildUpload("uploads", "notes.md", enc(md));
     expect(doc.title).toBe("Notes");
     expect(doc.chunks[0]).toMatchObject({ heading: "Checkpointers", url: "upload:notes.md", workspaceId: "uploads" });
+    expect(doc.path).toMatch(/^[0-9a-f]{8}-notes\.md$/);
   });
   test.each([
     ["too big", "a.md", new Uint8Array(MAX_UPLOAD_BYTES + 1), "too_large"],
@@ -44,6 +45,16 @@ describe("ingestUpload", () => {
     expect(store.job("uploads", first.jobId)?.status).toBe("done");
     const again = await ingestUpload(store, "uploads", "notes.md", enc(md));
     expect(again).toMatchObject({ added: 0, removed: 0, indexVersion: 1 });
+  });
+  test("two different files with the same name are both kept", async () => {
+    await ingestUpload(store, "uploads", "notes.md", enc(md));
+    await ingestUpload(store, "uploads", "notes.md", enc(md.replace("every step", "each step")));
+    expect(store.documents("uploads")).toHaveLength(2);
+  });
+  test("reference corpora do not accept uploads", async () => {
+    store.upsertWorkspace({ id: "langchain", name: "LangChain docs", source: "langchain-ai/docs", license: "MIT" });
+    await expect(ingestUpload(store, "langchain", "notes.md", enc(md))).rejects.toMatchObject({ code: "read_only_workspace" });
+    expect(store.documents("langchain")).toHaveLength(0);
   });
   test("unknown workspace is refused", async () => {
     await expect(ingestUpload(store, "nope", "notes.md", enc(md))).rejects.toMatchObject({ code: "unknown_workspace" });

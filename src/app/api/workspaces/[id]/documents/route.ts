@@ -9,6 +9,7 @@ const STATUS: Record<UploadError["code"], number> = {
   no_text: 422,
   not_utf8: 415,
   unknown_workspace: 404,
+  read_only_workspace: 403,
 };
 
 const fail = (status: number, code: string, message: string) => Response.json({ error: { code, message } }, { status });
@@ -16,7 +17,10 @@ const fail = (status: number, code: string, message: string) => Response.json({ 
 /** POST multipart/form-data with one "file" field: PDF, Markdown or .txt, up to 20 MB. */
 export async function POST(request: Request, ctx: RouteContext<"/api/workspaces/[id]/documents">) {
   const { id } = await ctx.params;
-  const length = Number(request.headers.get("content-length") ?? 0);
+  // A size header is required, so the body can be refused before it is read.
+  const header = request.headers.get("content-length");
+  const length = header === null ? NaN : Number(header);
+  if (!Number.isFinite(length)) return fail(411, "length_required", "Send a Content-Length header.");
   if (length > MAX_UPLOAD_BYTES + 64 * 1024) return fail(413, "too_large", "Files can be up to 20 MB.");
   let file: FormDataEntryValue | null;
   try {

@@ -2,18 +2,19 @@ import { randomUUID } from "node:crypto";
 import path from "node:path";
 import { buildDoc, type BuiltDoc } from "../corpus/build";
 import { chunkId, documentId } from "../corpus/ids";
-import { loadPdfPages, NoTextLayerError, packPdfLines } from "../corpus/pdf";
+import { loadPdfPages, NoTextLayerError, packPdfLines, PdfTooLargeError } from "../corpus/pdf";
 import { sha256Hex } from "../corpus/sources";
 import { Chunk, type WorkspaceId } from "../domain/schemas";
 import type { Store } from "../store/sqlite";
 import { runIngestJob, type JobResult } from "./ingest";
 
 export const MAX_UPLOAD_BYTES = 20 * 1024 * 1024;
+export const MAX_UPLOAD_CHUNKS = 5_000;
 const TEXT_EXT = new Set([".md", ".mdx", ".markdown", ".txt"]);
 
 export class UploadError extends Error {
   constructor(
-    readonly code: "too_large" | "bad_type" | "bad_name" | "no_text" | "not_utf8" | "unknown_workspace",
+    readonly code: "too_large" | "bad_type" | "bad_name" | "no_text" | "not_utf8" | "unknown_workspace" | "read_only_workspace",
     message: string,
   ) {
     super(message);
@@ -30,10 +31,13 @@ export function safeFileName(name: string): string {
 /** Validates and builds an uploaded PDF or Markdown/text file into chunks. */
 export async function buildUpload(workspaceId: WorkspaceId, rawName: string, bytes: Uint8Array): Promise<BuiltDoc> {
   if (bytes.byteLength > MAX_UPLOAD_BYTES) throw new UploadError("too_large", "Files can be up to 20 MB.");
-  const name = safeFileName(rawName);
-  const ext = path.extname(name).toLowerCase();
+  const shown = safeFileName(rawName);
+  const ext = path.extname(shown).toLowerCase();
   const sha256 = sha256Hex(bytes);
-  const url = `upload:${name}`;
+  // Stored under a content-hash prefix: two different files with the same name never overwrite
+  // each other, and the same file uploaded twice is still deduplicated.
+  const name = `${sha256.slice(0, 8)}-${shown}`;
+  const url = `upload:${shown}`;
 
   if (ext === ".pdf") {
     if (new TextDecoder().decode(bytes.subarray(0, 5)) !== "%PDF-") throw new UploadError("bad_type", "This file is not a PDF.");
@@ -42,10 +46,11 @@ export async function buildUpload(workspaceId: WorkspaceId, rawName: string, byt
       pages = await loadPdfPages(bytes);
     } catch (e) {
       if (e instanceof NoTextLayerError) throw new UploadError("no_text", e.message);
+      if (e instanceof PdfTooLargeError) throw new UploadError("too_large", e.message);
       throw new UploadError("bad_type", "The PDF could not be read.");
     }
     const docId = documentId(workspaceId, name);
-    const title = name.replace(/\.pdf$/i, "");
+    const title = shown.replace(/\.pdf$/i, "");
     const seen = new Set<string>();
     const chunks: Chunk[] = [];
     for (const piece of packPdfLines(pages)) {
@@ -54,6 +59,7 @@ export async function buildUpload(workspaceId: WorkspaceId, rawName: string, byt
       if (piece.text.length < 40 || seen.has(id)) continue;
       seen.add(id);
       chunks.push(Chunk.parse({ chunkId: id, documentId: docId, workspaceId, title, heading, text: piece.text, url, page: piece.page }));
+      if (chunks.length > MAX_UPLOAD_CHUNKS) throw new UploadError("too_large", "The file produces too many chunks.");
     }
     return { documentId: docId, path: name, title, url, sha256, chunks, droppedSnippets: 0 };
   }
@@ -65,7 +71,9 @@ export async function buildUpload(workspaceId: WorkspaceId, rawName: string, byt
   } catch {
     throw new UploadError("not_utf8", "Text files must be UTF-8.");
   }
-  return buildDoc(workspaceId, { path: name, url, sha256 }, text);
+  const doc = buildDoc(workspaceId, { path: name, url, sha256 }, text);
+  if (doc.chunks.length > MAX_UPLOAD_CHUNKS) throw new UploadError("too_large", "The file produces too many chunks.");
+  return doc;
 }
 
 /**
@@ -80,6 +88,8 @@ export async function ingestUpload(
 ): Promise<JobResult & { jobId: string; documentId: string }> {
   const ws = store.workspaces().find((w) => w.id === workspaceId);
   if (!ws) throw new UploadError("unknown_workspace", `No workspace "${workspaceId}".`);
+  // Reference corpora (LangChain docs, Cookbook) are read-only: uploads can never change them.
+  if (ws.source !== "upload") throw new UploadError("read_only_workspace", `Workspace "${workspaceId}" does not accept uploads.`);
   const doc = await buildUpload(workspaceId, name, bytes);
   const jobId = randomUUID();
   const r = runIngestJob(store, jobId, workspaceId, [doc], "user upload");

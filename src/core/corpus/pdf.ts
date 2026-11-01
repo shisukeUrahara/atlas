@@ -63,6 +63,16 @@ export function packPdfLines(pages: string[], max = MAX_CHARS): PdfPiece[] {
   return out;
 }
 
+/** Hard caps so a small PDF cannot expand into unbounded work. */
+export const MAX_PDF_PAGES = 500;
+export const MAX_PDF_CHARS = 5_000_000;
+
+export class PdfTooLargeError extends Error {
+  constructor(what: string) {
+    super(`PDF is too large: ${what}.`);
+  }
+}
+
 export class NoTextLayerError extends Error {
   constructor() {
     super("No text layer found. Scanned PDFs need OCR first.");
@@ -72,7 +82,9 @@ export class NoTextLayerError extends Error {
 /** Extracts per-page text. Throws NoTextLayerError when the PDF has no extractable text. */
 export async function loadPdfPages(bytes: Uint8Array): Promise<string[]> {
   const pdf = await getDocumentProxy(new Uint8Array(bytes));
+  if (pdf.numPages > MAX_PDF_PAGES) throw new PdfTooLargeError(`more than ${MAX_PDF_PAGES} pages`);
   const { text } = await extractText(pdf, { mergePages: false });
+  if (text.reduce((n, p) => n + p.length, 0) > MAX_PDF_CHARS) throw new PdfTooLargeError("more than 5 million characters of text");
   const pages = stripRunningLines(text);
   if (pages.every((p) => p.trim() === "")) throw new NoTextLayerError();
   return pages;
