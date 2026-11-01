@@ -34,6 +34,14 @@ CREATE TABLE IF NOT EXISTS index_changes (
   title TEXT NOT NULL, heading TEXT NOT NULL,
   PRIMARY KEY (workspace_id, version, chunk_id)
 );
+CREATE TABLE IF NOT EXISTS traces (
+  id TEXT PRIMARY KEY,
+  workspace_id TEXT NOT NULL REFERENCES workspaces(id),
+  user_id TEXT NOT NULL, question TEXT NOT NULL, status TEXT NOT NULL,
+  model TEXT NOT NULL, prompt_version TEXT NOT NULL, prompt_sha TEXT NOT NULL, index_version INTEGER NOT NULL,
+  stages TEXT NOT NULL, result TEXT NOT NULL, created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS traces_by_workspace ON traces(workspace_id, created_at);
 CREATE TABLE IF NOT EXISTS jobs (
   id TEXT PRIMARY KEY,
   workspace_id TEXT NOT NULL REFERENCES workspaces(id),
@@ -43,6 +51,28 @@ CREATE TABLE IF NOT EXISTS jobs (
 `;
 
 type Row = Record<string, unknown>;
+
+export interface TraceRow {
+  id: string;
+  workspaceId: string;
+  userId: string;
+  question: string;
+  status: string;
+  model: string;
+  promptVersion: string;
+  promptSha: string;
+  indexVersion: number;
+  stages: { name: string; ms: number }[];
+  result: unknown;
+  createdAt: string;
+}
+
+const toTrace = (r: Row): TraceRow => ({
+  id: String(r.id), workspaceId: String(r.workspace_id), userId: String(r.user_id), question: String(r.question),
+  status: String(r.status), model: String(r.model), promptVersion: String(r.prompt_version), promptSha: String(r.prompt_sha),
+  indexVersion: Number(r.index_version), stages: JSON.parse(String(r.stages)), result: JSON.parse(String(r.result)),
+  createdAt: String(r.created_at),
+});
 
 export interface IndexChange {
   chunkId: string;
@@ -180,6 +210,25 @@ export class Store {
   chunk(workspaceId: WorkspaceId, chunkId: string): Chunk | null {
     const r = this.db.prepare("SELECT * FROM chunks WHERE workspace_id = ? AND chunk_id = ?").get(workspaceId, chunkId);
     return r ? toChunk(r) : null;
+  }
+
+  saveTrace(t: TraceRow): void {
+    this.db
+      .prepare("INSERT INTO traces VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
+      .run(t.id, t.workspaceId, t.userId, t.question, t.status, t.model, t.promptVersion, t.promptSha, t.indexVersion,
+        JSON.stringify(t.stages), JSON.stringify(t.result), t.createdAt);
+  }
+
+  trace(workspaceId: WorkspaceId, id: string): TraceRow | null {
+    const r = this.db.prepare("SELECT * FROM traces WHERE workspace_id = ? AND id = ?").get(workspaceId, id);
+    return r ? toTrace(r) : null;
+  }
+
+  traces(workspaceId: WorkspaceId, limit = 20): TraceRow[] {
+    return this.db
+      .prepare("SELECT * FROM traces WHERE workspace_id = ? ORDER BY created_at DESC, rowid DESC LIMIT ?")
+      .all(workspaceId, limit)
+      .map(toTrace);
   }
 
   createJob(id: string, workspaceId: WorkspaceId): void {

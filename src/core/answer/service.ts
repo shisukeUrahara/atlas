@@ -10,7 +10,13 @@ export const RETRIEVE_TOP_K = 8;
 
 export type AbstainReason = "no_passages" | "model_said_insufficient" | "no_supported_claims";
 
+export interface Stage {
+  name: "search" | "assemble" | "model" | "validate";
+  ms: number;
+}
+
 export interface AnswerResult {
+  stages: Stage[];
   status: "answered" | "abstained" | "failed";
   abstainReason: AbstainReason | null;
   failure: ParseFailure | null;
@@ -39,10 +45,20 @@ export class AnswerService {
   ) {}
 
   async answer(workspaceId: WorkspaceId, question: string, signal?: AbortSignal): Promise<AnswerResult> {
-    const { indexVersion, results } = await this.search.search(workspaceId, question, ["hybrid"], RETRIEVE_TOP_K);
+    const stages: Stage[] = [];
+    const timed = async <T>(name: Stage["name"], fn: () => T | Promise<T>): Promise<T> => {
+      const t0 = performance.now();
+      try {
+        return await fn();
+      } finally {
+        stages.push({ name, ms: Math.round((performance.now() - t0) * 10) / 10 });
+      }
+    };
+    const { indexVersion, results } = await timed("search", () => this.search.search(workspaceId, question, ["hybrid"], RETRIEVE_TOP_K));
     const hits = results[0].hits;
-    const ctx = assembleContext(hits, this.contextTokens);
+    const ctx = await timed("assemble", () => assembleContext(hits, this.contextTokens));
     const base = {
+      stages,
       claims: [] as CitedClaim[],
       dropped: [] as DroppedClaim[],
       invalidCitations: [] as string[],
@@ -56,13 +72,15 @@ export class AnswerService {
     };
     if (ctx.items.length === 0) return { ...base, status: "abstained", abstainReason: "no_passages" };
 
-    const res = await this.llm.complete(buildAnswerRequest(buildAnswerMessages(question, renderContext(ctx)), this.model), signal);
+    const res = await timed("model", () =>
+      this.llm.complete(buildAnswerRequest(buildAnswerMessages(question, renderContext(ctx)), this.model), signal),
+    );
     const meta = { usage: res.usage, cached: res.cached };
     const parsed = parseAnswer(res);
     if (!parsed.ok) return { ...base, ...meta, status: "failed", abstainReason: null, failure: parsed.failure };
     if (parsed.value.insufficient_evidence) return { ...base, ...meta, status: "abstained", abstainReason: "model_said_insufficient" };
 
-    const v = validateCitations(parsed.value, ctx.items);
+    const v = await timed("validate", () => validateCitations(parsed.value, ctx.items));
     const out = { ...base, ...meta, claims: v.claims, dropped: v.dropped, invalidCitations: v.invalidCitations };
     if (v.claims.length === 0) return { ...out, status: "abstained", abstainReason: "no_supported_claims" };
     return { ...out, status: "answered", abstainReason: null };
