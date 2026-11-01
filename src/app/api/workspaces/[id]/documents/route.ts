@@ -1,6 +1,7 @@
 import { loadEnv } from "@/core/env";
 import { ingestUpload, MAX_UPLOAD_BYTES, UploadError } from "@/core/ingest/upload";
 import { openStore } from "@/core/store/open";
+import { authorizeRequest, fail } from "../../../_lib/http";
 
 const STATUS: Record<UploadError["code"], number> = {
   too_large: 413,
@@ -12,11 +13,11 @@ const STATUS: Record<UploadError["code"], number> = {
   read_only_workspace: 403,
 };
 
-const fail = (status: number, code: string, message: string) => Response.json({ error: { code, message } }, { status });
-
 /** POST multipart/form-data with one "file" field: PDF, Markdown or .txt, up to 20 MB. */
 export async function POST(request: Request, ctx: RouteContext<"/api/workspaces/[id]/documents">) {
-  const { id } = await ctx.params;
+  const auth = await authorizeRequest((await ctx.params).id);
+  if (auth instanceof Response) return auth;
+  const id = auth.workspaceId;
   // A size header is required, so the body can be refused before it is read.
   const header = request.headers.get("content-length");
   const length = header === null ? NaN : Number(header);
