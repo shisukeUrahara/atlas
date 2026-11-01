@@ -1,0 +1,202 @@
+{
+  "corpus": "langchain-old",
+  "repo": "langchain-ai/docs",
+  "commit": "89b311bd88baea3756cb83a0be51d67dd6619507",
+  "license": "MIT",
+  "retrievedAtUtc": "2026-11-01T08:24:49.124Z",
+  "files": [
+    {
+      "path": "src/oss/langchain/overview.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/overview.mdx",
+      "bytes": 4111,
+      "sha256": "4f7ce080666c0f596006185ce9d65ba9694872b007f10b591e1dc10a6cba0955"
+    },
+    {
+      "path": "src/oss/langchain/quickstart.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/quickstart.mdx",
+      "bytes": 10707,
+      "sha256": "d479fa7c66175b1caec115229ebd7f4bc1772825936443e0ad0d8a90cefd65a2"
+    },
+    {
+      "path": "src/oss/langchain/philosophy.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/philosophy.mdx",
+      "bytes": 7244,
+      "sha256": "e4d18cddd7595cfa82c1d46aefa5a3b758bcb8423642fc9bea19a8028039d535"
+    },
+    {
+      "path": "src/oss/langchain/agents.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/agents.mdx",
+      "bytes": 28209,
+      "sha256": "86a107680d9797cd122ae54c314a7ae36d93e562db59f89047453d7e2c7a598c"
+    },
+    {
+      "path": "src/oss/langchain/models.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/models.mdx",
+      "bytes": 62327,
+      "sha256": "58f63825305151f27940be8b36bd97b4114e56b2039d1d18c0654a770329b7ad"
+    },
+    {
+      "path": "src/oss/langchain/messages.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/messages.mdx",
+      "bytes": 71980,
+      "sha256": "01d3ea2cb821653bc1f99645c4ebe9f1d19fec902c721c6cb57a1e8b1a342a86"
+    },
+    {
+      "path": "src/oss/langchain/tools.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/tools.mdx",
+      "bytes": 27231,
+      "sha256": "b3c4120b340af8e29e22155696b75070210607e2a2baaa97c7294ae413bcdf46"
+    },
+    {
+      "path": "src/oss/langchain/short-term-memory.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/short-term-memory.mdx",
+      "bytes": 28940,
+      "sha256": "917a47f5864fa09ac391b41d5896f2d831ce74d811627ee31b4f463327079542"
+    },
+    {
+      "path": "src/oss/langchain/long-term-memory.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/long-term-memory.mdx",
+      "bytes": 10263,
+      "sha256": "6d2f274ec42042c77ffc8d101504ad94715dc18ff912fa1f10306d8a2dfd38ca"
+    },
+    {
+      "path": "src/oss/langchain/streaming.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/streaming.mdx",
+      "bytes": 15141,
+      "sha256": "271e60dd243fcbaaf5679474e81dffd398d1de64cff68853d11ff34c689e59fc"
+    },
+    {
+      "path": "src/oss/langchain/structured-output.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/structured-output.mdx",
+      "bytes": 38785,
+      "sha256": "19aeb44e827896b05fc65f5cbffc92d22e53044e584cec45fcb7cc1dd5336841"
+    },
+    {
+      "path": "src/oss/langchain/retrieval.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/retrieval.mdx",
+      "bytes": 14309,
+      "sha256": "800a27efe8ff6917b625aca7c1c1b5cef795eb2482aa21506beb7b7d1301c0f2"
+    },
+    {
+      "path": "src/oss/langchain/knowledge-base.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/knowledge-base.mdx",
+      "bytes": 24494,
+      "sha256": "7df03e29d2160e6adf39ce1e6efed54dde4b6cac3aaa210d21903ccd72c7c906"
+    },
+    {
+      "path": "src/oss/langchain/runtime.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/runtime.mdx",
+      "bytes": 8091,
+      "sha256": "126771d631fbea2f17b8506e22dbb93ca1017f4892e368e230e1c4af0c5e3af1"
+    },
+    {
+      "path": "src/oss/langchain/context-engineering.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/context-engineering.mdx",
+      "bytes": 8668,
+      "sha256": "24708c774705df3a503985a4c5b36f1cc1a8fc4a8e8ca6cca9012bd7ee806296"
+    },
+    {
+      "path": "src/oss/langchain/human-in-the-loop.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langchain/human-in-the-loop.mdx",
+      "bytes": 14238,
+      "sha256": "556b6a8bd9175749c51b8143381b6b06dc21d5a092db9e385428346180556566"
+    },
+    {
+      "path": "src/oss/langgraph/overview.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/overview.mdx",
+      "bytes": 5188,
+      "sha256": "bdffe8a6ea2c6617a5d3b90656ed69a5994996a4a38fd474be73a95f48edf6f1"
+    },
+    {
+      "path": "src/oss/langgraph/quickstart.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/quickstart.mdx",
+      "bytes": 12235,
+      "sha256": "e3fa9ef0a6a9577e3981aac2c6d628060cfceb890928593848e08f9284351f7f"
+    },
+    {
+      "path": "src/oss/langgraph/graph-api.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/graph-api.mdx",
+      "bytes": 46662,
+      "sha256": "854265864da2d8e8f49598973eb509a3e938b394e765e557ea7ce6902a4e91c8"
+    },
+    {
+      "path": "src/oss/langgraph/use-graph-api.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/use-graph-api.mdx",
+      "bytes": 103743,
+      "sha256": "d60d6162452465f0d53a87946b74d6de9aefb42857a96bd34a52d0f6fa8d591b"
+    },
+    {
+      "path": "src/oss/langgraph/functional-api.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/functional-api.mdx",
+      "bytes": 39277,
+      "sha256": "07efbf8310b4869cb015eed158b3654b7af50c75e40485dae873344ad836af86"
+    },
+    {
+      "path": "src/oss/langgraph/persistence.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/persistence.mdx",
+      "bytes": 43268,
+      "sha256": "681901ff6f688fcf7559cae0abb8fb821b7a0a746348046f7e0bd02383d9199e"
+    },
+    {
+      "path": "src/oss/langgraph/add-memory.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/add-memory.mdx",
+      "bytes": 77086,
+      "sha256": "345b1a8cd3b31aad522c24d0fd960cbd0227cfaf74b7cef7c406953c98eb63b4"
+    },
+    {
+      "path": "src/oss/langgraph/streaming.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/streaming.mdx",
+      "bytes": 46026,
+      "sha256": "ff5a5e1df3cc34afc23a260c2e3f5f20485fb3d40df12e9c3e4b379bf1f86970"
+    },
+    {
+      "path": "src/oss/langgraph/use-subgraphs.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/use-subgraphs.mdx",
+      "bytes": 28217,
+      "sha256": "128a572f2b5bb233556e05e5a71c3cb311baebc022dba8eedd872c58aa5daa57"
+    },
+    {
+      "path": "src/oss/langgraph/use-time-travel.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/use-time-travel.mdx",
+      "bytes": 11519,
+      "sha256": "c6a6db73ae676c4ee05f38c84e7c2a41e72874a47a81a7739463753b94cc3649"
+    },
+    {
+      "path": "src/oss/langgraph/workflows-agents.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/workflows-agents.mdx",
+      "bytes": 58048,
+      "sha256": "66af8998c92404632ad00194a1d41c966f2940d9025fe22a66db4f617596d343"
+    },
+    {
+      "path": "src/oss/langgraph/pregel.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/pregel.mdx",
+      "bytes": 20644,
+      "sha256": "ead3cdb748f05e68a9324ad3f60d74053e12545f868507bec7dffce9011f2457"
+    },
+    {
+      "path": "src/oss/langgraph/application-structure.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/application-structure.mdx",
+      "bytes": 6201,
+      "sha256": "3d61f6e28f8a138979a522736180680f3ef26c502778a917c7e309818d51fc15"
+    },
+    {
+      "path": "src/oss/langgraph/test.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/test.mdx",
+      "bytes": 10206,
+      "sha256": "c282b3c2268f5a78a0819dc9522b1338ffb406ab1e9a75931d07b7eaf4553b39"
+    }
+  ],
+  "missing": [
+    "src/oss/langchain/guardrails.mdx",
+    "src/oss/langchain/middleware/overview.mdx",
+    "src/oss/langchain/middleware/built-in.mdx",
+    "src/oss/langchain/middleware/custom.mdx",
+    "src/oss/langgraph/thinking-in-langgraph.mdx",
+    "src/oss/langgraph/choosing-apis.mdx",
+    "src/oss/langgraph/checkpointers.mdx",
+    "src/oss/langgraph/stores.mdx",
+    "src/oss/langgraph/interrupts.mdx",
+    "src/oss/langgraph/fault-tolerance.mdx",
+    "src/oss/langgraph/backward-compatibility.mdx"
+  ]
+}
