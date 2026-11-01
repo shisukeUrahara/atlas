@@ -1,12 +1,14 @@
 import type { Command, Deps } from "./deps";
 import { chunkCorpus } from "./commands/chunk";
 import { fetchCorpus } from "./commands/fetch";
+import { verify } from "./commands/verify";
 import { EXIT } from "./exit";
 
 /** Commands are added one per commit as the pipeline grows. */
 export const COMMANDS: Record<string, Command> = {
   fetch: fetchCorpus,
   chunk: chunkCorpus,
+  verify,
 };
 
 export async function main(argv: string[], deps: Deps, commands = COMMANDS): Promise<number> {
