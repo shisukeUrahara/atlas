@@ -102,6 +102,17 @@ export class Store {
     });
   }
 
+  chunkIdsOf(documentId: string): string[] {
+    return this.db.prepare("SELECT chunk_id FROM chunks WHERE document_id = ?").all(documentId).map((r) => String(r.chunk_id));
+  }
+
+  deleteChunks(workspaceId: WorkspaceId, chunkIds: readonly string[]): void {
+    const stmt = this.db.prepare("DELETE FROM chunks WHERE workspace_id = ? AND chunk_id = ?");
+    this.tx(() => {
+      for (const id of chunkIds) stmt.run(workspaceId, id);
+    });
+  }
+
   chunks(workspaceId: WorkspaceId): Chunk[] {
     return this.db.prepare("SELECT * FROM chunks WHERE workspace_id = ? ORDER BY document_id, rowid").all(workspaceId).map(toChunk);
   }
