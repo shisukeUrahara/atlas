@@ -1,0 +1,27 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.20.0
+    # No host port: only the web container talks to it.
+    volumes:
+      - qdrant:/qdrant/storage
+
+  web:
+    build: .
+    depends_on: [qdrant]
+    # The key is read at container start, never copied into the image (.env is dockerignored).
+    # Without it the app still works: answers and embeddings replay from the committed cache.
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      ATLAS_QDRANT_URL: http://qdrant:6333
+    ports: ["127.0.0.1:${ATLAS_PORT:-3000}:3000"]
+    volumes:
+      - ./fixtures:/data/fixtures
+      - ./cache:/data/cache
+      - ./runs:/data/runs
+      - atlas-data:/data/data
+
+volumes:
+  qdrant:
+  atlas-data:
