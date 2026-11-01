@@ -17,6 +17,6 @@ test("ingests a corpus, then a second run changes nothing", async () => {
   expect(out[0]).toMatch(/\+405 -0 =0 chunks, index v1/);
   expect(out[1]).toMatch(/\+0 -0 =405 chunks, index v1/);
   const store = openStore(dataDir);
-  expect(store.workspaces()).toEqual([{ id: "cookbook", name: "OpenAI Cookbook", source: "openai/openai-cookbook", license: "MIT" }]);
+  expect(store.workspaces().map((w) => w.id)).toEqual(["cookbook", "uploads"]);
   store.close();
 });

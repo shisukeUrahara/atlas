@@ -6,5 +6,8 @@ import { Store } from "./sqlite";
 export function openStore(dataDir: string): Store {
   const dir = path.join(dataDir, "data");
   mkdirSync(dir, { recursive: true });
-  return new Store(path.join(dir, "atlas.db"));
+  const store = new Store(path.join(dir, "atlas.db"));
+  // Uploads never mix with the reference corpora: they get their own workspace.
+  store.upsertWorkspace({ id: "uploads", name: "My uploads", source: "upload", license: "user upload" });
+  return store;
 }
