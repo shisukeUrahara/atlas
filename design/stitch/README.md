@@ -71,5 +71,21 @@ The owner asked for better screens than A and B. C uses a new design spec, [DESI
 
 Invented by Stitch, not used in the build: "Zero hallucinated keys", "Enforced at retrieval & runtime", "Refusal trigger: threshold < 0.65", "Rank #1 in Hybrid", "Hallucination prevented", "grounding ratio 0.00", relative times ("2m"), "chunks: 4,120", "index fresh", version tags ("v0.14", "v0.4.1-rc"), and every metric value (real values come from run folders).
 
-## Approved screens
-Filled in after the owner approves a direction.
+## Final screens (1 Nov 2026)
+The owner approved direction C. All six pages were then made in dark and light, plus two phone views. PNGs in `screens/`.
+
+| Page | Dark | Light |
+|---|---|---|
+| Overview | `ed056f4f596849dfb39d7cdddc88bda4` | `ed94fe03b5ad4aa4921ca98bf926768e` |
+| Ask | `c5dadcb1d36c48b0a925707babe44144` | `f5a585daadf6442997bce3d8a63780c1` |
+| Sources | `a184c29055254124b1a797e1cb066bde` | `5671f6a6370a451f8bb77cc846fa3f88` |
+| Retrieval Lab | `7c2c75e2843d4b989447023c3babd240` | `d4476c7ee7f84410be77512d90732576` |
+| Traces | `d5d80a99ef7440c88315dbaf2bbcf989` | `7a07469351064330812928f2266b3fcd` |
+| Evaluation | `402d434a59504964ba20f10c2266f12e` | `a86c735565e347a28afd5ac5cc1446a7` |
+| Phone Overview / Ask (dark) | `e7705bf6f3254ce0959516bbae0b4644` / `eaa865e6efbf4f3585bcd4834c06d19d` | — |
+
+Light screens were made with "generate variants" (colors only, layout kept). Light tokens: canvas `#f6f6fa`, panel `#ffffff`, hairline `#e4e4ee`, inset `#f3f3f8`, ink `#14151d`, steel `#5a5f72`, violet ink `#5b45d1` on `#efecff`.
+
+More invented details to drop in the build: "LIVE FEED", "Pending sync", "+22% / -20% / 74%" on the diff bars, "6 documents loaded", "GROUND TRUTH EVAL", "Tenant boundaries strictly isolated", "Zero dangling or fabricated keys", "lagging" tag, "PRIMARY" tag, per-row scores on Retrieval Lab (real scores come from the retrievers), the evidence passage text (real text comes from the chunk).
+
+Downloads: a small local script reads the Stitch API key from the local MCP config and saves each screenshot by file id, so large images never pass through the chat.
