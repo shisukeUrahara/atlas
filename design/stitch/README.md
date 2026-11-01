@@ -58,5 +58,18 @@ Two directions, generated before any UI code. PNGs in `concepts/`.
 
 What Stitch invented and the build will not use: "Atlas Ops" name, "Relevance score 0.94", "Confidence: High", "Latency 284ms", precision/latency/intercepts stats on the finding cards, marketing lines under the KPI cards.
 
+## Concept C (1 Nov 2026, dark): "Atlas · Evidence"
+The owner asked for better screens than A and B. C uses a new design spec, [DESIGN.md](DESIGN.md): same Afterglow family, but one restrained violet accent, Geist + mono only (no Inter), no glows, asymmetric layouts, no row of three equal cards, prose passages as text (not code blocks).
+
+- Design system: `assets/12585090034130361168` ("Atlas · Evidence (dark)")
+- Model: `GEMINI_3_8_FLASH`
+
+| Page | Screen id | PNG |
+|---|---|---|
+| Overview | `ed056f4f596849dfb39d7cdddc88bda4` | `concepts/overview-C-dark.png` |
+| Ask | `c5dadcb1d36c48b0a925707babe44144` | `concepts/ask-C-dark.png` |
+
+Invented by Stitch, not used in the build: "Zero hallucinated keys", "Enforced at retrieval & runtime", "Refusal trigger: threshold < 0.65", "Rank #1 in Hybrid", "Hallucination prevented", "grounding ratio 0.00", relative times ("2m"), "chunks: 4,120", "index fresh", version tags ("v0.14", "v0.4.1-rc"), and every metric value (real values come from run folders).
+
 ## Approved screens
-Filled in after the owner picks a direction.
+Filled in after the owner approves a direction.
