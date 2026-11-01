@@ -1,0 +1,172 @@
+{
+  "corpus": "cookbook",
+  "repo": "openai/openai-cookbook",
+  "commit": "f5819076643583e2c2a77268e7fe522e927499d0",
+  "license": "MIT",
+  "retrievedAtUtc": "2026-11-01T08:22:47.166Z",
+  "files": [
+    {
+      "path": "examples/Code_search_using_embeddings.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Code_search_using_embeddings.ipynb",
+      "bytes": 15611,
+      "sha256": "430ffe0764af5d58a083636e3610e11eae8f6f94a26a7a1031f8160571e1ad08"
+    },
+    {
+      "path": "examples/Developing_hallucination_guardrails.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Developing_hallucination_guardrails.ipynb",
+      "bytes": 55110,
+      "sha256": "27f550676b24af3054667be6c03dac2ce23f3955e968bf9e74d543a739757bc9"
+    },
+    {
+      "path": "examples/Embedding_Wikipedia_articles_for_search.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Embedding_Wikipedia_articles_for_search.ipynb",
+      "bytes": 23460,
+      "sha256": "ded90fe7746ab69e85d5aa6ebaab896d403ddadb1ad6108d6eed189cee51ff1a"
+    },
+    {
+      "path": "examples/Embedding_long_inputs.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Embedding_long_inputs.ipynb",
+      "bytes": 10080,
+      "sha256": "7560ff19cd00af337268db054b4fb0d7344b65e354789adbaf67bce143709f15"
+    },
+    {
+      "path": "examples/File_Search_Responses.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/File_Search_Responses.ipynb",
+      "bytes": 30784,
+      "sha256": "760f1713972d252373178d3193be81cd2fddd0229c997052184d9f0478feae99"
+    },
+    {
+      "path": "examples/Function_calling_finding_nearby_places.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Function_calling_finding_nearby_places.ipynb",
+      "bytes": 18741,
+      "sha256": "a0adf8fba3e866855c8a2c87536fca00d19ee1c9a0fb0e193d03daefe95c72e2"
+    },
+    {
+      "path": "examples/Function_calling_with_an_OpenAPI_spec.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Function_calling_with_an_OpenAPI_spec.ipynb",
+      "bytes": 23752,
+      "sha256": "3b23b1f12b078641380f5bc2cca15b4f658b15e9edae400361cfb30cc6f5107c"
+    },
+    {
+      "path": "examples/Get_embeddings_from_dataset.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Get_embeddings_from_dataset.ipynb",
+      "bytes": 7352,
+      "sha256": "01be494ad80fb554930f37fa445206f5760693cf0f591156af5d173fb55458b8"
+    },
+    {
+      "path": "examples/How_to_call_functions_for_knowledge_retrieval.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/How_to_call_functions_for_knowledge_retrieval.ipynb",
+      "bytes": 35972,
+      "sha256": "900dafdd217014324a6029be80a4112e716879690e6984887867117e5b1d3ecd"
+    },
+    {
+      "path": "examples/How_to_call_functions_with_chat_models.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/How_to_call_functions_with_chat_models.ipynb",
+      "bytes": 34544,
+      "sha256": "a2411d7927ecbc42e03548ce1423e80003d2f9bbc4b6d0eb638f1f0322d8e946"
+    },
+    {
+      "path": "examples/How_to_combine_GPT4o_with_RAG_Outfit_Assistant.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/How_to_combine_GPT4o_with_RAG_Outfit_Assistant.ipynb",
+      "bytes": 32232,
+      "sha256": "ac446dabc2037e1242dc2c4bcc799e1dec5f2754d084a06ee82aed112ad32ca0"
+    },
+    {
+      "path": "examples/How_to_count_tokens_with_tiktoken.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/How_to_count_tokens_with_tiktoken.ipynb",
+      "bytes": 30477,
+      "sha256": "b83aa4aebf80a432b0a93a54fe3056e09d768774f8914ea7bf8329129b6800d5"
+    },
+    {
+      "path": "examples/Question_answering_using_a_search_API.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Question_answering_using_a_search_API.ipynb",
+      "bytes": 23015,
+      "sha256": "ef5b052d05762fba75c98daee6ee209a762d9c3cacbd98580b21796fc30a225d"
+    },
+    {
+      "path": "examples/Question_answering_using_embeddings.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Question_answering_using_embeddings.ipynb",
+      "bytes": 70877,
+      "sha256": "3f0d2292123352829a99406edbbad34a074eee13e00d9e817bdd04ba7d343fb7"
+    },
+    {
+      "path": "examples/RAG_with_graph_db.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/RAG_with_graph_db.ipynb",
+      "bytes": 60068,
+      "sha256": "c935617662a1fb3a3e0adec32acad85370b0b15179ed4c59401e182eae5cf715"
+    },
+    {
+      "path": "examples/Regression_using_embeddings.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Regression_using_embeddings.ipynb",
+      "bytes": 3725,
+      "sha256": "89c97d1bafc8a3f964fd32cc7a01fa7b824f74e97b1e7dd22aa85fba0b053cb4"
+    },
+    {
+      "path": "examples/Search_reranking_with_cross-encoders.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Search_reranking_with_cross-encoders.ipynb",
+      "bytes": 52681,
+      "sha256": "14d981f63b63fb848c1847b97b5c14f0377c34b74373847483c26bf545b26e78"
+    },
+    {
+      "path": "examples/Semantic_text_search_using_embeddings.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Semantic_text_search_using_embeddings.ipynb",
+      "bytes": 6599,
+      "sha256": "648f03f4a051f26d0e891f4699bf6f206380d1075346d6e35a4a66ec7e388efd"
+    },
+    {
+      "path": "examples/Structured_Outputs_Intro.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Structured_Outputs_Intro.ipynb",
+      "bytes": 29018,
+      "sha256": "05731b657039904eec7d55c5a69532a6227fe8b9747a54a19934d993e6d50dde"
+    },
+    {
+      "path": "examples/Structured_outputs_multi_agent.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Structured_outputs_multi_agent.ipynb",
+      "bytes": 74162,
+      "sha256": "9c6bac7c2613bb60da1acda34d947ea946d2415c2e3cf4465fd1e693fcaeac0a"
+    },
+    {
+      "path": "examples/Using_embeddings.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/Using_embeddings.ipynb",
+      "bytes": 3227,
+      "sha256": "df565b643c3ff8d5c15f94c88f6e7e95a8071f30a45a3df762e9d3a207b82fc0"
+    },
+    {
+      "path": "examples/batch_processing.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/batch_processing.ipynb",
+      "bytes": 54324,
+      "sha256": "693604fe7cd8a071ad391c98081ab5326da980c767085421d037261e96a41008"
+    },
+    {
+      "path": "examples/reasoning_function_calls.ipynb",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/examples/reasoning_function_calls.ipynb",
+      "bytes": 34654,
+      "sha256": "7bc4ddc31d311c9d0698c39b28e4ff8ccb402af3f8ea4c5d4d0437164401989c"
+    },
+    {
+      "path": "articles/how_to_work_with_large_language_models.md",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/articles/how_to_work_with_large_language_models.md",
+      "bytes": 8338,
+      "sha256": "76ac11da6d273c52b5b65e968b1d75ffebe7392da29cad42dfb3f69b61af25bf"
+    },
+    {
+      "path": "articles/techniques_to_improve_reliability.md",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/articles/techniques_to_improve_reliability.md",
+      "bytes": 42110,
+      "sha256": "6df259b8b4a91413ebda7b10b121935586d2d3c4189faad45b213b9c49054993"
+    },
+    {
+      "path": "articles/text_comparison_examples.md",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/articles/text_comparison_examples.md",
+      "bytes": 3609,
+      "sha256": "2febade8f33a12174b30fe4af676b7c5903774e17545f213d0494002137bc244"
+    },
+    {
+      "path": "articles/what_makes_documentation_good.md",
+      "url": "https://github.com/openai/openai-cookbook/blob/f5819076643583e2c2a77268e7fe522e927499d0/articles/what_makes_documentation_good.md",
+      "bytes": 9082,
+      "sha256": "b21363424a0b57b0c6e4ebe195f30c3e08e32a4f389f60d6ea18c816c762ac5a"
+    }
+  ],
+  "missing": []
+}
