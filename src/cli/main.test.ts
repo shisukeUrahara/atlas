@@ -7,7 +7,13 @@ import { main } from "./main";
 function fakeDeps() {
   const out: string[] = [];
   const err: string[] = [];
-  const deps: Deps = { dataDir: "/tmp", out: (l) => out.push(l), err: (l) => err.push(l) };
+  const deps: Deps = {
+    dataDir: "/tmp",
+    download: async () => null,
+    now: () => new Date(0),
+    out: (l) => out.push(l),
+    err: (l) => err.push(l),
+  };
   return { deps, out, err };
 }
 

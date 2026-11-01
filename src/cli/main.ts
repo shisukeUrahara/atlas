@@ -1,8 +1,11 @@
 import type { Command, Deps } from "./deps";
+import { fetchCorpus } from "./commands/fetch";
 import { EXIT } from "./exit";
 
 /** Commands are added one per commit as the pipeline grows. */
-export const COMMANDS: Record<string, Command> = {};
+export const COMMANDS: Record<string, Command> = {
+  fetch: fetchCorpus,
+};
 
 export async function main(argv: string[], deps: Deps, commands = COMMANDS): Promise<number> {
   const [name, ...rest] = argv;
