@@ -159,6 +159,16 @@ export class Store {
     });
   }
 
+  chunkCounts(workspaceId: WorkspaceId): Map<string, number> {
+    const rows = this.db.prepare("SELECT document_id, COUNT(*) n FROM chunks WHERE workspace_id = ? GROUP BY document_id").all(workspaceId);
+    return new Map(rows.map((r) => [String(r.document_id), Number(r.n)]));
+  }
+
+  indexVersionInfo(workspaceId: WorkspaceId, version: number): { added: number; removed: number; unchanged: number } | null {
+    const r = this.db.prepare("SELECT added, removed, unchanged FROM index_versions WHERE workspace_id = ? AND version = ?").get(workspaceId, version);
+    return r ? { added: Number(r.added), removed: Number(r.removed), unchanged: Number(r.unchanged) } : null;
+  }
+
   /** 0 when nothing has been indexed yet. */
   indexVersion(workspaceId: WorkspaceId): number {
     const r = this.db.prepare("SELECT MAX(version) v FROM index_versions WHERE workspace_id = ?").get(workspaceId);
