@@ -11,7 +11,7 @@ export interface VerifyProblem {
 export function verifySnapshot(corpusDir: string, manifest: SourceManifest): VerifyProblem[] {
   const snapshot = path.join(corpusDir, "snapshot");
   const problems: VerifyProblem[] = [];
-  for (const f of manifest.files) {
+  for (const f of [...manifest.files, ...(manifest.includes ?? [])]) {
     const file = resolveInside(snapshot, f.path);
     if (!existsSync(file)) problems.push({ path: f.path, problem: "missing" });
     else if (sha256Hex(readFileSync(file)) !== f.sha256) problems.push({ path: f.path, problem: "checksum" });

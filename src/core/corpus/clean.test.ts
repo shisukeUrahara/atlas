@@ -79,3 +79,24 @@ test("a real LangChain page cleans to readable Markdown", () => {
   expect(doc.body).not.toMatch(/^:::/m);
   expect(doc.body).not.toMatch(/^import /m);
 });
+
+test("snippet includes are inlined (Python view, dedented), unknown ones still dropped", () => {
+  const page = [
+    "---\ntitle: P\n---",
+    "import UsagePy from '/snippets/usage-py.mdx';",
+    "import Missing from '/snippets/missing.mdx';",
+    ":::python",
+    "<UsagePy />",
+    ":::",
+    "<Missing />",
+  ].join("\n");
+  const snippet = "<CodeGroup>\n    ```python Google\n    agent = create_agent(checkpointer=InMemorySaver())  # [!code highlight]\n    ```\n</CodeGroup>";
+  const doc = cleanMdx(page, (p) => (p === "/snippets/usage-py.mdx" ? snippet : null));
+  expect(doc.body).toContain("```python Google\nagent = create_agent(checkpointer=InMemorySaver())\n```");
+  expect(doc.droppedSnippets).toBe(1);
+});
+
+test("content nested two wrappers deep is dedented fully", () => {
+  const doc = cleanMdx('<Tabs>\n    <Tab title="OpenAI">\n        Read the docs.\n    </Tab>\n</Tabs>');
+  expect(doc.body).toBe("**OpenAI**\nRead the docs.\n");
+});

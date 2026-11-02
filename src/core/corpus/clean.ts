@@ -30,12 +30,25 @@ function frontmatter(raw: string): { title: string; rest: string } {
   return { title, rest: raw.slice(m[0].length) };
 }
 
-export function cleanMdx(raw: string): CleanedDoc {
+/** Returns the raw text of an imported snippet (by its import path), or null when not available. */
+export type SnippetResolver = (importPath: string) => string | null;
+
+const IMPORT = /^import\s+(\w+)\s+from\s+['"]([^'"]+)['"];?\s*$/;
+const MAX_INCLUDE_DEPTH = 3;
+
+export function cleanMdx(raw: string, resolve?: SnippetResolver, depth = 0): CleanedDoc {
   const { title, rest } = frontmatter(raw.replace(/\r\n/g, "\n"));
+  const imports = new Map<string, string>();
+  for (const line of rest.split("\n")) {
+    const m = IMPORT.exec(line);
+    if (m) imports.set(m[1], m[2]);
+  }
   const out: string[] = [];
   let inFence = false;
   let lang: string | null = null; // inside a :::lang block
   let dropped = 0;
+  let jsxDepth = 0; // open wrapper tags such as <Note> or <CodeGroup>; their content is indented
+  const dedent = (line: string) => line.replace(new RegExp(`^ {0,${jsxDepth * 4}}`), "");
   for (const line of rest.split("\n")) {
     if (FENCE.test(line)) inFence = !inFence;
     if (!inFence && !FENCE.test(line)) {
@@ -51,22 +64,36 @@ export function cleanMdx(raw: string): CleanedDoc {
     }
     if (lang !== null && lang !== KEEP_LANG) continue;
     if (inFence || FENCE.test(line)) {
-      out.push(line.replace(HIGHLIGHT, ""));
+      out.push(dedent(line).replace(HIGHLIGHT, ""));
       continue;
     }
     if (/^import\s.+from\s+['"].+['"];?\s*$/.test(line)) continue;
-    if (SELF_CLOSING.test(line)) {
-      dropped++;
+    const self = SELF_CLOSING.exec(line);
+    if (self) {
+      const from = imports.get(self[1]);
+      const text = from && resolve && depth < MAX_INCLUDE_DEPTH ? resolve(from) : null;
+      if (text === null) {
+        dropped++;
+        continue;
+      }
+      const inner = cleanMdx(text, resolve, depth + 1);
+      dropped += inner.droppedSnippets;
+      out.push(inner.body.trimEnd());
       continue;
     }
     const titled = TITLE_ATTR.exec(line);
     if (titled) {
+      jsxDepth++;
       out.push(`**${titled[1]}**`);
       continue;
     }
-    if (JSX_LINE.test(line)) continue;
-    // Content inside <Note> etc. is indented 4 spaces; dedent so it is not read as code.
-    out.push(line.replace(/^ {4}/, ""));
+    if (JSX_LINE.test(line)) {
+      if (/^\s*<\//.test(line)) jsxDepth = Math.max(0, jsxDepth - 1);
+      else jsxDepth++;
+      continue;
+    }
+    // Content inside <Note>, <CodeGroup> etc. is indented per level; dedent so it is not read as code.
+    out.push(dedent(line));
   }
   const body = out.join("\n").replace(/\n{3,}/g, "\n\n").trim() + "\n";
   return { title, body, droppedSnippets: dropped };
@@ -94,9 +121,9 @@ export function cleanNotebook(raw: string): CleanedDoc {
 }
 
 /** Picks the cleaner by file extension. Unknown types are treated as Markdown. */
-export function cleanDocument(path: string, raw: string): CleanedDoc {
+export function cleanDocument(path: string, raw: string, resolve?: SnippetResolver): CleanedDoc {
   if (path.endsWith(".ipynb")) return cleanNotebook(raw);
-  const doc = cleanMdx(raw);
+  const doc = cleanMdx(raw, resolve);
   if (doc.title) return doc;
   // Plain Markdown: use the first # heading as the title.
   const h1 = /^#\s+(.+)$/m.exec(doc.body);

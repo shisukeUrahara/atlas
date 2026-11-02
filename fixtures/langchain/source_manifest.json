@@ -3,7 +3,7 @@
   "repo": "langchain-ai/docs",
   "commit": "64063c67975bdc79bcb251027cf9016975865671",
   "license": "MIT",
-  "retrievedAtUtc": "2026-11-01T08:24:04.735Z",
+  "retrievedAtUtc": "2026-11-02T12:16:46.356Z",
   "files": [
     {
       "path": "src/oss/langchain/overview.mdx",
@@ -250,6 +250,902 @@
       "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/oss/langgraph/backward-compatibility.mdx",
       "bytes": 11335,
       "sha256": "3309fa9075c01d16cbfd48a5acf5b3c8a60923beecc03d6974e78878f3df8110"
+    }
+  ],
+  "includes": [
+    {
+      "path": "src/snippets/chat-model-tabs-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/chat-model-tabs-js.mdx",
+      "bytes": 5764,
+      "sha256": "f1a1b9435329a70602ad6a106dffae7c2306fd61f219939561bfbfa502ca201d"
+    },
+    {
+      "path": "src/snippets/chat-model-tabs.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/chat-model-tabs.mdx",
+      "bytes": 7303,
+      "sha256": "f78f06e6db91f41bc6cfbfb31462e304a40cb7f98d2a40d8b564dcf13e7f6c56"
+    },
+    {
+      "path": "src/snippets/code-samples/agent-invocation-thread-and-context-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agent-invocation-thread-and-context-js.mdx",
+      "bytes": 5676,
+      "sha256": "cc89a7e3b5aa398ccd97b45abe460812b1ce43eea10f39f0edb177302fb70639"
+    },
+    {
+      "path": "src/snippets/code-samples/agent-invocation-thread-and-context-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agent-invocation-thread-and-context-py.mdx",
+      "bytes": 5157,
+      "sha256": "cea4b7bc1d45a1e4f23813fe51a1ac13aadd49b18e8ce00f6fc81a396f7027d1"
+    },
+    {
+      "path": "src/snippets/code-samples/agent-invocation-thread-id-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agent-invocation-thread-id-js.mdx",
+      "bytes": 6152,
+      "sha256": "c19edcc06fd3838c5a09e506d49455ed629e46f80733cc2ed30a32e843007254"
+    },
+    {
+      "path": "src/snippets/code-samples/agent-invocation-thread-id-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agent-invocation-thread-id-py.mdx",
+      "bytes": 5598,
+      "sha256": "07e268c20a6db04f9124f00c5626ccea4944e295d37c0bde65ae56039c9b59a1"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-agent-state-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-agent-state-js.mdx",
+      "bytes": 4041,
+      "sha256": "367c95bb4aef2b36ed7d348dd9e425c16d301d741efd8d9a3eb2429aa6c6dd27"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-agent-state-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-agent-state-py.mdx",
+      "bytes": 2339,
+      "sha256": "729eccc5487ac13aeea1037915142aac0e55f50e60279fa88867c60781d80e23"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-context-management-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-context-management-js.mdx",
+      "bytes": 4272,
+      "sha256": "b023d5c839fdb46073a6f0bab75741f3ef154d488caceee6897df90f67abf1d4"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-context-management-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-context-management-py.mdx",
+      "bytes": 4572,
+      "sha256": "760e13cdf9a29a53f2ea9fda18e57580f09b56f2f2480ccfe7f37726f9d90171"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-execution-environment-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-execution-environment-js.mdx",
+      "bytes": 2382,
+      "sha256": "42afc0d70ec072afe627d699327993c6b96f94f80dd2037b753db854aae596b5"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-execution-environment-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-execution-environment-py.mdx",
+      "bytes": 2528,
+      "sha256": "5702c77f1c07282ccfe0069978f5847eb0ff4fd274fc5f37a2f8ff3421dcfa78"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-fault-tolerance-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-fault-tolerance-js.mdx",
+      "bytes": 4482,
+      "sha256": "f7abe7bc292c2e1a6cc6abd2dd5f564ff705ee3920e3ff9f664b1eda2e8cc1ad"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-fault-tolerance-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-fault-tolerance-py.mdx",
+      "bytes": 4236,
+      "sha256": "f16e735d959869bec0d4a154238af67679712807a9a024104b8bbae829904840"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-guardrails-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-guardrails-js.mdx",
+      "bytes": 3509,
+      "sha256": "3b47f4a5d0627f8cba4ff3718f9d8d6c15b9645905b01b0fd674c5ff43d02495"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-guardrails-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-guardrails-py.mdx",
+      "bytes": 3452,
+      "sha256": "774f230f68c4c170155c4e5ce0f668387db801bf7b4a0e4a827aab80790a3628"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-intro-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-intro-js.mdx",
+      "bytes": 1101,
+      "sha256": "419c6b2451767e997ac24e7afdf1699f4f31de92e08d3b7936abfbcbf84ef1ae"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-intro-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-intro-py.mdx",
+      "bytes": 1121,
+      "sha256": "1b8c1663749e93b8976a4c565e4d4cca72e5e85f833526b7c3db60a6f766d255"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-model-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-model-js.mdx",
+      "bytes": 1119,
+      "sha256": "0d78f1fa06fbfd16628baea18bba546ff5937d9ecc4c3eb40cadcf4f64092ea1"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-model-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-model-py.mdx",
+      "bytes": 1121,
+      "sha256": "1b8c1663749e93b8976a4c565e4d4cca72e5e85f833526b7c3db60a6f766d255"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-name-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-name-js.mdx",
+      "bytes": 1108,
+      "sha256": "8e6037d662eed911f07c1437ab4e2deeb279c607d121c4b1cc3710c9f20298c0"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-name-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-name-py.mdx",
+      "bytes": 953,
+      "sha256": "2e0e1db0d3a9babd0912d8d88a722034199e98c8b5a9b65289716e0992012eac"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-planning-delegation-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-planning-delegation-js.mdx",
+      "bytes": 8880,
+      "sha256": "074d800f7c799f93335519e3e044932df590a6896fde7219332948103c9801b8"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-planning-delegation-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-planning-delegation-py.mdx",
+      "bytes": 9416,
+      "sha256": "fb1eae2a12c7974275f21b3277afd4c4f22ca320774696039b3a4342ed2831cf"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-steering-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-steering-js.mdx",
+      "bytes": 3866,
+      "sha256": "8fd58c7229bcd206c1764cccf566a9f1a1989f7caf7a085d476f149406ef920a"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-steering-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-steering-py.mdx",
+      "bytes": 3788,
+      "sha256": "acd5e5bbd1c9df1ac5354c6a4c348090955c8c2525a942a33634134983a298ac"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-streaming-progress-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-streaming-progress-js.mdx",
+      "bytes": 998,
+      "sha256": "325a249b3ba1a6a11e885189ae05922641d43d36da9ece9121c3314a7429437b"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-streaming-progress-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-streaming-progress-py.mdx",
+      "bytes": 924,
+      "sha256": "d518725a49f0049c9ebd67fe36ac8a17d2c1668ad1d24aa1e49034b132089df2"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-structured-output-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-structured-output-js.mdx",
+      "bytes": 2949,
+      "sha256": "9be35a191affc5a0213f417951337fdac07c2d0e44982d6aaddcd94486b42119"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-structured-output-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-structured-output-py.mdx",
+      "bytes": 3340,
+      "sha256": "c783540e962b5adc7de6cdc4669ce7ca2d419cb6524ff12f015f2b03f2ee70de"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-system-prompt-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-system-prompt-js.mdx",
+      "bytes": 1409,
+      "sha256": "e07e73e4a7ba847eba32ba29c429a62e25258b87c791627e401d49ac9092332d"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-system-prompt-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-system-prompt-py.mdx",
+      "bytes": 1478,
+      "sha256": "a19ce9f9adf7ae9b23fec77c878f934701c05d6637eb8d6d498253cab2acbf09"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-tools-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-tools-js.mdx",
+      "bytes": 2669,
+      "sha256": "01704baaf0cf13320b1a46e948564890c0a2f78d777867b25c39409bc85305e3"
+    },
+    {
+      "path": "src/snippets/code-samples/agents-tools-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/agents-tools-py.mdx",
+      "bytes": 2360,
+      "sha256": "0ec07a759dfea5912be75d61015b7c743c656da6ef5aee246a7cd1f018865234"
+    },
+    {
+      "path": "src/snippets/code-samples/graph-api-using-tasks-original-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/graph-api-using-tasks-original-js.mdx",
+      "bytes": 1114,
+      "sha256": "219bd3f19ce224ff46171777363d874876d5984d981beb6616e6348102a994d2"
+    },
+    {
+      "path": "src/snippets/code-samples/graph-api-using-tasks-original-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/graph-api-using-tasks-original-py.mdx",
+      "bytes": 1066,
+      "sha256": "a393adeb638dc9c357bf19033022002ede08c9f3b3a32d6a051a960c5adbd852"
+    },
+    {
+      "path": "src/snippets/code-samples/graph-api-using-tasks-task-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/graph-api-using-tasks-task-js.mdx",
+      "bytes": 1330,
+      "sha256": "cc77d97499f7e72a6ae24053e1c6679d9771312d7bdc0cc4c44d22936aa49431"
+    },
+    {
+      "path": "src/snippets/code-samples/graph-api-using-tasks-task-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/graph-api-using-tasks-task-py.mdx",
+      "bytes": 1314,
+      "sha256": "32ab0943d75f469e5801e180e7c0e59d900f0f4367078375f2fc2735437d0222"
+    },
+    {
+      "path": "src/snippets/code-samples/hitl-per-call-agent-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/hitl-per-call-agent-js.mdx",
+      "bytes": 9298,
+      "sha256": "01b59a9360ba7356d1829438837efe98c649065363fc34f119443072c1a91b9f"
+    },
+    {
+      "path": "src/snippets/code-samples/hitl-per-call-agent-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/hitl-per-call-agent-py.mdx",
+      "bytes": 8471,
+      "sha256": "6d4aaa3ef161f58a0dbc8778842132ca7f4503f1c4ab7072dba08337a84e9c2a"
+    },
+    {
+      "path": "src/snippets/code-samples/hitl-per-call-invalid-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/hitl-per-call-invalid-js.mdx",
+      "bytes": 1000,
+      "sha256": "a5807413b2ceb883edd0a79a7fcbc25479dd3085cf205e269c06110754cd1c83"
+    },
+    {
+      "path": "src/snippets/code-samples/hitl-per-call-invalid-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/hitl-per-call-invalid-py.mdx",
+      "bytes": 819,
+      "sha256": "8435ebd7591ee058784d3381ec9060b7e9aaad6c5c851e674071c37d3a760514"
+    },
+    {
+      "path": "src/snippets/code-samples/hitl-per-call-invoke-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/hitl-per-call-invoke-js.mdx",
+      "bytes": 1146,
+      "sha256": "e9999768aa7d4bfe75dff5dab50bed30ee1c5295f4a5e1e8dbff313d3d956a6c"
+    },
+    {
+      "path": "src/snippets/code-samples/hitl-per-call-invoke-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/hitl-per-call-invoke-py.mdx",
+      "bytes": 927,
+      "sha256": "732b9fc7ab2bf8c3df0473d633ee6d8dfefb0f3f6036c9c87d7c21cdcc0e031c"
+    },
+    {
+      "path": "src/snippets/code-samples/hitl-per-call-resume-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/hitl-per-call-resume-js.mdx",
+      "bytes": 381,
+      "sha256": "f121b38b8a2eeba86342d6f514126de4221f82ad5012a8fe6a4aa288a9ea4d75"
+    },
+    {
+      "path": "src/snippets/code-samples/hitl-per-call-resume-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/hitl-per-call-resume-py.mdx",
+      "bytes": 435,
+      "sha256": "75c5842080ba9ecf31c4f845a4730a93450622d46f1a3e259e393a49f35afdcd"
+    },
+    {
+      "path": "src/snippets/code-samples/hitl-per-call-stream-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/hitl-per-call-stream-js.mdx",
+      "bytes": 398,
+      "sha256": "4a05a72eafd357daf209df5df76b462a5ff2d95345192987b85cde84b98a0009"
+    },
+    {
+      "path": "src/snippets/code-samples/hitl-per-call-stream-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/hitl-per-call-stream-py.mdx",
+      "bytes": 286,
+      "sha256": "2ff462d13074a9a7f0dae6db85bc46315990bab3886f07c75305fb3491b67922"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-functional-api-interrupt-resume-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-functional-api-interrupt-resume-js.mdx",
+      "bytes": 660,
+      "sha256": "ddd0db15a221cf07940082cdf6e14d47c7c731671f2249e492ac4cb3bb782e48"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-functional-api-interrupt-resume-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-functional-api-interrupt-resume-py.mdx",
+      "bytes": 341,
+      "sha256": "2bba0e31996a6f7164f68a04770aa9e9c1ce38e2f68369d43a4dde2d66dfcaff"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-functional-api-interrupt-stream-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-functional-api-interrupt-stream-js.mdx",
+      "bytes": 1586,
+      "sha256": "548e43fffd47e186b2889619f72dc02f5ee50b73b987b6a28e993872e2c4652b"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-functional-api-interrupt-stream-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-functional-api-interrupt-stream-py.mdx",
+      "bytes": 1813,
+      "sha256": "1ee27228de4e5a33044e40e6255fcf4eaf5f7bb68b00a5df01eba8431dd119c2"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-multiple-schemas-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-multiple-schemas-js.mdx",
+      "bytes": 1484,
+      "sha256": "592acce04963306f11abbf7f211492ebec7a3d34b4000e96c2abfe0589e3ba4d"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-multiple-schemas-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-multiple-schemas-py.mdx",
+      "bytes": 1401,
+      "sha256": "63d8727b3bd6b12502a858060363eff8063aa07323b771ad4caf0d3a502e4e99"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-reducers-append-strings-call-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-reducers-append-strings-call-js.mdx",
+      "bytes": 155,
+      "sha256": "bb3fec50b57d352148a8af206fa6e9d24b9af74acd689e35d0d939d395a154f5"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-reducers-append-strings-call-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-reducers-append-strings-call-py.mdx",
+      "bytes": 94,
+      "sha256": "c54953cd6bf8290e9e0a8d31fd5821647fd11215f61ed86fb6a539d603082e37"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-reducers-append-strings-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-reducers-append-strings-js.mdx",
+      "bytes": 589,
+      "sha256": "9b3a8b256add9d7f1ae1b9ba8467ad8cec287e996533257ee6e564b380c7aef1"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-reducers-append-strings-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-reducers-append-strings-py.mdx",
+      "bytes": 329,
+      "sha256": "860f9dbdbf22ea2066409977e2c6b4c179245567a0104c668e58284726144bac"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-reducers-custom-state-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-reducers-custom-state-js.mdx",
+      "bytes": 479,
+      "sha256": "ec637df9ee1065c80fb36d752a975aeb7081e91912774be6650b6fa50b2bebdc"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-reducers-custom-state-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-reducers-custom-state-py.mdx",
+      "bytes": 183,
+      "sha256": "d8fc67c6f21f3b59716697d61d3275c454e2418c402a819f5f3e597088c5f439"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-reducers-default-state-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-reducers-default-state-js.mdx",
+      "bytes": 379,
+      "sha256": "77e772d60147494c4d5427b0339a5c958d506f9a14b1a68bc411dd586b0b1f2f"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-reducers-default-state-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-reducers-default-state-py.mdx",
+      "bytes": 112,
+      "sha256": "60a1096e5a076e84fa2da7c68b652db59eab02f57cc44b0eecc1c4f83948b8c2"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-reducers-merge-does-not-clear-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-reducers-merge-does-not-clear-js.mdx",
+      "bytes": 658,
+      "sha256": "972d903ab47ddfbdebf743d496da1460790fb3b6c01050e2821bf8922b3e5640"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-reducers-merge-does-not-clear-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-reducers-merge-does-not-clear-py.mdx",
+      "bytes": 329,
+      "sha256": "0bd67f0c3f3b9719e6b3603b7cf1c1b9d5e78f99aafe9d8414df746182c85389"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-reducers-overwrite-clear-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-reducers-overwrite-clear-js.mdx",
+      "bytes": 539,
+      "sha256": "b90b31531c210c9a328e8f86c0a7365b983d6adb35e17a5c953fa2048942c3ce"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-reducers-overwrite-clear-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-reducers-overwrite-clear-py.mdx",
+      "bytes": 335,
+      "sha256": "e9e4128ab3ebebd73e87d413aee15abf1ec0d5857b5f349c49fbdd13428ad98e"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-reducers-replace-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-reducers-replace-js.mdx",
+      "bytes": 541,
+      "sha256": "890776996943dec1910dbfd81f2db4bc48326a0e5deecff70b59ff78c156112f"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-resume-v2-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-resume-v2-py.mdx",
+      "bytes": 1244,
+      "sha256": "cc8163cb535269835e523e6492e0fb8003f5fe308e652b723502aac3773454be"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-stream-private-channel-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-stream-private-channel-js.mdx",
+      "bytes": 1556,
+      "sha256": "9b190beeb6e36127a83ba6da6a540be48b80c2c317173f67bc26da69500d651e"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-graph-api-stream-private-channel-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-graph-api-stream-private-channel-py.mdx",
+      "bytes": 590,
+      "sha256": "940f17eb9abf1da36c8aa20fd1ca6e88e09d70d3e43b54dfd3608537c7047da8"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-interrupts-approval-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-interrupts-approval-py.mdx",
+      "bytes": 2005,
+      "sha256": "3a114b8ba0db2de6e41b71453239e3d13ffaee76f3f332a0054e79363146c84e"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-interrupts-hitl-stream-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-interrupts-hitl-stream-js.mdx",
+      "bytes": 999,
+      "sha256": "2b252f2aa672b221043d9caede458f442f7713777dd04d6e3756e16c5d13ffe8"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-interrupts-hitl-stream-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-interrupts-hitl-stream-py.mdx",
+      "bytes": 892,
+      "sha256": "4f984ba76c31f4e1e2559296fcd046c2eae3211891349af173e08729bbf21c17"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-interrupts-multiple-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-interrupts-multiple-py.mdx",
+      "bytes": 1675,
+      "sha256": "f6a5923a95233d77a76d6c7cfe5366b3daa940c76b4b9b05f0682ecce0fd977c"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-interrupts-resume-v2-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-interrupts-resume-v2-py.mdx",
+      "bytes": 1068,
+      "sha256": "6281cd967cd950dacbe5d0faa689ea454c03e171060e4a0376b81a684ee05cf7"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-interrupts-review-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-interrupts-review-py.mdx",
+      "bytes": 1520,
+      "sha256": "27901947eb988761fc67f45974d197749be4835d16789a77812c3ce5071506fd"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-interrupts-validate-conditional-edge-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-interrupts-validate-conditional-edge-js.mdx",
+      "bytes": 1770,
+      "sha256": "ad7a7c17c27d9a09f9c824610569b9d455c29f0c491fbee09cb5ff55633c0f34"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-interrupts-validate-conditional-edge-pattern-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-interrupts-validate-conditional-edge-pattern-js.mdx",
+      "bytes": 781,
+      "sha256": "49e4ed4c4503eacdae0a035be1d2b860d19edd5b88aee2d1a5e6294a6ff47e5e"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-interrupts-validate-conditional-edge-pattern-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-interrupts-validate-conditional-edge-pattern-py.mdx",
+      "bytes": 864,
+      "sha256": "bbaab0f66f2f368605f43fb14c6a9a932220ed1484fc4f2b62c74577f2aeffe2"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-interrupts-validate-conditional-edge-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-interrupts-validate-conditional-edge-py.mdx",
+      "bytes": 1846,
+      "sha256": "91734c84566df8d7ec76339c7aac31b026943b9aacbad0a3b539082de451d554"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-interrupts-validate-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-interrupts-validate-py.mdx",
+      "bytes": 1706,
+      "sha256": "775e23e61eed3a4c169c7aed456b40dcd72a5793247bbf32e1d9e9c5c87a8938"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-subgraphs-interrupt-v2-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-subgraphs-interrupt-v2-py.mdx",
+      "bytes": 779,
+      "sha256": "e381c9aa8f0e1dbead60bd0d91b52fe9ebd046eb7d1615364a7ec9d804fcdbf6"
+    },
+    {
+      "path": "src/snippets/code-samples/langgraph-thinking-hitl-v2-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/langgraph-thinking-hitl-v2-py.mdx",
+      "bytes": 1698,
+      "sha256": "76827b1960dc6dae63a7a2399e336b4c902011f2aabc812fd746658bd95ee1fd"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-create-agent-inmemory-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-create-agent-inmemory-js.mdx",
+      "bytes": 2774,
+      "sha256": "20773498cab35a4eec6910961eb6c82d15d69aec2cd1aab0cb8fb237aaf3ac99"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-create-agent-inmemory-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-create-agent-inmemory-py.mdx",
+      "bytes": 363,
+      "sha256": "99710f57201ab012fed9d019b2f7a44197f7c992ab7d12ef712abd514815ce64"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-create-agent-postgres-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-create-agent-postgres-js.mdx",
+      "bytes": 3474,
+      "sha256": "296acab8bd1b0c37847cc383d70bb477e86c6ba37293334ecbbe80f6f04159e7"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-create-agent-postgres-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-create-agent-postgres-py.mdx",
+      "bytes": 453,
+      "sha256": "4b9cda7a1eb3d45d193455256b5980425ba880998aec050eebe55a1c86d2cf24"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-read-tool-inmemory-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-read-tool-inmemory-js.mdx",
+      "bytes": 14909,
+      "sha256": "f26a6015b1babe1f7ec8d8102921f2cffe3129be8e769ab800e26757c3e54f9e"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-read-tool-inmemory-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-read-tool-inmemory-py.mdx",
+      "bytes": 12710,
+      "sha256": "24976c90945af5cf542c2d69962f41e7f2f11ae576f46b15a4eaf7442786d703"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-read-tool-postgres-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-read-tool-postgres-js.mdx",
+      "bytes": 10359,
+      "sha256": "eb265a575136d58305ec8ff7758f59ed4f6408e10db2382a7d7020e487b29b30"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-read-tool-postgres-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-read-tool-postgres-py.mdx",
+      "bytes": 1368,
+      "sha256": "4b743006576d0378d87d27d056748faa23f89fc591fd74a7b5ca1e02f42097a4"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-storage-inmemory-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-storage-inmemory-js.mdx",
+      "bytes": 990,
+      "sha256": "d6dbb3daa046e722024beaac5a1af682dbbabcb0fe910dcfb30e176be142fd67"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-storage-inmemory-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-storage-inmemory-py.mdx",
+      "bytes": 1064,
+      "sha256": "b4ec10ae04fc57ba676528fa2aab6b165f76f62f60e0b3694621878a571db341"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-storage-postgres-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-storage-postgres-js.mdx",
+      "bytes": 869,
+      "sha256": "5ce1676315038742ea76272084de9684e3e1c1d1fc422d9366a985dc69ce4441"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-storage-postgres-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-storage-postgres-py.mdx",
+      "bytes": 1112,
+      "sha256": "4d0034ff8b0ae1a60b0c1a20e212911a97202963894adfcfe9286b17b749862d"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-write-tool-inmemory-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-write-tool-inmemory-js.mdx",
+      "bytes": 12998,
+      "sha256": "3fff2109ccd52de8f833fb21f1ce354091824ca6bedb232bfb1514bd79c2a178"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-write-tool-inmemory-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-write-tool-inmemory-py.mdx",
+      "bytes": 12451,
+      "sha256": "d0157e60772fc17b32c1fd2fab4aa6e12c9a5a989d02309b0858ab1e80470fdd"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-write-tool-postgres-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-write-tool-postgres-js.mdx",
+      "bytes": 10345,
+      "sha256": "2625234e424a367b5c8d90db1c36be4ac6affe9a203db39ec2aafb4e988b1e03"
+    },
+    {
+      "path": "src/snippets/code-samples/long-term-memory-write-tool-postgres-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/long-term-memory-write-tool-postgres-py.mdx",
+      "bytes": 1333,
+      "sha256": "5327cd6a05d7ba943af99ca103fa0e17f0a567f305aeb905491b43fd18c4e75b"
+    },
+    {
+      "path": "src/snippets/code-samples/message-serialization-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/message-serialization-js.mdx",
+      "bytes": 362,
+      "sha256": "8705b689fb246589b01848199bd8139d3ed133544db3851c0278a924cffe4a7a"
+    },
+    {
+      "path": "src/snippets/code-samples/message-serialization-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/message-serialization-py.mdx",
+      "bytes": 285,
+      "sha256": "d31cd51b3cf7639bb1ee4c9b82703e336d0c5e4cc9337101f1e572a3c84c63bb"
+    },
+    {
+      "path": "src/snippets/code-samples/middleware-dynamic-model-selection-class-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/middleware-dynamic-model-selection-class-py.mdx",
+      "bytes": 676,
+      "sha256": "607959903a515eb316eae1dc1c84338be8ecaf3f829a80eb97422a82c58075f8"
+    },
+    {
+      "path": "src/snippets/code-samples/middleware-dynamic-model-selection-decorator-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/middleware-dynamic-model-selection-decorator-py.mdx",
+      "bytes": 594,
+      "sha256": "26abeefa42ef79911c3eba0283795990669137d7fb8d6613b0c75b4dc3201dfc"
+    },
+    {
+      "path": "src/snippets/code-samples/middleware-dynamic-model-selection-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/middleware-dynamic-model-selection-js.mdx",
+      "bytes": 571,
+      "sha256": "c0fba66e751c20a9954d25acbd75a777c65075394225321d6053107450ae7246"
+    },
+    {
+      "path": "src/snippets/code-samples/middleware-dynamic-prompt-class-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/middleware-dynamic-prompt-class-py.mdx",
+      "bytes": 613,
+      "sha256": "80cd542888496d5d2eb3d9fcf3b28cc03cdebda456cc38e1c1a91f88742bb38d"
+    },
+    {
+      "path": "src/snippets/code-samples/middleware-dynamic-prompt-decorator-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/middleware-dynamic-prompt-decorator-py.mdx",
+      "bytes": 579,
+      "sha256": "0fd6394ec031d453483d7db31e5506254e54c3e5d197e514d55258b5f038f61c"
+    },
+    {
+      "path": "src/snippets/code-samples/middleware-dynamic-prompt-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/middleware-dynamic-prompt-js.mdx",
+      "bytes": 4118,
+      "sha256": "e6d1628609fb5ca2360d29f030b0b674bde4bda21f7cbdc93709bde8319a1512"
+    },
+    {
+      "path": "src/snippets/code-samples/middleware-tool-call-monitoring-class-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/middleware-tool-call-monitoring-class-py.mdx",
+      "bytes": 798,
+      "sha256": "b168a1d8f6b573d50ce4635236b15b44b975caca7967fcb226fb008f2bceee5d"
+    },
+    {
+      "path": "src/snippets/code-samples/middleware-tool-call-monitoring-decorator-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/middleware-tool-call-monitoring-decorator-py.mdx",
+      "bytes": 696,
+      "sha256": "6a09f3e67995f58a934f18a7ddc08e694f598bc666885fcb73c4710050157893"
+    },
+    {
+      "path": "src/snippets/code-samples/middleware-tool-call-monitoring-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/middleware-tool-call-monitoring-js.mdx",
+      "bytes": 526,
+      "sha256": "91e02987f2df240683f7ee95a5c8ab4da6a68a3070ea8a7a0cb6a511b2421cc5"
+    },
+    {
+      "path": "src/snippets/code-samples/nostream-tag-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/nostream-tag-js.mdx",
+      "bytes": 2076,
+      "sha256": "0c16f853021cdb9143975b05bad5961fc0bf9f024d96c6c2d91c2fdf29134375"
+    },
+    {
+      "path": "src/snippets/code-samples/nostream-tag-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/nostream-tag-py.mdx",
+      "bytes": 1431,
+      "sha256": "45aa7bcbe2af0517a13db229a21eafc040ebd9e071829c7795dbb13022ce15d2"
+    },
+    {
+      "path": "src/snippets/code-samples/rubric-configure-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/rubric-configure-py.mdx",
+      "bytes": 3102,
+      "sha256": "fe141d8f4d70f0561f24f2baaf52588e493bd84b1c84fedd0064bf044896bde1"
+    },
+    {
+      "path": "src/snippets/code-samples/short-term-memory-usage-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/short-term-memory-usage-js.mdx",
+      "bytes": 8609,
+      "sha256": "b503ff546dfec5e0d928295432c0a4beed7b799244d7371322c469e1f96ba0d1"
+    },
+    {
+      "path": "src/snippets/code-samples/short-term-memory-usage-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/short-term-memory-usage-py.mdx",
+      "bytes": 7355,
+      "sha256": "31a2d999e234149216a9c26849fe60d010614226ed365fcf50a52eba970b2217"
+    },
+    {
+      "path": "src/snippets/code-samples/store-list-namespace-list-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/store-list-namespace-list-js.mdx",
+      "bytes": 168,
+      "sha256": "f68f65caafd353664d65d1001556c4a6a5328bde4e34f4dc03657ee0fa22c44c"
+    },
+    {
+      "path": "src/snippets/code-samples/store-list-namespace-list-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/store-list-namespace-list-py.mdx",
+      "bytes": 156,
+      "sha256": "88fb9c226ce80247473adcdb6262a29eed58dfdeecdd311d0837c6449d4325b6"
+    },
+    {
+      "path": "src/snippets/code-samples/store-list-namespace-paginate-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/store-list-namespace-paginate-js.mdx",
+      "bytes": 249,
+      "sha256": "999c7586f56cc3933ceb9244cbe1a171cb00708ed190108d8bc46d1b0bc9237f"
+    },
+    {
+      "path": "src/snippets/code-samples/store-list-namespace-paginate-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/store-list-namespace-paginate-py.mdx",
+      "bytes": 221,
+      "sha256": "60a6b0b4343326d9f0bab3737b92f833e92412b03d46c463d2047af174fdee0e"
+    },
+    {
+      "path": "src/snippets/code-samples/store-list-namespace-search-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/store-list-namespace-search-js.mdx",
+      "bytes": 145,
+      "sha256": "82c0cd1c304a00102c596e6dcee7aa5189bf776d8258533901df4ffbb65dd07a"
+    },
+    {
+      "path": "src/snippets/code-samples/store-list-namespace-search-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/store-list-namespace-search-py.mdx",
+      "bytes": 130,
+      "sha256": "2e9a0262ff49d6ddf6234eb512ccafb772c928b413cf58fd96667a2288448bfe"
+    },
+    {
+      "path": "src/snippets/code-samples/streaming-agent-progress-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/streaming-agent-progress-js.mdx",
+      "bytes": 11997,
+      "sha256": "4ed6a056ce879deec2e2c96ca602708fe54c85214d941c1f7cbb56fa5531eaba"
+    },
+    {
+      "path": "src/snippets/code-samples/streaming-agent-progress-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/streaming-agent-progress-py.mdx",
+      "bytes": 8930,
+      "sha256": "2a788aa3354d071db3fa2875b0491f9e5b2cbbf6dd8898971f12272eb8b7bae6"
+    },
+    {
+      "path": "src/snippets/code-samples/streaming-reasoning-tokens-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/streaming-reasoning-tokens-js.mdx",
+      "bytes": 1142,
+      "sha256": "abc02c757d824ed6e28b244daac31647f0f0e8367eedef06a69595478337122c"
+    },
+    {
+      "path": "src/snippets/code-samples/streaming-reasoning-tokens-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/streaming-reasoning-tokens-py.mdx",
+      "bytes": 1040,
+      "sha256": "e65199cb5bea7b4bf17afc9b00c5f493ff3d67b397d930a4117dbdf0b74c0ea0"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-error-handling-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-error-handling-js.mdx",
+      "bytes": 4727,
+      "sha256": "dda0c7d6d8ff127e5c40e71c5c1254b7d0481f8739a60580f9e821452eb6104c"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-error-handling-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-error-handling-py.mdx",
+      "bytes": 6665,
+      "sha256": "508eae697ad2000150eb13d24fc3584294e4201dc0835836ed950330502df0a1"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-return-command-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-return-command-js.mdx",
+      "bytes": 846,
+      "sha256": "8e8677ed6454ad1386b783514c5ae843af7f2d62b15c5e31eee652435f712304"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-return-command-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-return-command-py.mdx",
+      "bytes": 560,
+      "sha256": "2a28af8b34bef0e018cea8c1776d6a8d9fcd24bc3d8b3dc081d98e330df271ca"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-return-direct-command-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-return-direct-command-py.mdx",
+      "bytes": 714,
+      "sha256": "2341590c3153e8ad4ff9fe261a0d95e2cf2f49c666e5e1025b8031705d0ec752"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-return-direct-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-return-direct-js.mdx",
+      "bytes": 1019,
+      "sha256": "a9dc59961eb44e00f8bb57112cf1ecbb569a0c8a2b1bcd718216b00c2cc12375"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-return-direct-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-return-direct-py.mdx",
+      "bytes": 929,
+      "sha256": "24ea0d86e880e489851b76a7ece4a9ed95583a2e319199eb4449e85bac2abd1b"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-return-object-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-return-object-js.mdx",
+      "bytes": 536,
+      "sha256": "fc786ec95765484cba2bf09602ef6a4acbff10058b610743bb50f64e56c55a08"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-return-object-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-return-object-py.mdx",
+      "bytes": 454,
+      "sha256": "f11297be3c711f319a797f292714d8369e87cd3f3e0016c3d0bd71b2c49ffd94"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-return-values-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-return-values-js.mdx",
+      "bytes": 466,
+      "sha256": "d0a6d8effe92f7c504f97aba3853d181c6bebb6a1351c23d0d4ed5981b16cdfc"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-return-values-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-return-values-py.mdx",
+      "bytes": 378,
+      "sha256": "5d6fb3f7ee8944874db651a8958d00c160120bfad58a3a840849f6849cf3fd5d"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-runtime-context-thread-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-runtime-context-thread-js.mdx",
+      "bytes": 1317,
+      "sha256": "1af48b429bc6564803f20e6828b03e433348cf95d6ff3000fb92cc30ea9ae12c"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-runtime-context-thread-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-runtime-context-thread-py.mdx",
+      "bytes": 2006,
+      "sha256": "c736292b884b70aebfcbf8864e57666b8deb3f9d836439decd2121a93afcc8d1"
+    },
+    {
+      "path": "src/snippets/code-samples/tool-update-state-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/tool-update-state-py.mdx",
+      "bytes": 881,
+      "sha256": "52664a395742c7fd2610cd3e67df8698d3f0cefa38a5820b1d96703f91e22efb"
+    },
+    {
+      "path": "src/snippets/code-samples/workflows-agents-tool-runtime-state-context-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/workflows-agents-tool-runtime-state-context-js.mdx",
+      "bytes": 2005,
+      "sha256": "98ec78abe089350c445592b817d2cb3847a10ca2f2ad0559e14d9099a9cf52f2"
+    },
+    {
+      "path": "src/snippets/code-samples/workflows-agents-tool-runtime-state-context-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/code-samples/workflows-agents-tool-runtime-state-context-py.mdx",
+      "bytes": 1545,
+      "sha256": "862d9538b7a4c567f36dbefea2c509e40408eb6277398c1bacde0de67f63d076"
+    },
+    {
+      "path": "src/snippets/connect-docs-mcp-prompt.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/connect-docs-mcp-prompt.mdx",
+      "bytes": 1149,
+      "sha256": "94684b11535be9d7778f2ea671b21f21281e465ea710f2f1bec42b50dc9005eb"
+    },
+    {
+      "path": "src/snippets/embeddings-tabs-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/embeddings-tabs-js.mdx",
+      "bytes": 2972,
+      "sha256": "d86df255c315f14bc426ef9621668b1e1a9c911b63c819257da99c78d89ce017"
+    },
+    {
+      "path": "src/snippets/embeddings-tabs-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/embeddings-tabs-py.mdx",
+      "bytes": 5725,
+      "sha256": "7e96d4011ddf80710c210481d728b439c4e90834ecb707dc878fe30144bb241a"
+    },
+    {
+      "path": "src/snippets/install-langchain-skills-prompt.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/install-langchain-skills-prompt.mdx",
+      "bytes": 843,
+      "sha256": "ee399b001d15fa44c7ad51cbbd82c2c643ae5934514783f9e733a5b66ba0050c"
+    },
+    {
+      "path": "src/snippets/langsmith/agent-tracing-prerequisite.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/langsmith/agent-tracing-prerequisite.mdx",
+      "bytes": 423,
+      "sha256": "eb051cbeb131ab75f4382728ad8d11fc3750de83cef2a9a9d318b65a205a76ae"
+    },
+    {
+      "path": "src/snippets/oss/hitl-decision-types-table.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/oss/hitl-decision-types-table.mdx",
+      "bytes": 934,
+      "sha256": "b7b7c410be4213c0d6901f9f89d5ee31a79231b4f1a66930931811ef2d7d523b"
+    },
+    {
+      "path": "src/snippets/vectorstore-tabs-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/vectorstore-tabs-js.mdx",
+      "bytes": 2809,
+      "sha256": "756adf0022a576be7f13d7d87d7f5ab2b7e9253b1c28bed24b0621adc177e7a3"
+    },
+    {
+      "path": "src/snippets/vectorstore-tabs-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/64063c67975bdc79bcb251027cf9016975865671/src/snippets/vectorstore-tabs-py.mdx",
+      "bytes": 4398,
+      "sha256": "6b48b8ca6a816d0f8eb959aea2f9766435f63b4c98dc74a21efabe32fef66773"
     }
   ],
   "missing": []

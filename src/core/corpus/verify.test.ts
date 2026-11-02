@@ -12,7 +12,7 @@ test("reports missing files and checksum mismatches", () => {
   writeFileSync(path.join(dir, "snapshot", "changed.md"), "edited");
   const file = (p: string, body: string) => ({ path: p, url: "u", bytes: body.length, sha256: sha256Hex(body) });
   const manifest: SourceManifest = {
-    corpus: "c", repo: "o/r", commit: "c", license: "MIT", retrievedAtUtc: "", missing: [],
+    corpus: "c", repo: "o/r", commit: "c", license: "MIT", retrievedAtUtc: "", missing: [], includes: [],
     files: [file("ok.md", "ok"), file("changed.md", "original"), file("gone.md", "x")],
   };
   expect(verifySnapshot(dir, manifest)).toEqual([

@@ -38,7 +38,9 @@ export const SourceManifest = z.object({
   license: z.string(),
   retrievedAtUtc: z.string(),
   files: z.array(ManifestFile),
-  /** Paths listed in sources.json that do not exist at this commit. */
+  /** Snippet files that pages import (e.g. code samples). Inlined by the cleaner, never chunked alone. */
+  includes: z.array(ManifestFile).default([]),
+  /** Paths listed in sources.json (or imported by a page) that do not exist at this commit. */
   missing: z.array(z.string()),
 });
 export type SourceManifest = z.infer<typeof SourceManifest>;
@@ -49,6 +51,16 @@ export function resolveInside(root: string, rel: string): string {
   const target = nodePath.resolve(base, rel);
   if (!target.startsWith(base + nodePath.sep)) throw new Error(`path escapes ${root}: ${rel}`);
   return target;
+}
+
+/** MDX imports like `import X from '/snippets/a.mdx'` map to `src/snippets/a.mdx` in the docs repo. */
+export function snippetImports(mdx: string): { name: string; path: string }[] {
+  const out: { name: string; path: string }[] = [];
+  for (const m of mdx.matchAll(/^import\s+(\w+)\s+from\s+['"](\/snippets\/[^'"]+\.mdx)['"];?\s*$/gm)) {
+    const path = `src${m[2]}`;
+    if (SafeRelPath.safeParse(path).success) out.push({ name: m[1], path });
+  }
+  return out;
 }
 
 export function sha256Hex(data: Uint8Array | string): string {

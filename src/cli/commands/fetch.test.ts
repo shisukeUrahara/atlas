@@ -60,3 +60,16 @@ test("a corpus name with path tricks is refused", async () => {
   const { deps } = setup({});
   expect(await fetchCorpus(["--corpus", "../demo"], deps)).toBe(EXIT.USAGE);
 });
+
+test("snippets imported by pages are fetched, hashed and listed as includes", async () => {
+  const { dir, deps } = setup({
+    "a.md": "import X from '/snippets/x.mdx';\n\n<X />",
+    "src/snippets/x.mdx": "import Y from '/snippets/y.mdx';\n<Y />",
+    "src/snippets/y.mdx": "code",
+    LICENSE: "MIT",
+  });
+  expect(await fetchCorpus(["--corpus", "demo"], deps)).toBe(EXIT.OK);
+  const m = SourceManifest.parse(JSON.parse(readFileSync(path.join(dir, "source_manifest.json"), "utf8")));
+  expect(m.includes.map((f) => f.path)).toEqual(["src/snippets/x.mdx", "src/snippets/y.mdx"]);
+  expect(readFileSync(path.join(dir, "snapshot", "src/snippets/y.mdx"), "utf8")).toBe("code");
+});

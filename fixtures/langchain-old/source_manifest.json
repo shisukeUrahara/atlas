@@ -3,7 +3,7 @@
   "repo": "langchain-ai/docs",
   "commit": "89b311bd88baea3756cb83a0be51d67dd6619507",
   "license": "MIT",
-  "retrievedAtUtc": "2026-11-01T08:24:49.124Z",
+  "retrievedAtUtc": "2026-11-02T12:17:08.934Z",
   "files": [
     {
       "path": "src/oss/langchain/overview.mdx",
@@ -184,6 +184,50 @@
       "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/oss/langgraph/test.mdx",
       "bytes": 10206,
       "sha256": "c282b3c2268f5a78a0819dc9522b1338ffb406ab1e9a75931d07b7eaf4553b39"
+    }
+  ],
+  "includes": [
+    {
+      "path": "src/snippets/alpha-lc-callout.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/snippets/alpha-lc-callout.mdx",
+      "bytes": 345,
+      "sha256": "5ad5ef7cebdceaf0945dfbe936139d5d1fb137c1bbd112378df5bc4bf094dccb"
+    },
+    {
+      "path": "src/snippets/alpha-lg-callout.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/snippets/alpha-lg-callout.mdx",
+      "bytes": 344,
+      "sha256": "4b37b7e57ff96e07e58e21ad557dc9352d61b50fded2f53c6d5a7f80879b0d80"
+    },
+    {
+      "path": "src/snippets/chat-model-tabs.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/snippets/chat-model-tabs.mdx",
+      "bytes": 2394,
+      "sha256": "58267c6feba4f7c27202f9ea239fa8a804822bc20a1c43527ad7937d1ca147e8"
+    },
+    {
+      "path": "src/snippets/embeddings-tabs-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/snippets/embeddings-tabs-js.mdx",
+      "bytes": 2948,
+      "sha256": "c7a16018613fdaff7e0c49685872761a006a68522c1ad9fda2c66f6a77780398"
+    },
+    {
+      "path": "src/snippets/embeddings-tabs-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/snippets/embeddings-tabs-py.mdx",
+      "bytes": 5199,
+      "sha256": "2862d7f8c35a2c883a50acf0da01defe05917a3b17d7520594ebe04ee0f8a727"
+    },
+    {
+      "path": "src/snippets/vectorstore-tabs-js.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/snippets/vectorstore-tabs-js.mdx",
+      "bytes": 3474,
+      "sha256": "ea3e5064af6f4ff1b6a49a29df76225be853b3aeabd89426015bd091c3feff83"
+    },
+    {
+      "path": "src/snippets/vectorstore-tabs-py.mdx",
+      "url": "https://github.com/langchain-ai/docs/blob/89b311bd88baea3756cb83a0be51d67dd6619507/src/snippets/vectorstore-tabs-py.mdx",
+      "bytes": 4154,
+      "sha256": "899292321251ce2c1fdd9c5d1460e63602c1181b5e9442a3f95a9f1556c27950"
     }
   ],
   "missing": [
