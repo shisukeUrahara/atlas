@@ -48,3 +48,19 @@ test("a new index version rebuilds the retrievers", async () => {
   expect(indexVersion).toBe(2);
   expect(results[0].hits[0].chunk.text).toContain("Stream messages");
 });
+
+test("vectors of chunks removed by an update are deleted from the vector store", async () => {
+  const vectors = new MemoryVectorStore();
+  const embedder = new FakeEmbedder();
+  const svc = new SearchService(store, embedder, vectors);
+  await svc.search("langchain", "stream", ["dense"], 5);
+  const oldIds = store.chunks("langchain").map((c) => c.chunkId);
+  const v2 = page.replace("Stream tokens", "Stream messages");
+  runIngestJob(store, "j2", "langchain", [buildDoc("langchain", { path: "m.mdx", url: "u", sha256: sha256Hex(v2) }, v2)], "MIT");
+  await svc.search("langchain", "stream", ["dense"], 5);
+  const live = new Set(store.chunks("langchain").map((c) => c.chunkId));
+  const [q] = await embedder.embed(["stream"]);
+  const inStore = (await vectors.search("langchain", q, 100)).map((h) => h.chunkId);
+  expect(inStore.every((id) => live.has(id))).toBe(true);
+  expect(oldIds.some((id) => !live.has(id))).toBe(true);
+});

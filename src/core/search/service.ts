@@ -40,6 +40,10 @@ export class SearchService {
     const hit = this.cache.get(workspaceId);
     if (hit && hit.version === version) return hit;
     const chunks = this.store.chunks(workspaceId);
+    // Vectors of chunks that left the index are deleted, so the vector store holds no stale text.
+    const live = new Set(chunks.map((c) => c.chunkId));
+    const stale = this.store.removedChunkIds(workspaceId).filter((id) => !live.has(id));
+    await this.vectors.delete(workspaceId, stale);
     let dense: DenseRetriever | null = null;
     let denseReason: string | null = null;
     try {

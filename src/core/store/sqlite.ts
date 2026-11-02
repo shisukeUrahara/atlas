@@ -188,6 +188,14 @@ export class Store {
       .map((r) => ({ chunkId: String(r.chunk_id), change: r.change as "added" | "removed", title: String(r.title), heading: String(r.heading) }));
   }
 
+  /** Every chunk id an index version ever removed in this workspace (it may have come back since). */
+  removedChunkIds(workspaceId: WorkspaceId): string[] {
+    return this.db
+      .prepare("SELECT DISTINCT chunk_id FROM index_changes WHERE workspace_id = ? AND change = 'removed'")
+      .all(workspaceId)
+      .map((r) => String(r.chunk_id));
+  }
+
   chunkIdsOf(documentId: string): string[] {
     return this.db.prepare("SELECT chunk_id FROM chunks WHERE document_id = ?").all(documentId).map((r) => String(r.chunk_id));
   }
