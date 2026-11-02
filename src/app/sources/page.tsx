@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Denied } from "@/components/Denied";
 import { DocTable } from "@/components/sources/DocTable";
+import { UploadButton } from "@/components/sources/UploadButton";
 import { VersionDiff } from "@/components/sources/VersionDiff";
 import { Card } from "@/components/ui/Card";
 import { Empty } from "@/components/ui/Empty";
@@ -26,7 +27,10 @@ export default async function SourcesPage({ searchParams }: PageProps<"/sources"
             Documents in {current?.name ?? "this workspace"}. Each one is hashed, chunked and versioned.
           </p>
         </div>
-        <WorkspaceTabs workspaces={workspaces} current={current?.id ?? ""} path="/sources" />
+        <div className="flex flex-col items-end gap-3">
+          <WorkspaceTabs workspaces={workspaces} current={current?.id ?? ""} path="/sources" />
+          {current?.source === "upload" && <UploadButton workspaceId={current.id} />}
+        </div>
       </header>
       {!current ? (
         <Denied user={user} workspace={requested} />
