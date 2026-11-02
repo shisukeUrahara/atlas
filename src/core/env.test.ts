@@ -22,6 +22,9 @@ describe("loadEnv", () => {
   test("ATLAS_QDRANT_URL must be a URL", () => {
     expect(loadEnv({ ATLAS_QDRANT_URL: "http://qdrant:6333" }).qdrantUrl).toBe("http://qdrant:6333");
     expect(() => loadEnv({ ATLAS_QDRANT_URL: "not a url" })).toThrow(/ATLAS_QDRANT_URL/);
+    // .env.example ships it empty: that must mean "use the in-process store", not an error
+    expect(loadEnv({ ATLAS_QDRANT_URL: "" }).qdrantUrl).toBeNull();
+    expect(loadEnv({ ATLAS_QDRANT_URL: "  " }).qdrantUrl).toBeNull();
   });
   test("ATLAS_MODEL picks the answer model", () => {
     expect(loadEnv({ ATLAS_MODEL: "gpt-4o-mini-2024-07-18" }).model).toBe("gpt-4o-mini-2024-07-18");

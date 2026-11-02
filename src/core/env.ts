@@ -7,7 +7,8 @@ export const DEFAULT_EMBED_MODEL = "text-embedding-3-small";
 const Raw = z.object({
   OPENAI_API_KEY: z.string().trim().optional(),
   ATLAS_DATA_DIR: z.string().trim().optional(),
-  ATLAS_QDRANT_URL: z.url().optional(),
+  // Empty means "not set": .env.example ships the variable with no value.
+  ATLAS_QDRANT_URL: z.preprocess((v) => (typeof v === "string" && v.trim() === "" ? undefined : v), z.url().optional()),
   ATLAS_MODEL: z.string().trim().optional(),
 });
 
