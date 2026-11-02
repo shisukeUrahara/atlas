@@ -3,9 +3,9 @@ import { openStore } from "@/core/store/open";
 import { authorizeRequest, fail } from "../../../../_lib/http";
 
 /** Ingestion job status: running / done / failed with added, removed and unchanged counts. */
-export async function GET(_request: Request, ctx: RouteContext<"/api/workspaces/[id]/jobs/[jobId]">) {
+export async function GET(request: Request, ctx: RouteContext<"/api/workspaces/[id]/jobs/[jobId]">) {
   const { id, jobId } = await ctx.params;
-  const auth = await authorizeRequest(id);
+  const auth = authorizeRequest(request, id);
   if (auth instanceof Response) return auth;
   const store = openStore(loadEnv(process.env).dataDir);
   try {

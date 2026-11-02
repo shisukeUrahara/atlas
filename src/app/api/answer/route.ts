@@ -15,7 +15,7 @@ export async function POST(request: Request) {
   const t0 = performance.now();
   const parsed = Body.safeParse(await request.json().catch(() => null));
   if (!parsed.success) return fail(400, "bad_request", parsed.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; "));
-  const auth = await authorizeRequest(parsed.data.workspaceId);
+  const auth = authorizeRequest(request, parsed.data.workspaceId);
   if (auth instanceof Response) return auth;
   const authMs = Math.round((performance.now() - t0) * 10) / 10;
 

@@ -15,7 +15,7 @@ const STATUS: Record<UploadError["code"], number> = {
 
 /** POST multipart/form-data with one "file" field: PDF, Markdown or .txt, up to 20 MB. */
 export async function POST(request: Request, ctx: RouteContext<"/api/workspaces/[id]/documents">) {
-  const auth = await authorizeRequest((await ctx.params).id);
+  const auth = authorizeRequest(request, (await ctx.params).id);
   if (auth instanceof Response) return auth;
   const id = auth.workspaceId;
   // A size header is required, so the body can be refused before it is read.

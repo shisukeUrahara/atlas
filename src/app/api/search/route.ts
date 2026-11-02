@@ -14,7 +14,7 @@ const Body = z.object({
 export async function POST(request: Request) {
   const parsed = Body.safeParse(await request.json().catch(() => null));
   if (!parsed.success) return fail(400, "bad_request", parsed.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; "));
-  const auth = await authorizeRequest(parsed.data.workspaceId);
+  const auth = authorizeRequest(request, parsed.data.workspaceId);
   if (auth instanceof Response) return auth;
   const { indexVersion, results } = await getServices().search.search(auth.workspaceId, parsed.data.query, parsed.data.methods, parsed.data.topK);
   return Response.json({
