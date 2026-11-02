@@ -1,5 +1,6 @@
 // ponytail: node:sqlite (built into Node 24, marked experimental) instead of a native dependency.
 // Switch to better-sqlite3 if the API changes or the warning matters in production.
+import "./quiet-sqlite-warning";
 import { DatabaseSync } from "node:sqlite";
 import { Chunk, Doc, Job, Workspace, type DocumentStatus, type WorkspaceId } from "../domain/schemas";
 
