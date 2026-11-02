@@ -5,7 +5,10 @@
 import { cpSync, mkdtempSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { beforeAll, describe, expect, test } from "vitest";
+import { beforeAll, describe, expect, test, vi } from "vitest";
+
+// Runs next to other files that ingest whole corpora; under that load a route call can pass 5 s.
+vi.setConfig({ testTimeout: 30_000 });
 
 const dataDir = mkdtempSync(path.join(tmpdir(), "atlas-api-"));
 process.env.ATLAS_DATA_DIR = dataDir;
@@ -34,7 +37,7 @@ beforeAll(async () => {
   upload = (await import("./workspaces/[id]/documents/route")).POST as unknown as Handler;
   job = (await import("./workspaces/[id]/jobs/[jobId]/route")).GET as unknown as Handler;
   trace = (await import("./traces/[id]/route")).GET as unknown as Handler;
-});
+}, 30_000); // seeds a full Cookbook ingest
 
 const json = (url: string, body: unknown, user = "alice") =>
   new Request(`http://t${url}`, { method: "POST", headers: { "content-type": "application/json", cookie: `atlas_user=${user}` }, body: JSON.stringify(body) });

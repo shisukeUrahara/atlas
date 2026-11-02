@@ -19,4 +19,4 @@ test("ingests a corpus, then a second run changes nothing", async () => {
   const store = openStore(dataDir);
   expect(store.workspaces().map((w) => w.id)).toEqual(["cookbook", "uploads"]);
   store.close();
-});
+}, 30_000); // a full Cookbook ingest; slow machines need more than the 5 s default

@@ -14,7 +14,7 @@ export function AnswerBlock({
   turn: Turn;
   workspaceId: string;
   selected: string | null;
-  onSelect: (label: string) => void;
+  onSelect: (label: string, claim: string) => void;
 }) {
   if (turn.state === "loading") {
     return (
@@ -72,7 +72,7 @@ export function AnswerBlock({
           <p key={i} className={`rounded-lg px-2 py-1 ${selected && c.citations.includes(selected) ? "bg-brand-bg/60" : ""}`}>
             {c.text}{" "}
             {c.citations.map((l) => (
-              <CitationChip key={l} label={l} selected={selected === l} onSelect={() => onSelect(l)} />
+              <CitationChip key={l} label={l} selected={selected === l} onSelect={() => onSelect(l, c.text)} />
             ))}
           </p>
         ))}
