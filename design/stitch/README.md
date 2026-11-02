@@ -66,8 +66,8 @@ The owner asked for better screens than A and B. C uses a new design spec, [DESI
 
 | Page | Screen id | PNG |
 |---|---|---|
-| Overview | `ed056f4f596849dfb39d7cdddc88bda4` | `concepts/overview-C-dark.png` |
-| Ask | `c5dadcb1d36c48b0a925707babe44144` | `concepts/ask-C-dark.png` |
+| Overview | `ed056f4f596849dfb39d7cdddc88bda4` | `screens/overview-dark.png` |
+| Ask | `c5dadcb1d36c48b0a925707babe44144` | `screens/ask-dark.png` |
 
 Invented by Stitch, not used in the build: "Zero hallucinated keys", "Enforced at retrieval & runtime", "Refusal trigger: threshold < 0.65", "Rank #1 in Hybrid", "Hallucination prevented", "grounding ratio 0.00", relative times ("2m"), "chunks: 4,120", "index fresh", version tags ("v0.14", "v0.4.1-rc"), and every metric value (real values come from run folders).
 
@@ -87,5 +87,7 @@ The owner approved direction C. All six pages were then made in dark and light, 
 Light screens were made with "generate variants" (colors only, layout kept). Light tokens: canvas `#f6f6fa`, panel `#ffffff`, hairline `#e4e4ee`, inset `#f3f3f8`, ink `#14151d`, steel `#5a5f72`, violet ink `#5b45d1` on `#efecff`.
 
 More invented details to drop in the build: "LIVE FEED", "Pending sync", "+22% / -20% / 74%" on the diff bars, "6 documents loaded", "GROUND TRUTH EVAL", "Tenant boundaries strictly isolated", "Zero dangling or fabricated keys", "lagging" tag, "PRIMARY" tag, per-row scores on Retrieval Lab (real scores come from the retrievers), the evidence passage text (real text comes from the chunk).
+
+Images are stored at 1440 px wide (phone screens at 780 px) with a 256-color palette to keep the repo small.
 
 Downloads: a small local script reads the Stitch API key from the local MCP config and saves each screenshot by file id, so large images never pass through the chat.
