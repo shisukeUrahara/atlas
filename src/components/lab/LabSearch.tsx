@@ -75,6 +75,8 @@ export function LabSearch({
           <Search aria-hidden className="size-4 shrink-0 text-muted" />
           <span className="sr-only">Question</span>
           <input
+            // browser extensions (form fillers) add attributes before React loads; ignore those mismatches here only
+            suppressHydrationWarning
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Ask something the docs might answer…"

@@ -92,6 +92,8 @@ export function AskThread({
             Ask the {workspaceName}
           </label>
           <input
+            // browser extensions (form fillers) add attributes before React loads; ignore those mismatches here only
+            suppressHydrationWarning
             id="question"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
