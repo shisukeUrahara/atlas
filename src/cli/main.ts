@@ -7,6 +7,7 @@ import { evalAnswers } from "./commands/evalAnswers";
 import { evalRetrieval } from "./commands/evalRetrieval";
 import { fetchCorpus } from "./commands/fetch";
 import { ingest } from "./commands/ingest";
+import { judgeClaimsCmd } from "./commands/judgeClaims";
 import { judgePool } from "./commands/judgePool";
 import { replaceFlaggedCmd } from "./commands/replaceFlagged";
 import { applyReviewCmd, reviewSheet } from "./commands/review";
@@ -28,6 +29,7 @@ export const COMMANDS: Record<string, Command> = {
   "apply-review": applyReviewCmd,
   eval: evalRetrieval,
   "eval-answers": evalAnswers,
+  "judge-claims": judgeClaimsCmd,
 };
 
 export async function main(argv: string[], deps: Deps, commands = COMMANDS): Promise<number> {
