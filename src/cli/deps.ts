@@ -8,6 +8,8 @@ export interface Deps {
   /** Cached model client: live with a key, replay-only without. */
   makeLlm: () => LlmClient;
   model: string;
+  /** True when there is no API key: every model / embedding call must come from the cache. */
+  replay: boolean;
   dataDir: string;
   /** GET a URL. Resolves null on 404, throws on other errors. */
   download: (url: string) => Promise<Uint8Array | null>;

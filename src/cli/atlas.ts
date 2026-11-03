@@ -30,6 +30,7 @@ const env = loadEnv(process.env);
 main(process.argv.slice(2), {
   dataDir: env.dataDir,
   model: env.model,
+  replay: env.mode === "replay",
   makeEmbedder: () =>
     new CachingEmbedder(
       env.apiKey ? new OpenAiEmbedder(env.embedModel, { apiKey: env.apiKey }) : null,

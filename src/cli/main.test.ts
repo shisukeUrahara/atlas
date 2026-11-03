@@ -11,6 +11,7 @@ function fakeDeps() {
     dataDir: "/tmp",
     download: async () => null,
     model: "m",
+    replay: true,
     makeEmbedder: () => { throw new Error("no embedder in this test"); },
     makeLlm: () => { throw new Error("no llm in this test"); },
     now: () => new Date(0),

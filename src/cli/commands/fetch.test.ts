@@ -21,6 +21,7 @@ function setup(files: Record<string, string>) {
   const deps: Deps = {
     dataDir,
     model: "m",
+    replay: true,
     makeEmbedder: () => { throw new Error("no embedder in this test"); },
     makeLlm: () => { throw new Error("no llm in this test"); },
     download: async (url) => {

@@ -24,6 +24,7 @@ test("embeds every chunk once; a second run is served from the cache", async () 
   const out: string[] = [];
   const deps = {
     dataDir, out: (l: string) => out.push(l), err: () => {}, now: () => new Date(0), download: async () => null, model: "m",
+    replay: true,
     makeEmbedder: () => new CachingEmbedder(fake, cacheDir, fake.model, fake.dims),
     makeLlm: () => { throw new Error("unused"); },
   } satisfies Deps;

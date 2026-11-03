@@ -3,6 +3,7 @@ import { buildQuestions } from "./commands/buildQuestions";
 import { chunkCorpus } from "./commands/chunk";
 import { draftQuestionsCmd } from "./commands/draftQuestions";
 import { embed } from "./commands/embed";
+import { evalRetrieval } from "./commands/evalRetrieval";
 import { fetchCorpus } from "./commands/fetch";
 import { ingest } from "./commands/ingest";
 import { judgePool } from "./commands/judgePool";
@@ -24,6 +25,7 @@ export const COMMANDS: Record<string, Command> = {
   "build-questions": buildQuestions,
   "review-sheet": reviewSheet,
   "apply-review": applyReviewCmd,
+  eval: evalRetrieval,
 };
 
 export async function main(argv: string[], deps: Deps, commands = COMMANDS): Promise<number> {
