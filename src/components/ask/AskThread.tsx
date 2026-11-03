@@ -56,10 +56,11 @@ export function AskThread({
   return (
     <div className="flex min-h-[60vh] flex-col lg:min-h-0 lg:rounded-[20px] lg:border lg:border-line lg:bg-surface/60">
       {/* Desktop: this list scrolls on its own; tabIndex lets keyboard users scroll it. */}
-      <div ref={log} role="log" aria-label="Conversation" tabIndex={0} className="flex-1 space-y-5 focus:outline-none lg:min-h-0 lg:overflow-y-auto lg:overscroll-contain lg:p-5">
+      <div ref={log} role="log" aria-label="Conversation" tabIndex={0} className="flex flex-1 flex-col space-y-5 focus:outline-none lg:min-h-0 lg:overflow-y-auto lg:overscroll-contain lg:p-5">
         {turns.length === 0 && (
-          <div className="rounded-[20px] border border-dashed border-line p-8 text-center text-sm text-muted">
-            Ask about the {workspaceName}. Every sentence in the answer will cite the passage behind it.
+          <div className="m-auto max-w-md py-12 text-center">
+            <p className="font-display text-2xl font-light tracking-tight">What do you want to check?</p>
+            <p className="mt-2 text-sm text-muted">Ask about the {workspaceName}. Every sentence in the answer cites the passage behind it.</p>
           </div>
         )}
         {turns.map((t) => (
@@ -83,29 +84,33 @@ export function AskThread({
           const q = question.trim();
           if (q.length >= 3) void ask(q);
         }}
-        className="sticky bottom-20 mt-6 rounded-2xl border border-line bg-surface/95 p-3 backdrop-blur-xl md:bottom-4 lg:static lg:mt-0 lg:rounded-none lg:rounded-b-[20px] lg:border-0 lg:border-t lg:bg-transparent lg:px-5 lg:py-4 lg:backdrop-blur-none"
+        className="sticky bottom-20 mt-6 bg-canvas/85 py-2 backdrop-blur-xl md:bottom-4 lg:static lg:mt-0 lg:bg-transparent lg:px-5 lg:pb-4 lg:pt-3 lg:backdrop-blur-none"
       >
-        <label htmlFor="question" className="micro">
-          Ask the {workspaceName}
-        </label>
-        <div className="mt-1.5 flex items-center gap-2">
+        {/* One rounded field with the send button inside, pinned under the conversation. */}
+        <div className="flex items-center gap-2 rounded-[28px] border border-line bg-surface-2 py-1.5 pl-5 pr-1.5 shadow-card focus-within:border-brand">
+          <label htmlFor="question" className="sr-only">
+            Ask the {workspaceName}
+          </label>
           <input
             id="question"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            placeholder="Ask a question…"
+            placeholder={`Ask the ${workspaceName}…`}
             maxLength={500}
+            autoComplete="off"
             className="h-10 min-w-0 flex-1 bg-transparent text-ink placeholder:text-muted focus:outline-none"
           />
           <button
             type="submit"
+            aria-label="Ask"
+            title="Ask"
             disabled={question.trim().length < 3}
-            className="inline-flex h-10 items-center gap-1.5 rounded-[10px] bg-primary px-4 text-sm font-medium text-primary-ink active:translate-y-px disabled:opacity-50"
+            className="grid size-10 shrink-0 place-items-center rounded-full bg-primary text-primary-ink transition-opacity active:translate-y-px disabled:opacity-40"
           >
-            Ask <ArrowUp aria-hidden className="size-4" />
+            <ArrowUp aria-hidden className="size-5" />
           </button>
         </div>
-        <p className="mt-1 text-xs text-muted">Answers only use this workspace&apos;s documents.</p>
+        <p className="mt-2 text-center text-xs text-muted">Answers only use this workspace&apos;s documents.</p>
       </form>
     </div>
   );

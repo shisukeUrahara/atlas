@@ -37,7 +37,8 @@ export default async function AskPage({ searchParams }: PageProps<"/ask">) {
       {!current ? (
         <Denied user={user} workspace={requested} />
       ) : (
-        <AskView workspaceId={current.id} workspaceName={current.name} draft={draft} />
+        // keyed: a new workspace or a picked recent question starts a fresh thread AND a fresh evidence pane
+        <AskView key={current.id + draft} workspaceId={current.id} workspaceName={current.name} draft={draft} />
       )}
     </div>
   );
