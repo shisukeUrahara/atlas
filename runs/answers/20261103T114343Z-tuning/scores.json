@@ -1,0 +1,83 @@
+{
+  "overall": {
+    "n": 33,
+    "rightOutcome": 0.9393939393939394,
+    "abstainRecall": 1,
+    "falseAbstain": 0.1111111111111111,
+    "citedClaimRate": 1,
+    "goldCitedRate": 1,
+    "leaks": 0,
+    "failed": 0,
+    "p50Ms": 4.1,
+    "p95Ms": 21.73999999999997,
+    "costUsd": 0.030132799999999998
+  },
+  "byClass": {
+    "cross_workspace": {
+      "n": 7,
+      "rightOutcome": 1,
+      "abstainRecall": 1,
+      "falseAbstain": 0,
+      "citedClaimRate": 0,
+      "goldCitedRate": 0,
+      "leaks": 0,
+      "failed": 0,
+      "p50Ms": 2,
+      "p95Ms": 4.2,
+      "costUsd": 0.005546000000000001
+    },
+    "exact_id": {
+      "n": 5,
+      "rightOutcome": 0.8,
+      "abstainRecall": 0,
+      "falseAbstain": 0.2,
+      "citedClaimRate": 1,
+      "goldCitedRate": 1,
+      "leaks": 0,
+      "failed": 0,
+      "p50Ms": 13.299999999999999,
+      "p95Ms": 123.91999999999996,
+      "costUsd": 0.004806400000000001
+    },
+    "paraphrase": {
+      "n": 5,
+      "rightOutcome": 1,
+      "abstainRecall": 0,
+      "falseAbstain": 0,
+      "citedClaimRate": 1,
+      "goldCitedRate": 1,
+      "leaks": 0,
+      "failed": 0,
+      "p50Ms": 10.2,
+      "p95Ms": 11.559999999999999,
+      "costUsd": 0.005053200000000001
+    },
+    "unanswerable": {
+      "n": 8,
+      "rightOutcome": 1,
+      "abstainRecall": 1,
+      "falseAbstain": 0,
+      "citedClaimRate": 0,
+      "goldCitedRate": 0,
+      "leaks": 0,
+      "failed": 0,
+      "p50Ms": 4,
+      "p95Ms": 4.36,
+      "costUsd": 0.0061436
+    },
+    "version_new": {
+      "n": 8,
+      "rightOutcome": 0.875,
+      "abstainRecall": 0,
+      "falseAbstain": 0.125,
+      "citedClaimRate": 1,
+      "goldCitedRate": 1,
+      "leaks": 0,
+      "failed": 0,
+      "p50Ms": 4.05,
+      "p95Ms": 4.1000000000000005,
+      "costUsd": 0.0085836
+    }
+  },
+  "pricing_retrieved_at": "2026-10-29"
+}
