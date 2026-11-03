@@ -1,4 +1,5 @@
 import type { Command, Deps } from "./deps";
+import { buildQuestions } from "./commands/buildQuestions";
 import { chunkCorpus } from "./commands/chunk";
 import { draftQuestionsCmd } from "./commands/draftQuestions";
 import { embed } from "./commands/embed";
@@ -19,6 +20,7 @@ export const COMMANDS: Record<string, Command> = {
   "draft-questions": draftQuestionsCmd,
   "judge-pool": judgePool,
   "replace-flagged": replaceFlaggedCmd,
+  "build-questions": buildQuestions,
 };
 
 export async function main(argv: string[], deps: Deps, commands = COMMANDS): Promise<number> {
