@@ -91,3 +91,13 @@ More invented details to drop in the build: "LIVE FEED", "Pending sync", "+22% /
 Images are stored at 1440 px wide (phone screens at 780 px) with a 256-color palette to keep the repo small.
 
 Downloads: a small local script reads the Stitch API key from the local MCP config and saves each screenshot by file id, so large images never pass through the chat.
+
+## Ask redesign, concept D "Split reader" (3 Nov 2026)
+The owner found two problems on the built Ask page: the whole page scrolled with the answers, and the evidence column was squished (380 px, a second scrollbar inside it). Two layouts were generated; the owner picked D.
+
+| Concept | Screen id | PNG |
+|---|---|---|
+| D: split reader (chosen). Page fills the viewport; conversation 55% and evidence 45% with a draggable divider; recent questions move to a menu | `586463dfd2aa4a2eb1282c5c9107e0bf` | `concepts/ask-D-split-reader-dark.png` |
+| E: reading column + evidence drawer (not chosen) | `f86c0077bab74278af184459066c6dcf` | — |
+
+Invented by Stitch, not used in the build: the "exact_id" tag on the passage, "⌘ + Enter to send", "Synthesized answer" label.
