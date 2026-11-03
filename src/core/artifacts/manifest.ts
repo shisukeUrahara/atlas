@@ -11,8 +11,8 @@ export const RunManifest = z.object({
   created_at_utc: z.string(),
   split: z.enum(["tuning", "holdout"]),
   sample_count: z.number().int().nonnegative(),
-  /** "llm_draft_pending_review" until every scored question is owner-reviewed. */
-  labels: z.enum(["llm_draft_pending_review", "partly_reviewed", "owner_reviewed"]),
+  /** "llm_draft_pending_review" until every scored question is reviewed; "model_reviewed" when a second model, not the owner, did it. */
+  labels: z.enum(["llm_draft_pending_review", "partly_reviewed", "model_reviewed", "owner_reviewed"]),
   methods: z.array(z.string()),
   embed_model: z.string(),
   answer_model: z.string().nullable(),

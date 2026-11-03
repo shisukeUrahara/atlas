@@ -82,7 +82,13 @@ export interface ReviewResult {
 }
 
 /** Applies verdicts. A fix must name chunk ids that exist in the question's workspace. */
-export function applyReview(cases: readonly LabeledCase[], csv: string, exists: (ws: string, id: string) => boolean): ReviewResult {
+/** `source` records who gave the verdicts: the owner, or a second model (never reported as owner-reviewed). */
+export function applyReview(
+  cases: readonly LabeledCase[],
+  csv: string,
+  exists: (ws: string, id: string) => boolean,
+  source: "owner" | "model_review" = "owner",
+): ReviewResult {
   const [header, ...rows] = parseCsv(csv);
   const col = (name: string) => header.indexOf(name);
   const byId = new Map(cases.map((c) => [c.id, { ...c }]));
@@ -93,8 +99,8 @@ export function applyReview(cases: readonly LabeledCase[], csv: string, exists: 
     const verdict = (r[col("verdict")] ?? "").trim().toLowerCase();
     const c = byId.get(id);
     if (!c || !verdict) continue;
-    if (verdict === "ok") Object.assign(c, { review: "ok", labelSource: "owner" });
-    else if (verdict === "drop") Object.assign(c, { review: "dropped", labelSource: "owner" });
+    if (verdict === "ok") Object.assign(c, { review: "ok", labelSource: source });
+    else if (verdict === "drop") Object.assign(c, { review: "dropped", labelSource: source });
     else if (verdict === "fix") {
       const ids = (r[col("fixed_gold")] ?? "").split(/\s+/).filter(Boolean);
       const bad = ids.filter((x) => !HexId.safeParse(x).success || !exists(c.workspaceId, x));
@@ -102,7 +108,7 @@ export function applyReview(cases: readonly LabeledCase[], csv: string, exists: 
         errors.push(`${id}: unknown chunk id(s) ${bad.join(", ")}`);
         continue;
       }
-      Object.assign(c, { review: "fixed", labelSource: "owner", goldChunkIds: ids });
+      Object.assign(c, { review: "fixed", labelSource: source, goldChunkIds: ids });
     } else {
       errors.push(`${id}: verdict must be ok, fix or drop (got "${verdict}")`);
       continue;

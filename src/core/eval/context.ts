@@ -11,7 +11,9 @@ import type { Store } from "../store/sqlite";
 export function labelsStatus(cases: readonly LabeledCase[]): RunManifest["labels"] {
   const live = cases.filter((c) => c.review !== "dropped");
   const pending = live.filter((c) => c.review === "pending").length;
-  return pending === 0 ? "owner_reviewed" : pending === live.length ? "llm_draft_pending_review" : "partly_reviewed";
+  if (pending === live.length) return "llm_draft_pending_review";
+  if (pending > 0) return "partly_reviewed";
+  return live.every((c) => c.labelSource === "owner") ? "owner_reviewed" : "model_reviewed";
 }
 
 /** The run-identity fields shared by retrieval and answer runs. Throws if a holdout run is not allowed. */

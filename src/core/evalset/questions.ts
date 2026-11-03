@@ -8,7 +8,8 @@ import type { DraftQuestion } from "./draft";
 export const LabeledCase = EvalCase.extend({
   /** "pending" until the owner reviews it; numbers on pending labels are marked as such. */
   review: z.enum(["pending", "ok", "fixed", "dropped"]),
-  labelSource: z.enum(["llm_draft", "owner"]),
+  /** owner = checked by the project owner; model_review = checked by a second model family, not by a person. */
+  labelSource: z.enum(["llm_draft", "owner", "model_review"]),
   seedChunkId: z.string().nullable(),
   flag: z.string().nullable(),
 });

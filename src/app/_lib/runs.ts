@@ -28,6 +28,7 @@ export function loadEval(split: "tuning" | "holdout"): EvalView {
 
 export const LABEL_TEXT: Record<RunManifest["labels"], string> = {
   llm_draft_pending_review: "Labels: LLM-drafted, pending owner review",
-  partly_reviewed: "Labels: partly owner-reviewed",
+  partly_reviewed: "Labels: partly reviewed",
+  model_reviewed: "Labels: LLM-drafted, cross-checked by a second model (Claude), not hand-checked",
   owner_reviewed: "Labels: owner-reviewed",
 };

@@ -27,16 +27,22 @@ export const reviewSheet: Command = async (_argv, deps) => {
   return EXIT.OK;
 };
 
-/** atlas apply-review: applies the verdicts in review.csv to questions.jsonl. */
-export const applyReviewCmd: Command = async (_argv, deps) => {
+/** atlas apply-review [--reviewer model]: applies the verdicts in review.csv to questions.jsonl. */
+export const applyReviewCmd: Command = async (argv, deps) => {
+  const i = argv.indexOf("--reviewer");
+  const reviewer = i >= 0 ? argv[i + 1] : "owner";
+  if (reviewer !== "owner" && reviewer !== "model") {
+    deps.err("--reviewer must be owner or model");
+    return EXIT.USAGE;
+  }
   const f = files(deps.dataDir);
   const store = openStore(deps.dataDir);
   try {
-    const r = applyReview(readJsonl(f.questions, LabeledCase), readFileSync(f.csv, "utf8"), (ws, id) => store.chunk(ws, id) !== null);
+    const r = applyReview(readJsonl(f.questions, LabeledCase), readFileSync(f.csv, "utf8"), (ws, id) => store.chunk(ws, id) !== null, reviewer === "model" ? "model_review" : "owner");
     for (const e of r.errors) deps.err(e);
     writeJsonl(f.questions, r.cases);
     const pending = r.cases.filter((c) => c.review === "pending").length;
-    deps.out(`${r.applied} verdicts applied, ${pending} still pending, ${r.errors.length} errors`);
+    deps.out(`${r.applied} verdicts applied (reviewer: ${reviewer}), ${pending} still pending, ${r.errors.length} errors`);
     return r.errors.length ? EXIT.CHECK_FAILED : EXIT.OK;
   } finally {
     store.close();

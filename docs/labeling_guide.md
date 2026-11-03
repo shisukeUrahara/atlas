@@ -26,6 +26,8 @@ The holdout set is scored once, at the end.
 3. **Judge.** An LLM marks which pooled chunks state the answer. Seed + judged chunks become the draft gold set.
 4. **Owner review.** Every question and its gold chunks go into `fixtures/eval/review.csv`. The owner marks each row `ok`, `fix` (with corrected chunk ids) or `drop`. `pnpm atlas apply-review` writes the result.
 
+**Second-model review (used for this release, 3 Nov 2026).** The owner chose not to hand-check the labels. Instead a second model family (Claude) reviewed every question against its gold passages and its retrieval pool, with the rules above, and gave the same `ok` / `fix` / `drop` verdicts. They are applied with `pnpm atlas apply-review --reviewer model`, which records `labelSource: "model_review"`; runs on these labels say **"cross-checked by a second model, not hand-checked"**, never "owner-reviewed". Claim support was re-judged the same way (`fixtures/eval/claims_model_review.jsonl`).
+
 Until step 4 is done every question carries `review: "pending"`, and every number computed from them is reported as **"labels: LLM-drafted, pending owner review"**. No post uses those numbers.
 
 ## Rejection rules (applied before review)

@@ -31,6 +31,8 @@ test("ok, fix and drop are applied; bad fixes are reported, not applied", () => 
   expect(r.cases.map((c) => c.review)).toEqual(["ok", "fixed", "dropped", "pending"]);
   expect(r.cases[1].goldChunkIds).toEqual(["b".repeat(16)]);
   expect(r.cases[0].labelSource).toBe("owner");
+  // verdicts from a second model are recorded as such, never as owner-reviewed
+  expect(applyReview(cases, csv, (_ws, id) => id === "b".repeat(16), "model_review").cases[0].labelSource).toBe("model_review");
 });
 
 test("values a spreadsheet would run as formulas are neutralized", () => {

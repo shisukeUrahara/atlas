@@ -41,7 +41,10 @@ export default async function EvaluationPage({ searchParams }: PageProps<"/evalu
         <>
           {m.labels !== "owner_reviewed" && (
             <p role="note" className="rounded-xl border-l-2 border-warn bg-warn-bg px-4 py-3 text-sm text-warn">
-              <strong>{LABEL_TEXT[m.labels]}.</strong> Gold passages and classes were drafted by an LLM and checked by an LLM judge (docs/labeling_guide.md). Treat these numbers as provisional.
+              <strong>{LABEL_TEXT[m.labels]}.</strong>{" "}
+              {m.labels === "model_reviewed"
+                ? "Gold passages and classes were drafted by GPT-4.1-mini, then every label was checked by a second model family (Claude); no person checked them (docs/labeling_guide.md)."
+                : "Gold passages and classes were drafted by an LLM and checked by an LLM judge (docs/labeling_guide.md). Treat these numbers as provisional."}
             </p>
           )}
           <p tabIndex={0} aria-label="Run manifest" className="overflow-x-auto whitespace-nowrap rounded-xl border border-line bg-surface/70 px-4 py-2 font-mono text-xs text-muted">
