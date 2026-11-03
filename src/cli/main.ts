@@ -1,5 +1,6 @@
 import type { Command, Deps } from "./deps";
 import { chunkCorpus } from "./commands/chunk";
+import { embed } from "./commands/embed";
 import { fetchCorpus } from "./commands/fetch";
 import { ingest } from "./commands/ingest";
 import { verify } from "./commands/verify";
@@ -11,6 +12,7 @@ export const COMMANDS: Record<string, Command> = {
   chunk: chunkCorpus,
   verify,
   ingest,
+  embed,
 };
 
 export async function main(argv: string[], deps: Deps, commands = COMMANDS): Promise<number> {

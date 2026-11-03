@@ -20,6 +20,9 @@ function setup(files: Record<string, string>) {
   const urls: string[] = [];
   const deps: Deps = {
     dataDir,
+    model: "m",
+    makeEmbedder: () => { throw new Error("no embedder in this test"); },
+    makeLlm: () => { throw new Error("no llm in this test"); },
     download: async (url) => {
       urls.push(url);
       const p = url.split(`${COMMIT}/`)[1];

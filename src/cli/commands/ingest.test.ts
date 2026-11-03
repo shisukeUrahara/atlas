@@ -11,7 +11,10 @@ test("ingests a corpus, then a second run changes nothing", async () => {
   const dataDir = mkdtempSync(path.join(tmpdir(), "atlas-"));
   cpSync("fixtures/cookbook", path.join(dataDir, "fixtures", "cookbook"), { recursive: true });
   const out: string[] = [];
-  const deps: Deps = { dataDir, download: async () => null, now: () => new Date(0), out: (l) => out.push(l), err: () => {} };
+  const deps: Deps = { dataDir, download: async () => null,
+    model: "m",
+    makeEmbedder: () => { throw new Error("no embedder in this test"); },
+    makeLlm: () => { throw new Error("no llm in this test"); }, now: () => new Date(0), out: (l) => out.push(l), err: () => {} };
   expect(await ingest(["--corpus", "cookbook"], deps)).toBe(EXIT.OK);
   expect(await ingest(["--corpus", "cookbook"], deps)).toBe(EXIT.OK);
   expect(out[0]).toMatch(/\+405 -0 =0 chunks, index v1/);

@@ -1,5 +1,11 @@
 import { existsSync } from "node:fs";
+import path from "node:path";
+import { CachingEmbedder } from "@/core/embeddings/cache";
+import { OpenAiEmbedder } from "@/core/embeddings/openai";
 import { loadEnv } from "@/core/env";
+import { CachingLlm } from "@/core/llm/cache";
+import { OpenAiClient } from "@/core/llm/openai";
+import { ResilientLlm } from "@/core/llm/resilient";
 import { main } from "./main";
 
 /** GET with 3 tries for network errors and 5xx; 404 resolves null. */
@@ -23,6 +29,18 @@ const env = loadEnv(process.env);
 
 main(process.argv.slice(2), {
   dataDir: env.dataDir,
+  model: env.model,
+  makeEmbedder: () =>
+    new CachingEmbedder(
+      env.apiKey ? new OpenAiEmbedder(env.embedModel, { apiKey: env.apiKey }) : null,
+      path.join(env.dataDir, "cache", "embeddings"),
+      env.embedModel,
+      1536,
+    ),
+  makeLlm: () =>
+    new CachingLlm(env.apiKey ? new ResilientLlm(new OpenAiClient({ apiKey: env.apiKey }), {}) : null, {
+      dir: path.join(env.dataDir, "cache", "responses"),
+    }),
   download,
   now: () => new Date(),
   out: (line) => console.log(line),

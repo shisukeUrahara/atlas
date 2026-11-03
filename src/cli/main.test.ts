@@ -10,6 +10,9 @@ function fakeDeps() {
   const deps: Deps = {
     dataDir: "/tmp",
     download: async () => null,
+    model: "m",
+    makeEmbedder: () => { throw new Error("no embedder in this test"); },
+    makeLlm: () => { throw new Error("no llm in this test"); },
     now: () => new Date(0),
     out: (l) => out.push(l),
     err: (l) => err.push(l),
