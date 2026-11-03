@@ -4,7 +4,15 @@ import type { LabeledCase } from "./questions";
 
 export const REVIEW_COLUMNS = ["id", "split", "class", "workspace", "question", "gold", "verdict", "fixed_gold", "note"] as const;
 
-const esc = (v: string) => (/[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v);
+/**
+ * CSV field. Question text is model-written, so a value that a spreadsheet would read as a formula
+ * (leading = + - @, tab or CR) gets a ' in front. Only id, verdict and fixed_gold are read back,
+ * and those never start with these characters.
+ */
+const esc = (raw: string) => {
+  const v = /^[=+\-@\t\r]/.test(raw) ? `'${raw}` : raw;
+  return /[",\n\r]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
+};
 
 /** CSV with one row per question; the owner fills verdict (ok / fix / drop), fixed_gold and note. */
 export function reviewCsv(cases: readonly LabeledCase[]): string {

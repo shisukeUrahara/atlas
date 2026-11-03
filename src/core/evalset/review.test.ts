@@ -32,3 +32,10 @@ test("ok, fix and drop are applied; bad fixes are reported, not applied", () => 
   expect(r.cases[1].goldChunkIds).toEqual(["b".repeat(16)]);
   expect(r.cases[0].labelSource).toBe("owner");
 });
+
+test("values a spreadsheet would run as formulas are neutralized", () => {
+  const evil = { ...base("q009"), question: '=HYPERLINK("http://x","click")' };
+  const rows = parseCsv(reviewCsv([evil]));
+  expect(rows[1][4]).toBe('\'=HYPERLINK("http://x","click")');
+  expect(parseCsv(reviewCsv([{ ...base("q010"), question: "-1+2" }]))[1][4]).toBe("'-1+2");
+});
