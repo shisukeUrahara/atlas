@@ -36,7 +36,8 @@ export default async function Home() {
   const ev = loadEval("holdout");
   // Proof card: a real answered trace, else a real answer from the holdout run, else a live retrieval.
   const trace = lc ? store.traces("langchain", 50).find((t) => t.status === "answered") : undefined;
-  const fromRun = !trace ? ev.answers?.cases.find((c) => c.workspaceId === "langchain" && c.status === "answered" && c.queryClass === "paraphrase") : undefined;
+  // Only for users who may read LangChain: the card shows a LangChain claim and passage.
+  const fromRun = lc && !trace ? ev.answers?.cases.find((c) => c.workspaceId === "langchain" && c.status === "answered" && c.queryClass === "paraphrase") : undefined;
   const answered = trace ?? (fromRun ? { id: fromRun.id, question: fromRun.question } : undefined);
   const firstClaim = trace
     ? (trace.result as { claims: { text: string; labels: string[]; chunkIds: string[] }[] }).claims[0]
@@ -144,7 +145,6 @@ export default async function Home() {
                     <dd className="num font-mono">{val}</dd>
                   </div>
                 ))}
-                {ev.retrieval.manifest.labels !== "owner_reviewed" && <p className="pt-2 text-xs text-warn">{LABEL_TEXT[ev.retrieval.manifest.labels]}.</p>}
               </>
             ) : (
               <div className="flex justify-between gap-3 py-2">
@@ -153,6 +153,7 @@ export default async function Home() {
               </div>
             )}
           </dl>
+          {ev.retrieval && ev.retrieval.manifest.labels !== "owner_reviewed" && <p className="pt-2 text-xs text-warn">{LABEL_TEXT[ev.retrieval.manifest.labels]}.</p>}
         </Card>
       </section>
     </div>
