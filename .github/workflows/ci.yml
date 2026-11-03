@@ -20,6 +20,10 @@ jobs:
       - run: pnpm test
       - name: Corpus snapshots match their manifests
         run: pnpm atlas verify
+      - name: Index the corpora (no API key)
+        run: pnpm atlas ingest --corpus langchain-old && pnpm atlas ingest --corpus langchain && pnpm atlas ingest --corpus cookbook
+      - name: Tuning evals replay exactly from the cache and meet the floor
+        run: pnpm atlas gate
       - run: pnpm build
 
   e2e:

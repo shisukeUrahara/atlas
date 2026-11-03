@@ -7,6 +7,7 @@ import { embed } from "./commands/embed";
 import { evalAnswers } from "./commands/evalAnswers";
 import { evalRetrieval } from "./commands/evalRetrieval";
 import { fetchCorpus } from "./commands/fetch";
+import { gate } from "./commands/gate";
 import { ingest } from "./commands/ingest";
 import { judgeClaimsCmd } from "./commands/judgeClaims";
 import { judgePool } from "./commands/judgePool";
@@ -31,6 +32,7 @@ export const COMMANDS: Record<string, Command> = {
   eval: evalRetrieval,
   "eval-answers": evalAnswers,
   "judge-claims": judgeClaimsCmd,
+  gate,
 };
 
 export async function main(argv: string[], deps: Deps, commands = COMMANDS): Promise<number> {
