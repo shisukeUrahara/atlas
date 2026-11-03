@@ -4,6 +4,8 @@ import { draftQuestionsCmd } from "./commands/draftQuestions";
 import { embed } from "./commands/embed";
 import { fetchCorpus } from "./commands/fetch";
 import { ingest } from "./commands/ingest";
+import { judgePool } from "./commands/judgePool";
+import { replaceFlaggedCmd } from "./commands/replaceFlagged";
 import { verify } from "./commands/verify";
 import { EXIT } from "./exit";
 
@@ -15,6 +17,8 @@ export const COMMANDS: Record<string, Command> = {
   ingest,
   embed,
   "draft-questions": draftQuestionsCmd,
+  "judge-pool": judgePool,
+  "replace-flagged": replaceFlaggedCmd,
 };
 
 export async function main(argv: string[], deps: Deps, commands = COMMANDS): Promise<number> {

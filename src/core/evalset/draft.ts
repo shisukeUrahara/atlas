@@ -39,13 +39,13 @@ export const PLAN: { cls: QueryClass; ask: WorkspaceId; seedFrom: WorkspaceId | 
   { cls: "cross_workspace", ask: "cookbook", seedFrom: "langchain", n: 8 },
 ];
 
-const ONE_Q = z.object({ question: z.string() });
-const MANY = z.object({ items: z.array(z.object({ question: z.string(), invented_identifier: z.string() })) });
+export const ONE_Q = z.object({ question: z.string() });
+export const MANY = z.object({ items: z.array(z.object({ question: z.string(), invented_identifier: z.string() })) });
 const fmt = (schema: z.ZodType, name: string) => JSON.parse(JSON.stringify(zodResponseFormat(schema, name)));
 
 export const DRAFT_MODEL_TEMPERATURE = 0;
 
-function request(model: string, system: string, user: string, schema: z.ZodType, name: string, maxTokens = 300): LlmRequest {
+export function request(model: string, system: string, user: string, schema: z.ZodType, name: string, maxTokens = 300): LlmRequest {
   return {
     model,
     temperature: DRAFT_MODEL_TEMPERATURE,
@@ -58,7 +58,7 @@ function request(model: string, system: string, user: string, schema: z.ZodType,
   };
 }
 
-const SYSTEM =
+export const SYSTEM =
   "You write evaluation questions for a documentation search system. Write what a real developer would type: one short, specific question, no preamble, no quotes, no answer.";
 
 /** Identifiers worth asking about: CamelCase, snake_case or dotted names, 5+ chars, from inline code or code. */
@@ -72,12 +72,12 @@ export function bannedWords(c: Chunk): string[] {
   return [...new Set(`${c.title} ${c.heading}`.toLowerCase().match(/[a-z]{6,}/g) ?? [])];
 }
 
-const proseShare = (t: string) => {
+export const proseShare = (t: string) => {
   const code = (t.match(/```[\s\S]*?```/g) ?? []).join("").length;
   return 1 - code / Math.max(1, t.length);
 };
 
-const short = (t: string, n = 1800) => (t.length > n ? `${t.slice(0, n)}…` : t);
+export const short = (t: string, n = 1800) => (t.length > n ? `${t.slice(0, n)}…` : t);
 
 /**
  * Drafts the whole set. Deterministic: seeded sampling, temperature 0, and a cached model client.

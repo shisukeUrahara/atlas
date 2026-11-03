@@ -1,0 +1,49 @@
+{"id":"q074","question":"What is the purpose of the PrebuiltMiddlewareCache class in middleware management?","queryClass":"unanswerable","reason":"judge found an answering chunk in langchain"}
+{"id":"q079","question":"How can I customize the StructuredOutputFormatter class for output formatting?","queryClass":"unanswerable","reason":"judge found an answering chunk in langchain"}
+{"id":"q079","question":"What parameter controls the quantum encryption level in the SecureGraphAPI?","queryClass":"unanswerable","reason":"replacement also answered in langchain"}
+{"id":"q082","question":"How is the HumanInTheLoop.enableFeedbackLoop parameter used to improve models?","queryClass":"unanswerable","reason":"judge found an answering chunk in langchain"}
+{"id":"q085","question":"How do I extend CustomMiddlewareBase to create custom middleware components?","queryClass":"unanswerable","reason":"judge found an answering chunk in langchain"}
+{"id":"q087","question":"How does the FaultTolerance.retryPolicy setting affect error handling?","queryClass":"unanswerable","reason":"judge found an answering chunk in langchain"}
+{"id":"q088","question":"What does the MemoryManager.addMemoryCheckpoint method do?","queryClass":"unanswerable","reason":"judge found an answering chunk in langchain"}
+{"id":"q093","question":"How can I use the batchProcessAsync method for non-blocking batch API calls?","queryClass":"unanswerable","reason":"judge found an answering chunk in cookbook"}
+{"id":"q097","question":"How can I manually control message flow and monitor token usage in the given example?","queryClass":"cross_workspace","reason":"judge found an answering chunk in langchain"}
+{"id":"q098","question":"How does the system handle complex queries that require step-by-step processing behind the scenes?","queryClass":"cross_workspace","reason":"judge found an answering chunk in langchain"}
+{"id":"q098","question":"What approach involves dividing complex tasks into smaller parts and allowing more time for the model to find answers?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q100","question":"How can I extract multiple tags and a brief description from a text using gpt-4o-mini in JSON format?","queryClass":"cross_workspace","reason":"judge found an answering chunk in langchain"}
+{"id":"q101","question":"How can I improve the clarity and quality of responses from an AI by adjusting my instructions?","queryClass":"cross_workspace","reason":"judge found an answering chunk in langchain"}
+{"id":"q101","question":"How do you prepare and use text embeddings to find relevant text chunks in a database?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q101","question":"Why implement a custom cosine similarity function instead of using sklearn's built-in version?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q101","question":"How does the cookbook suggest ensuring tool calls adhere to a specified schema in multi-agent setups?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q101","question":"How does least-to-most prompting break down a complex question into subtasks for the model to solve?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q101","question":"How can a model be guided to produce more accurate answers by encouraging step-by-step reasoning?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q102","question":"How can GPT be used to generate JSON for executing tasks based on user inputs?","queryClass":"cross_workspace","reason":"judge found an answering chunk in langchain"}
+{"id":"q102","question":"What are some applications of the OpenAI API embeddings endpoint?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q102","question":"How does the OpenAI library obtain the API key by default?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q103","question":"How do you handle a response that requires invoking an external tool and continue processing its output?","queryClass":"cross_workspace","reason":"judge found an answering chunk in langchain"}
+{"id":"q104","question":"What are the roles of the four components in the data analysis task setup?","queryClass":"cross_workspace","reason":"judge found an answering chunk in langchain"}
+{"id":"q104","question":"Which OpenAI models are trained with reinforcement learning to perform logical chains of thought before responding?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q105","question":"How can I make technical writing easier to read and understand?","queryClass":"cross_workspace","reason":"judge found an answering chunk in langchain"}
+{"id":"q105","question":"How do you handle errors when running an SQL command on a SQLite database in Python?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q105","question":"How do I install the openai package using pip in a terminal?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q105","question":"What are some use cases for constrained JSON schemas in application workflows?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q106","question":"How can a graph be used to identify products that share common features or connections?","queryClass":"cross_workspace","reason":"judge found an answering chunk in langchain"}
+{"id":"q106","question":"What format should the output be in according to the instructions?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q106","question":"How do I obtain the API key required for authenticating requests in this setup?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q106","question":"How can a model use an internal database with city IDs during a complex query about Olympic Cities?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q109","question":"How can I efficiently generate vector representations for a large dataset using parallel processing?","queryClass":"cross_workspace","reason":"judge found an answering chunk in langchain"}
+{"id":"q109","question":"What are some key strategies to ensure accurate and consistent evaluation of AI-generated responses?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q109","question":"Which encoding should I use for the gpt-4o-mini model?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q110","question":"How can I write clear and beginner-friendly technical guides that include useful examples?","queryClass":"cross_workspace","reason":"judge found an answering chunk in langchain"}
+{"id":"q111","question":"How can a discriminator model be used to enhance the quality of outputs from a generative model?","queryClass":"cross_workspace","reason":"judge found an answering chunk in langchain"}
+{"id":"q111","question":"How do you build and validate a tree of explanations to ensure logical consistency in model answers?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q112","question":"How can we handle a sequence of dependent operations that require results from previous steps before continuing?","queryClass":"cross_workspace","reason":"judge found an answering chunk in langchain"}
+{"id":"q112","question":"What methods can be used to help large language models handle difficult tasks more effectively?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q112","question":"How can you create a structured dataset from unstructured text for fine-tuning a custom model?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q112","question":"How can you analyze the specific text chunks retrieved by the file search tool in the Responses API?","queryClass":"cross_workspace","reason":"replacement also answered in langchain"}
+{"id":"q113","question":"What are the two APIs LangGraph offers for building agent workflows and how do they differ in use cases?","queryClass":"cross_workspace","reason":"judge found an answering chunk in cookbook"}
+{"id":"q113","question":"What type of model can be used to generate simulated tool responses in this system?","queryClass":"cross_workspace","reason":"replacement also answered in cookbook"}
+{"id":"q118","question":"How can I get both the parsed response and the original AI message including metadata like token counts?","queryClass":"cross_workspace","reason":"judge found an answering chunk in cookbook"}
+{"id":"q118","question":"How do you install and add langgraph using pip and uv commands?","queryClass":"cross_workspace","reason":"replacement also answered in cookbook"}
+{"id":"q118","question":"When should I use a tool that outputs a complete, user-ready answer without further processing by the model?","queryClass":"cross_workspace","reason":"replacement also answered in cookbook"}
+{"id":"q118","question":"How can I access completed parsed tool calls when using an agent with state tracking in LangChain?","queryClass":"cross_workspace","reason":"replacement also answered in cookbook"}
+{"id":"q118","question":"How does the middleware handle model responses that include tool calls requiring human input?","queryClass":"cross_workspace","reason":"replacement also answered in cookbook"}
