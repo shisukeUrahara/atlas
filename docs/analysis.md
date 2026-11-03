@@ -34,7 +34,7 @@ Hybrid misses at rank 5 (all three are rank 6–8, never absent):
 - q020 exact_id: BM25 rank 5, Dense not in top 10, Hybrid rank 8. Fusion pulled a strong keyword hit down.
 - q055 / q056 version_new: Dense rank 1 and 3, BM25 not in top 10, Hybrid rank 6. Fusion pulled a strong vector hit down.
 
-Both directions of the same RRF weakness: when one method is confident and the other finds nothing, equal-weight fusion halves the confident method's score.
+Both directions of the same RRF weakness: when one method finds the passage (rank 1, 3 or 5) and the other has it nowhere in its top 10, equal-weight fusion gives it only one method's share of score, and chunks that both methods rank moderately overtake it.
 
 ## Answers
 
