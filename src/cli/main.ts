@@ -1,5 +1,6 @@
 import type { Command, Deps } from "./deps";
 import { chunkCorpus } from "./commands/chunk";
+import { draftQuestionsCmd } from "./commands/draftQuestions";
 import { embed } from "./commands/embed";
 import { fetchCorpus } from "./commands/fetch";
 import { ingest } from "./commands/ingest";
@@ -13,6 +14,7 @@ export const COMMANDS: Record<string, Command> = {
   verify,
   ingest,
   embed,
+  "draft-questions": draftQuestionsCmd,
 };
 
 export async function main(argv: string[], deps: Deps, commands = COMMANDS): Promise<number> {
