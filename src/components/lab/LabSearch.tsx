@@ -3,7 +3,7 @@ import { Search } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { MethodColumn } from "./MethodColumn";
-import type { SearchResponse } from "./types";
+import type { LabeledExample, SearchResponse } from "./types";
 
 export const EXAMPLES: Record<string, string[]> = {
   langchain: ["InMemorySaver", "How do I add short-term memory to an agent?", "stream tokens from a graph", "magic_retry"],
@@ -16,11 +16,14 @@ export function LabSearch({
   workspaceId,
   initialQuery,
   initialData,
+  labeled,
 }: {
   workspaceId: string;
   initialQuery: string;
   /** Results rendered on the server when the link already carries ?q=. */
   initialData: SearchResponse | null;
+  /** Labeled questions of this workspace; their gold chunks get an "expected" badge. */
+  labeled: LabeledExample[];
 }) {
   const router = useRouter();
   const path = usePathname();
@@ -29,6 +32,9 @@ export function LabSearch({
   const [data, setData] = useState<SearchResponse | null>(initialData);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [asked, setAsked] = useState(initialQuery);
+  const label = labeled.find((l) => l.question === asked) ?? null;
+  const examples = labeled.length ? pickExamples(labeled) : (EXAMPLES[workspaceId] ?? []).map((q) => ({ question: q, queryClass: "" }));
 
   const run = useCallback(
     async (q: string, k: number) => {
@@ -44,6 +50,7 @@ export function LabSearch({
         const body = await res.json();
         if (!res.ok) throw new Error(body?.error?.message ?? `Search failed (${res.status}).`);
         setData(body);
+        setAsked(q);
         router.replace(`${path}?ws=${workspaceId}&q=${encodeURIComponent(q)}`, { scroll: false });
       } catch (e) {
         setError(e instanceof Error ? e.message : "Search failed.");
@@ -89,17 +96,19 @@ export function LabSearch({
       </form>
       <div className="flex flex-wrap items-center gap-2">
         <span className="micro">Try</span>
-        {(EXAMPLES[workspaceId] ?? []).map((ex) => (
+        {examples.map((ex) => (
           <button
-            key={ex}
+            key={ex.question}
             type="button"
+            title={ex.question}
             onClick={() => {
-              setQuery(ex);
-              void run(ex, topK);
+              setQuery(ex.question);
+              void run(ex.question, topK);
             }}
-            className="rounded-full border border-line px-3 py-1 font-mono text-xs text-muted hover:border-brand hover:text-ink"
+            className="max-w-[22rem] truncate rounded-full border border-line px-3 py-1 text-xs text-muted hover:border-brand hover:text-ink"
           >
-            {ex}
+            {ex.queryClass && <span className="mr-1.5 font-mono text-brand">{ex.queryClass}</span>}
+            {ex.question}
           </button>
         ))}
       </div>
@@ -108,10 +117,16 @@ export function LabSearch({
         <>
           <p className="font-mono text-xs text-muted">
             workspace {data.workspaceId} · index v{data.indexVersion}
+            {label && (
+              <>
+                {" "}· labeled question {label.id} · class {label.queryClass} · {label.gold.length} expected chunk{label.gold.length === 1 ? "" : "s"}
+                {label.review === "pending" ? " · labels pending review" : ""}
+              </>
+            )}
           </p>
           <div className={`grid gap-4 md:grid-cols-3 ${loading ? "opacity-60" : ""}`} aria-busy={loading}>
             {data.results.map((r) => (
-              <MethodColumn key={r.method} result={r} />
+              <MethodColumn key={r.method} result={r} gold={label?.gold ?? []} />
             ))}
           </div>
         </>
@@ -128,4 +143,11 @@ export function LabSearch({
       )}
     </div>
   );
+}
+
+/** Two labeled questions per answerable class, in a stable order. */
+function pickExamples(labeled: LabeledExample[]) {
+  const out: LabeledExample[] = [];
+  for (const cls of ["exact_id", "paraphrase", "version_new"]) out.push(...labeled.filter((l) => l.queryClass === cls).slice(0, 2));
+  return out;
 }

@@ -4,7 +4,7 @@ import { shortPath, type SearchResponse } from "./types";
 type Result = SearchResponse["results"][number];
 
 /** One method's ranked list. Bars are relative to the column's best score (scores differ in scale per method). */
-export function MethodColumn({ result }: { result: Result }) {
+export function MethodColumn({ result, gold = [] }: { result: Result; gold?: readonly string[] }) {
   const info = METHOD_INFO[result.method];
   const max = Math.max(...result.hits.map((h) => h.score), 0) || 1;
   return (
@@ -21,9 +21,15 @@ export function MethodColumn({ result }: { result: Result }) {
       ) : (
         <ol>
           {result.hits.map((h) => (
-            <li key={h.chunkId} className="border-b border-line/70 py-3 last:border-0">
+            <li
+              key={h.chunkId}
+              className={`border-b border-line/70 py-3 last:border-0 ${gold.includes(h.chunkId) ? "-mx-2 rounded-xl border-b-0 px-2 outline outline-1 outline-brand" : ""}`}
+            >
               <div className="flex items-baseline justify-between gap-3">
-                <span className="font-mono text-xs text-muted">#{h.rank}</span>
+                <span className="font-mono text-xs text-muted">
+                  #{h.rank}
+                  {gold.includes(h.chunkId) && <span className="ml-2 rounded-full bg-brand-bg px-1.5 py-0.5 text-[10px] text-brand">expected</span>}
+                </span>
                 <span className="num font-mono text-xs text-muted">{h.score < 0.1 ? h.score.toFixed(4) : h.score.toFixed(2)}</span>
               </div>
               <p className="mt-1 text-sm font-medium">
@@ -39,6 +45,14 @@ export function MethodColumn({ result }: { result: Result }) {
             </li>
           ))}
         </ol>
+      )}
+      {gold.length > 0 && (
+        <p className="mt-2 border-t border-line pt-2 font-mono text-[11px] text-muted">
+          {(() => {
+            const r = result.hits.find((h) => gold.includes(h.chunkId))?.rank;
+            return r ? `expected at rank ${r}` : `expected not in top ${result.hits.length}`;
+          })()}
+        </p>
       )}
     </section>
   );

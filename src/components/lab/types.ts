@@ -22,3 +22,12 @@ export function shortPath(url: string): string {
   const m = /\/blob\/[0-9a-f]{7,40}\/(.+)$/.exec(url);
   return m ? m[1] : url.replace(/^upload:/, "");
 }
+
+/** A labeled question from fixtures/eval/questions.jsonl, as the Lab needs it. */
+export interface LabeledExample {
+  id: string;
+  question: string;
+  queryClass: string;
+  gold: string[];
+  review: string;
+}
