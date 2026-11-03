@@ -66,10 +66,10 @@ export function AnswerBlock({
     );
   }
   return (
-    <div className="space-y-4 rounded-[20px] border border-line bg-surface/85 p-5">
+    <div className="space-y-4 rounded-[20px] border border-line bg-surface/85 p-5 lg:border-0 lg:bg-transparent lg:p-0">
       <div className="space-y-2.5 leading-relaxed">
         {a.claims.map((c, i) => (
-          <p key={i} className={`rounded-lg px-2 py-1 ${selected && c.citations.includes(selected) ? "bg-brand-bg/60" : ""}`}>
+          <p key={i} className={`rounded-r-lg border-l-2 px-3 py-1.5 ${selected && c.citations.includes(selected) ? "border-brand bg-brand-bg/50" : "border-transparent"}`}>
             {c.text}{" "}
             {c.citations.map((l) => (
               <CitationChip key={l} label={l} selected={selected === l} onSelect={() => onSelect(l, c.text)} />

@@ -1,6 +1,6 @@
 "use client";
 import { ArrowUp } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnswerBlock } from "./AnswerBlock";
 import type { AnswerResponse, Passage, Turn } from "./types";
 
@@ -21,6 +21,12 @@ export function AskThread({
   const [question, setQuestion] = useState(draft);
   const [selected, setSelected] = useState<{ turn: number; label: string } | null>(null);
   const nextId = useRef(1);
+  const log = useRef<HTMLDivElement>(null);
+
+  // Bring the newest question to the top of the pane when it is asked and when its answer arrives.
+  useEffect(() => {
+    if (turns.length) log.current?.lastElementChild?.scrollIntoView({ block: "start", behavior: "smooth" });
+  }, [turns]);
 
   async function ask(q: string) {
     const id = nextId.current++;
@@ -48,15 +54,16 @@ export function AskThread({
   }
 
   return (
-    <div className="flex min-h-[60vh] flex-col">
-      <div className="flex-1 space-y-5" aria-live="polite">
+    <div className="flex min-h-[60vh] flex-col lg:min-h-0 lg:rounded-[20px] lg:border lg:border-line lg:bg-surface/60">
+      {/* Desktop: this list scrolls on its own; tabIndex lets keyboard users scroll it. */}
+      <div ref={log} role="log" aria-label="Conversation" tabIndex={0} className="flex-1 space-y-5 focus:outline-none lg:min-h-0 lg:overflow-y-auto lg:overscroll-contain lg:p-5">
         {turns.length === 0 && (
           <div className="rounded-[20px] border border-dashed border-line p-8 text-center text-sm text-muted">
             Ask about the {workspaceName}. Every sentence in the answer will cite the passage behind it.
           </div>
         )}
         {turns.map((t) => (
-          <div key={t.id} className="space-y-3">
+          <div key={t.id} className="scroll-mt-24 space-y-3 lg:scroll-mt-5">
             <p className="ml-auto w-fit max-w-[85%] rounded-2xl border border-line bg-surface-2 px-4 py-2.5 text-sm">{t.question}</p>
             <AnswerBlock
               turn={t}
@@ -76,7 +83,7 @@ export function AskThread({
           const q = question.trim();
           if (q.length >= 3) void ask(q);
         }}
-        className="sticky bottom-20 mt-6 rounded-2xl border border-line bg-surface/95 p-3 backdrop-blur-xl md:bottom-4"
+        className="sticky bottom-20 mt-6 rounded-2xl border border-line bg-surface/95 p-3 backdrop-blur-xl md:bottom-4 lg:static lg:mt-0 lg:rounded-none lg:rounded-b-[20px] lg:border-0 lg:border-t lg:bg-transparent lg:px-5 lg:py-4 lg:backdrop-blur-none"
       >
         <label htmlFor="question" className="micro">
           Ask the {workspaceName}

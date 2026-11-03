@@ -1,8 +1,10 @@
+import { ChevronDown, History } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AskView } from "@/components/ask/AskView";
 import { Denied } from "@/components/Denied";
 import { WorkspaceTabs } from "@/components/WorkspaceTabs";
+import type { TraceRow } from "@/core/store/sqlite";
 import { getServices } from "../api/_lib/services";
 import { pageUser } from "../_lib/session";
 import { chooseWorkspace } from "../_lib/workspace";
@@ -20,54 +22,52 @@ export default async function AskPage({ searchParams }: PageProps<"/ask">) {
     ? getServices()
         .store.traces(current.id, 50)
         .filter((t) => t.userId === user && !seen.has(t.question) && seen.add(t.question))
-        .slice(0, 6)
+        .slice(0, 8)
     : [];
-  const docCount = current ? getServices().store.documents(current.id).length : 0;
 
   return (
-    <div className="space-y-6">
-      <header className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h1 className="font-display text-3xl font-light tracking-tight">Ask the docs. Check every claim.</h1>
-          <p className="mt-1 text-muted">Each sentence cites a passage; click a citation to read it.</p>
-        </div>
+    // data-app-shell: on desktop the page stops scrolling and the panes scroll instead (globals.css).
+    <div data-app-shell className="flex flex-col gap-4 lg:min-h-0 lg:flex-1">
+      <header className="flex flex-wrap items-center gap-x-4 gap-y-3">
+        <h1 className="font-display text-xl font-medium tracking-tight">Ask</h1>
+        <span aria-hidden className="hidden h-5 w-px bg-line sm:block" />
         <WorkspaceTabs workspaces={workspaces} current={current?.id ?? ""} path="/ask" />
+        {current && <RecentQuestions key={draft} workspaceId={current.id} recent={recent} />}
       </header>
       {!current ? (
         <Denied user={user} workspace={requested} />
       ) : (
-        <div className="grid gap-6 lg:grid-cols-12">
-          <aside className="min-w-0 space-y-5 lg:col-span-3">
-            <div>
-              <p className="micro">Workspace</p>
-              <p className="mt-1 font-medium">{current.name}</p>
-              <p className="font-mono text-xs text-muted">
-                {current.source} · {current.license} · {docCount} docs
-              </p>
-            </div>
-            <div>
-              <p className="micro">Your recent questions</p>
-              {recent.length ? (
-                <ul className="mt-2 divide-y divide-line/70 text-sm">
-                  {recent.map((t) => (
-                    <li key={t.id}>
-                      <Link href={`/ask?ws=${current.id}&q=${encodeURIComponent(t.question)}`} className="flex min-w-0 items-center gap-2 py-2 text-muted hover:text-ink">
-                        <span aria-hidden className={`size-1.5 shrink-0 rounded-full ${t.status === "answered" ? "bg-success" : t.status === "abstained" ? "bg-warn" : "bg-danger"}`} />
-                        <span className="truncate">{t.question}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="mt-1 text-sm text-muted">None yet.</p>
-              )}
-            </div>
-          </aside>
-          <section aria-label="Conversation" className="min-w-0 lg:col-span-9">
-            <AskView workspaceId={current.id} workspaceName={current.name} draft={draft} />
-          </section>
-        </div>
+        <AskView workspaceId={current.id} workspaceName={current.name} draft={draft} />
       )}
     </div>
+  );
+}
+
+/** Native disclosure menu; keyed by the question so it closes after a pick. */
+function RecentQuestions({ workspaceId, recent }: { workspaceId: string; recent: TraceRow[] }) {
+  return (
+    <details className="group relative ml-auto">
+      <summary className="flex h-9 cursor-pointer list-none items-center gap-2 rounded-full px-3 text-sm text-muted hover:text-ink [&::-webkit-details-marker]:hidden">
+        <History aria-hidden className="size-4" />
+        Recent questions
+        <ChevronDown aria-hidden className="size-4 transition-transform group-open:rotate-180" />
+      </summary>
+      <div className="absolute right-0 z-30 mt-2 w-[min(28rem,calc(100vw-2rem))] rounded-2xl border border-line bg-surface p-2 shadow-card">
+        {recent.length ? (
+          <ul className="divide-y divide-line/70 text-sm">
+            {recent.map((t) => (
+              <li key={t.id}>
+                <Link href={`/ask?ws=${workspaceId}&q=${encodeURIComponent(t.question)}`} className="flex min-w-0 items-center gap-2 rounded-lg px-2 py-2 text-muted hover:bg-surface-2 hover:text-ink">
+                  <span aria-hidden className={`size-1.5 shrink-0 rounded-full ${t.status === "answered" ? "bg-success" : t.status === "abstained" ? "bg-warn" : "bg-danger"}`} />
+                  <span className="truncate">{t.question}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="px-2 py-2 text-sm text-muted">None yet.</p>
+        )}
+      </div>
+    </details>
   );
 }

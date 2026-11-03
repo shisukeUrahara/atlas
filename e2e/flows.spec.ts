@@ -24,7 +24,8 @@ test("Evaluation shows the committed holdout runs with the label status", async 
 
 test("Ask without an API key shows the replay-mode state", async ({ page }) => {
   await page.goto("/ask?ws=langchain");
-  await page.getByLabel(/Ask the/).fill("How do I add short-term memory to an agent?");
+  // A question nobody asks, so it is never in a local response cache.
+  await page.getByLabel(/Ask the/).fill("zz uncached question about checkpointers in replay mode");
   await page.getByRole("button", { name: /^Ask/ }).click();
   // Next.js adds an empty route-announcer alert; pick ours by its text.
   await expect(page.getByRole("alert").filter({ hasText: "No API key: replay mode" })).toBeVisible();
@@ -67,4 +68,22 @@ test("Ask: a long recent question never widens the page (phone regression)", asy
   const [content, screen] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
   expect(content).toBeLessThanOrEqual(screen);
   await expect(page.getByRole("button", { name: /^Ask/ })).toBeInViewport();
+});
+
+test("Ask on desktop: the page stays put and each pane scrolls on its own", async ({ page }) => {
+  test.skip((page.viewportSize()?.width ?? 0) < 1024, "desktop layout only");
+  const q = "How do I create a function to find and handle sensitive information in text with options like blocking, redacting, masking, or hashing?";
+  await page.goto("/ask?ws=langchain");
+  await page.getByLabel(/Ask the/).fill(q);
+  await page.getByRole("button", { name: /^Ask/ }).click();
+  await expect(page.getByText(/claims cited/)).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByRole("region", { name: /^Passage c\d/ })).toBeVisible();
+  const [height, screen] = await page.evaluate(() => [document.documentElement.scrollHeight, document.documentElement.clientHeight]);
+  expect(height).toBeLessThanOrEqual(screen);
+  await expect(page.getByRole("button", { name: /^Ask/ })).toBeInViewport();
+  // the divider resizes the panes from the keyboard
+  const divider = page.getByRole("separator", { name: /Resize/ });
+  await divider.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(divider).toHaveAttribute("aria-valuenow", "60");
 });

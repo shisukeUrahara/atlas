@@ -63,6 +63,24 @@
   color-scheme: dark;
 }
 
+/* App shell (Ask on desktop): the page fills the viewport and each pane scrolls on its own. */
+@media (min-width: 1024px) {
+  body:has([data-app-shell]) {
+    height: 100dvh;
+    overflow: hidden;
+  }
+  body:has([data-app-shell]) footer {
+    display: none;
+  }
+  body:has([data-app-shell]) main {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+}
+
 /* Native <select> popups ignore the theme on some platforms (Chrome on Windows draws them white). */
 select option {
   background-color: var(--surface);
