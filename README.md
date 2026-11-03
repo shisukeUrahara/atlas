@@ -21,32 +21,33 @@ Atlas indexes two pinned documentation sets, the **LangChain docs** and the **Op
 
 Two demo users show server-side access control: **alice** (LangChain, Cookbook, My uploads) and **bob** (Cookbook only). Switch in the top right.
 
-## Results so far
+## Results
 
-> **Labels: LLM-drafted, pending owner review.** The 120 questions and their gold passages were drafted by an LLM and checked by an LLM judge ([docs/labeling_guide.md](docs/labeling_guide.md)). The numbers will be re-scored after the owner reviews them. Full discussion: [docs/analysis.md](docs/analysis.md).
+> **Labels: LLM-drafted, cross-checked by a second model (Claude), not hand-checked.** GPT-4.1-mini drafted the 120 questions and their gold passages; Claude then reviewed every one ([docs/labeling_guide.md](docs/labeling_guide.md)): 80 kept, 27 gold sets fixed, 13 dropped. Full discussion: [docs/analysis.md](docs/analysis.md).
 
-Holdout retrieval, 48 answerable questions ([run](runs/retrieval/20261103T043542Z-holdout)):
+Holdout retrieval, 42 answerable questions ([run](runs/retrieval/20261103T114450Z-holdout)):
 
 | Method | Recall@5 [95% CI] | MRR@10 |
 |---|---|---|
-| BM25 | 0.875 [0.771, 0.958] | 0.804 |
-| Dense (text-embedding-3-small) | 0.917 [0.833, 0.979] | 0.857 |
-| Hybrid (RRF, k=60) | 0.938 [0.854, 1.000] | 0.911 |
+| BM25 | 0.833 [0.714, 0.929] | 0.778 |
+| Dense (text-embedding-3-small) | 0.905 [0.810, 0.976] | 0.854 |
+| Hybrid (RRF, k=60) | 0.929 [0.833, 1.000] | 0.895 |
 
-- BM25 found every exact API name (Recall@5 1.000 on exact_id); Dense was best on pages that are new since Sep 2025 (0.938 vs BM25 0.688).
-- Hybrid is best overall but not significantly better at this size (McNemar, Holm p 0.75 vs BM25, 1.0 vs Dense).
+- BM25 found every exact API name (Recall@5 1.000 on exact_id); Dense was best on pages that are new since Sep 2025 (0.933 vs BM25 0.600).
+- Hybrid is best overall but not significantly better at this size (McNemar, Holm p 0.44 vs BM25, 1.0 vs Dense).
 
-Holdout answers, 80 questions ([run](runs/answers/20261103T043818Z-holdout)):
+Holdout answers, 74 questions ([run](runs/answers/20261103T114451Z-holdout)):
 
 | Measure | Result |
 |---|---|
-| Right outcome (answer if answerable, abstain if not) | 96.3% |
+| Right outcome (answer if answerable, abstain if not) | 95.9% |
 | Correct abstentions (unanswerable + other-workspace questions) | 31 of 32 |
-| Answerable questions wrongly abstained | 2 of 48 |
+| Answerable questions wrongly abstained | 2 of 42 |
 | Claims shown with a valid citation | 100% |
+| Claims supported by their cited passage (Claude judge / GPT judge) | 93.8% / 98.3% of 178 |
 | Cross-workspace leaks | 0 |
-| Latency p50 / p95 | 1.35 s / 2.99 s |
-| Cost of the 80-question run | $0.075 |
+| Latency p50 / p95 (live run) | 1.35 s / 2.99 s |
+| Cost of the live 80-question run | $0.075 |
 
 Docs update: going from the Sep 2025 LangChain snapshot to the Nov 2026 one changed **+1,226 / −557 / 76 unchanged** chunks; the removed chunks are deleted from the index and the vector store. Re-ingesting the same snapshot changes nothing.
 
@@ -133,9 +134,10 @@ With no key the same commands replay from `cache/`, and `pnpm atlas gate` checks
 
 ## Known limits
 
-- Labels are LLM-drafted and judged by the same model family that answers; owner review is pending.
+- Labels are LLM-drafted and cross-checked by a second model; no person checked them.
 - One run per configuration at temperature 0: no run-to-run variance measured.
 - Equal-weight RRF can dilute one confident method when the other finds nothing (3 holdout misses).
+- The citation check proves a cited passage was sent, not that it supports the claim (one holdout answer cited off-topic passages).
 - The highlight in the evidence panel marks shared words, not proof of support.
 - Demo users are fixed identities (authorization, not authentication). Uploads are processed in-process.
 - `node:sqlite` is marked experimental in Node 24.
