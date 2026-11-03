@@ -1,0 +1,30 @@
+{
+  "run_id": "20261103T043125Z-tuning",
+  "kind": "retrieval",
+  "label": "Tuning · retrieval · 3 Nov 2026 04:31 UTC",
+  "created_at_utc": "2026-11-03T04:31:25.350Z",
+  "split": "tuning",
+  "sample_count": 24,
+  "methods": [
+    "bm25",
+    "dense",
+    "hybrid"
+  ],
+  "embed_model": "text-embedding-3-small",
+  "answer_model": null,
+  "prompt_version": null,
+  "prompt_sha": null,
+  "labels": "llm_draft_pending_review",
+  "index_versions": {
+    "cookbook": 1,
+    "langchain": 2
+  },
+  "questions_sha256": "44e8d75a43b6b89e8694fd39eb9dd2116e185de6d15cf158c711bb09d0980d07",
+  "chunks_sha256": "4c119781198833a6c5f58fa6c74b585aa0f696cf36d50e3c89924a29e6ed6437",
+  "git_sha": "16df7e9455490cdb19e02ae23b32908974c6928f",
+  "git_dirty": false,
+  "allow_dirty": false,
+  "replay": false,
+  "cache_hits": 1731,
+  "cache_misses": 0
+}

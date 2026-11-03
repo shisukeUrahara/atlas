@@ -1,0 +1,28 @@
+{
+  "run_id": "20261103T043321Z-tuning",
+  "kind": "answers",
+  "label": "Tuning · answers · 3 Nov 2026 04:33 UTC",
+  "created_at_utc": "2026-11-03T04:33:21.684Z",
+  "split": "tuning",
+  "sample_count": 40,
+  "methods": [
+    "hybrid"
+  ],
+  "embed_model": "text-embedding-3-small",
+  "answer_model": "gpt-4.1-mini-2025-04-14",
+  "prompt_version": "answer-v1",
+  "prompt_sha": "36abff50f675",
+  "labels": "llm_draft_pending_review",
+  "index_versions": {
+    "cookbook": 1,
+    "langchain": 2
+  },
+  "questions_sha256": "44e8d75a43b6b89e8694fd39eb9dd2116e185de6d15cf158c711bb09d0980d07",
+  "chunks_sha256": "4c119781198833a6c5f58fa6c74b585aa0f696cf36d50e3c89924a29e6ed6437",
+  "git_sha": "b4324c0741b5438ac689b214fa66adf6885412f1",
+  "git_dirty": true,
+  "allow_dirty": false,
+  "replay": false,
+  "cache_hits": 0,
+  "cache_misses": 40
+}
