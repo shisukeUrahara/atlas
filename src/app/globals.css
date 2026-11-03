@@ -63,6 +63,12 @@
   color-scheme: dark;
 }
 
+/* Native <select> popups ignore the theme on some platforms (Chrome on Windows draws them white). */
+select option {
+  background-color: var(--surface);
+  color: var(--ink);
+}
+
 @theme inline {
   --color-canvas: var(--canvas);
   --color-surface: var(--surface);

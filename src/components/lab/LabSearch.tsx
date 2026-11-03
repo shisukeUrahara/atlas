@@ -84,7 +84,7 @@ export function LabSearch({
         </label>
         <label className="flex h-11 items-center gap-2 rounded-xl border border-line bg-surface px-3 font-mono text-xs text-muted">
           top-k
-          <select value={topK} onChange={(e) => setTopK(Number(e.target.value))} className="bg-transparent text-ink focus:outline-none">
+          <select value={topK} onChange={(e) => setTopK(Number(e.target.value))} className="cursor-pointer bg-transparent text-ink focus:outline-none">
             {[5, 10, 20].map((k) => (
               <option key={k}>{k}</option>
             ))}

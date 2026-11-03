@@ -15,7 +15,7 @@ export function UserSwitch({ user }: { user: UserId }) {
           document.cookie = `${USER_COOKIE}=${e.target.value}; path=/; samesite=lax`;
           router.refresh();
         }}
-        className="h-8 rounded-full bg-transparent pr-1 text-ink focus:outline-none"
+        className="h-8 cursor-pointer rounded-full bg-transparent pr-1 text-ink focus:outline-none"
       >
         {(Object.keys(USERS) as UserId[]).map((u) => (
           <option key={u} value={u}>
