@@ -1,0 +1,28 @@
+{
+  "run_id": "20261103T043818Z-holdout",
+  "kind": "answers",
+  "label": "Holdout · answers · 3 Nov 2026 04:38 UTC",
+  "created_at_utc": "2026-11-03T04:38:18.997Z",
+  "split": "holdout",
+  "sample_count": 80,
+  "methods": [
+    "hybrid"
+  ],
+  "embed_model": "text-embedding-3-small",
+  "answer_model": "gpt-4.1-mini-2025-04-14",
+  "prompt_version": "answer-v1",
+  "prompt_sha": "36abff50f675",
+  "labels": "llm_draft_pending_review",
+  "index_versions": {
+    "cookbook": 1,
+    "langchain": 2
+  },
+  "questions_sha256": "44e8d75a43b6b89e8694fd39eb9dd2116e185de6d15cf158c711bb09d0980d07",
+  "chunks_sha256": "4c119781198833a6c5f58fa6c74b585aa0f696cf36d50e3c89924a29e6ed6437",
+  "git_sha": "ed5ce495a7297f4f2057114934e0a2f859a63fee",
+  "git_dirty": false,
+  "allow_dirty": false,
+  "replay": false,
+  "cache_hits": 0,
+  "cache_misses": 80
+}
