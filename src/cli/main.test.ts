@@ -2,6 +2,7 @@ import { parseArgs } from "node:util";
 import { expect, test } from "vitest";
 import type { Deps } from "./deps";
 import { EXIT } from "./exit";
+import { DirtyTreeError } from "@/core/artifacts/guard";
 import { main } from "./main";
 
 function fakeDeps() {
@@ -39,4 +40,13 @@ test("bad options become a usage error", async () => {
   const strict = async (argv: string[]) => (parseArgs({ args: argv, options: {} }), EXIT.OK);
   expect(await main(["strict", "--nope"], deps, { strict })).toBe(EXIT.USAGE);
   expect(err[0]).toMatch(/nope/);
+});
+
+test("a refused holdout run exits 5 with the guard's message", async () => {
+  const { deps, err } = fakeDeps();
+  const refuse = async () => {
+    throw new DirtyTreeError();
+  };
+  expect(await main(["eval"], deps, { eval: refuse })).toBe(EXIT.DIRTY_TREE);
+  expect(err[0]).toMatch(/uncommitted changes/);
 });

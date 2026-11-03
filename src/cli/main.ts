@@ -1,3 +1,4 @@
+import { DirtyTreeError, PreregistrationError } from "@/core/artifacts/guard";
 import type { Command, Deps } from "./deps";
 import { buildQuestions } from "./commands/buildQuestions";
 import { chunkCorpus } from "./commands/chunk";
@@ -42,6 +43,11 @@ export async function main(argv: string[], deps: Deps, commands = COMMANDS): Pro
   try {
     return await command(rest, deps);
   } catch (e) {
+    // A holdout run refused by the guard is an expected outcome, not a crash.
+    if (e instanceof DirtyTreeError || e instanceof PreregistrationError) {
+      deps.err(e.message);
+      return EXIT.DIRTY_TREE;
+    }
     // parseArgs rejects unknown or malformed options with an ERR_PARSE_ARGS_* code.
     if (e instanceof Error && "code" in e && String(e.code).startsWith("ERR_PARSE_ARGS")) {
       deps.err(e.message);
