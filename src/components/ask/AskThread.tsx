@@ -14,7 +14,8 @@ export function AskThread({
   workspaceId: string;
   workspaceName: string;
   draft: string;
-  onEvidence: (passages: Passage[], label: string | null, claim: string | null) => void;
+  /** byUser: a citation was tapped (opens the phone sheet); false when an answer just arrived. */
+  onEvidence: (passages: Passage[], label: string | null, claim: string | null, byUser: boolean) => void;
 }) {
   const [turns, setTurns] = useState<Turn[]>([]);
   const [question, setQuestion] = useState(draft);
@@ -40,7 +41,7 @@ export function AskThread({
       setTurns((t) => t.map((x) => (x.id === id ? { id, question: q, state: "done", answer } : x)));
       const first = answer.claims[0]?.citations[0] ?? null;
       setSelected(first ? { turn: id, label: first } : null);
-      onEvidence(answer.passages, first, answer.claims[0]?.text ?? null);
+      onEvidence(answer.passages, first, answer.claims[0]?.text ?? null, false);
     } catch {
       setTurns((t) => t.map((x) => (x.id === id ? { id, question: q, state: "error", code: "network", message: "Network error. Try again." } : x)));
     }
@@ -63,7 +64,7 @@ export function AskThread({
               selected={selected?.turn === t.id ? selected.label : null}
               onSelect={(label, claim) => {
                 setSelected({ turn: t.id, label });
-                if (t.state === "done") onEvidence(t.answer.passages, label, claim);
+                if (t.state === "done") onEvidence(t.answer.passages, label, claim, true);
               }}
             />
           </div>

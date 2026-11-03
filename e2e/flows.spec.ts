@@ -57,3 +57,14 @@ test("upload in My uploads updates the table", async ({ page }, info) => {
   await expect(page.getByRole("status")).toContainText(`${name}: +1`);
   await expect(page.getByRole("cell", { name: new RegExp(name.replace(".", "\\.")) })).toBeVisible();
 });
+
+test("Ask: a long recent question never widens the page (phone regression)", async ({ page, request }) => {
+  // Leave a long question in the history first (replay mode: it is traced only if answered, so post
+  // a labeled holdout question whose answer is in the committed response cache).
+  const long = "How do I create a function to find and handle sensitive information in text with options like blocking, redacting, masking, or hashing?";
+  await request.post("/api/answer", { data: { workspaceId: "langchain", question: long } });
+  await page.goto("/ask?ws=langchain");
+  const [content, screen] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
+  expect(content).toBeLessThanOrEqual(screen);
+  await expect(page.getByRole("button", { name: /^Ask/ })).toBeInViewport();
+});

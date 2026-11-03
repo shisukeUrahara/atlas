@@ -26,3 +26,8 @@ test("tabs switch the passage; nothing selected shows the hint", () => {
   rerender(<EvidencePanel passages={passages} selected="c2" claim={null} onSelect={onSelect} onClose={vi.fn()} />);
   expect(screen.getByText("Threads.")).toBeInTheDocument();
 });
+
+test("the phone sheet stays closed until a citation is tapped", () => {
+  render(<EvidencePanel passages={passages} selected="c1" claim={null} sheetOpen={false} onSelect={vi.fn()} onClose={vi.fn()} />);
+  expect(screen.getByRole("complementary", { name: "Evidence", hidden: true })).toHaveClass("hidden");
+});

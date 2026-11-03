@@ -14,7 +14,14 @@ export default async function AskPage({ searchParams }: PageProps<"/ask">) {
   const user = await pageUser();
   const { workspaces, current, requested } = chooseWorkspace(user, sp.ws);
   const draft = typeof sp.q === "string" ? sp.q.slice(0, 500) : "";
-  const recent = current ? getServices().store.traces(current.id, 20).filter((t) => t.userId === user).slice(0, 6) : [];
+  const seen = new Set<string>();
+  // Newest first, each question once.
+  const recent = current
+    ? getServices()
+        .store.traces(current.id, 50)
+        .filter((t) => t.userId === user && !seen.has(t.question) && seen.add(t.question))
+        .slice(0, 6)
+    : [];
   const docCount = current ? getServices().store.documents(current.id).length : 0;
 
   return (
@@ -30,7 +37,7 @@ export default async function AskPage({ searchParams }: PageProps<"/ask">) {
         <Denied user={user} workspace={requested} />
       ) : (
         <div className="grid gap-6 lg:grid-cols-12">
-          <aside className="space-y-5 lg:col-span-3">
+          <aside className="min-w-0 space-y-5 lg:col-span-3">
             <div>
               <p className="micro">Workspace</p>
               <p className="mt-1 font-medium">{current.name}</p>
@@ -44,7 +51,7 @@ export default async function AskPage({ searchParams }: PageProps<"/ask">) {
                 <ul className="mt-2 divide-y divide-line/70 text-sm">
                   {recent.map((t) => (
                     <li key={t.id}>
-                      <Link href={`/ask?ws=${current.id}&q=${encodeURIComponent(t.question)}`} className="flex items-center gap-2 py-2 text-muted hover:text-ink">
+                      <Link href={`/ask?ws=${current.id}&q=${encodeURIComponent(t.question)}`} className="flex min-w-0 items-center gap-2 py-2 text-muted hover:text-ink">
                         <span aria-hidden className={`size-1.5 shrink-0 rounded-full ${t.status === "answered" ? "bg-success" : t.status === "abstained" ? "bg-warn" : "bg-danger"}`} />
                         <span className="truncate">{t.question}</span>
                       </Link>
@@ -56,7 +63,7 @@ export default async function AskPage({ searchParams }: PageProps<"/ask">) {
               )}
             </div>
           </aside>
-          <section aria-label="Conversation" className="lg:col-span-9">
+          <section aria-label="Conversation" className="min-w-0 lg:col-span-9">
             <AskView workspaceId={current.id} workspaceName={current.name} draft={draft} />
           </section>
         </div>

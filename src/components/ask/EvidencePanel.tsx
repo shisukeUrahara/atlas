@@ -14,24 +14,27 @@ export function EvidencePanel({
   claim,
   onSelect,
   onClose,
+  sheetOpen = true,
 }: {
   passages: Passage[];
   selected: string | null;
   claim: string | null;
   onSelect: (label: string) => void;
   onClose: () => void;
+  /** Phones only: whether the bottom sheet is open. The desktop column is always shown. */
+  sheetOpen?: boolean;
 }) {
   const current = passages.find((p) => p.label === selected) ?? null;
   const terms = claim ? claimTerms(claim) : [];
   return (
     <aside
       aria-label="Evidence"
-      className={`${current ? "fixed" : "hidden"} inset-x-0 bottom-16 z-20 max-h-[55vh] overflow-y-auto rounded-t-[20px] border border-line bg-surface p-5 shadow-card lg:sticky lg:top-24 lg:block lg:max-h-[calc(100vh-8rem)] lg:rounded-[20px] lg:bg-surface/85`}
+      className={`${current && sheetOpen ? "fixed" : "hidden"} inset-x-0 bottom-16 z-20 max-h-[55vh] overflow-y-auto rounded-t-[20px] border border-line bg-surface p-5 shadow-card lg:sticky lg:top-24 lg:block lg:max-h-[calc(100vh-8rem)] lg:rounded-[20px] lg:bg-surface/85`}
     >
       <div aria-hidden className="mx-auto mb-3 h-1 w-10 rounded-full bg-line lg:hidden" />
-      <header className="flex items-center justify-between gap-2">
-        <h2 className="font-display text-base font-medium">Evidence</h2>
-        <div className="flex items-center gap-1">
+      <header className="flex items-start justify-between gap-2">
+        <h2 className="pt-0.5 font-display text-base font-medium">Evidence</h2>
+        <div className="flex min-w-0 flex-wrap items-center justify-end gap-1">
           {passages.map((p) => (
             <button
               key={p.label}
