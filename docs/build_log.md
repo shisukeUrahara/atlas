@@ -1,0 +1,25 @@
+# Build log
+
+What happened while building Atlas, including what broke. Commit subjects in quotes.
+
+## Day 1 (1 Nov 2026): design, corpus, index, search, answers
+- Designed every screen in Google Stitch first. The first two directions read as generic; a stricter DESIGN.md (one accent, no glows, no three-card rows, no invented numbers) produced the approved "Atlas · Evidence" screens. Stitch still invented details (relevance scores, version tags, "live feed"); they are listed in design/stitch/README.md and were not built.
+- Corpora pinned by commit with sha256s. The first "old" LangChain snapshot (14 Sep 2025) had no LICENSE file; it was replaced by the commit that added the MIT license (30 Sep 2025). Thirty files from the unlicensed commit remain in git history (owner chose not to rewrite it).
+- An automated security review found: unsafe paths in `sources.json` could write outside the snapshot folder; uploads could write into the reference corpora, needed no size header, had no PDF page cap, and same-name files overwrote each other. All fixed ("Refuse unsafe paths in atlas fetch", "Harden uploads after security review").
+- While writing the prompt-injection test: a document containing `</passages>` could close the passage block early. Now neutralized.
+- `node:sqlite` chosen over a native dependency; nested transactions needed a depth counter (found by a test).
+
+## Day 2 (2 Nov 2026): fixes and the UI
+- LangChain pages import code samples from separate snippet files; 86 were being dropped. Now fetched, hashed and inlined: chunks mentioning `InMemorySaver` went from 38 to 82. Side effect: BM25 now ranks two code-heavy middleware chunks above "Add short-term memory" for "InMemorySaver checkpointer".
+- Stale vectors are deleted on index rebuild; design PNGs shrunk from 19.6 MB to 2.9 MB.
+- UI built to the Stitch screens. Found while wiring browser tests: an empty `ATLAS_QDRANT_URL=` (as shipped in `.env.example`) crashed every command.
+
+## Day 3 (3 Nov 2026): questions, evaluation, docs
+- 120 questions drafted; rejection rules fired (identifier missing, copied heading words, invented names that exist).
+- Pooled judging showed 15 of 24 "other-workspace" questions and 7 of 24 "unanswerable" ones were actually answered in the asked workspace (the two doc sets overlap, e.g. JSON structured output). They were replaced; 49 rejected candidates are logged in `fixtures/eval/rejected.jsonl`.
+- The review CSV holds model-written text; a security review flagged spreadsheet formula injection. Values starting with = + - @ are now prefixed.
+- The retrieval holdout run left an untracked folder, so the guard refused the answers holdout run, and printed a stack trace. Guard refusals now exit 5 with a message.
+- Two intermediate commits had red CI: the browser test still clicked a Lab example chip that the labeled examples had replaced. Fixed in the next commit.
+- Capturing the phone screenshot found two real bugs: a long recent question pushed the Ask button off screen (x = 786 on a 390 px phone), and the evidence sheet opened by itself over the citation chips. Both fixed, with a regression test.
+- A security review flagged that the Overview's holdout-answer fallback ignored workspace access (bob could see a LangChain passage). Fixed.
+- Costs on 3 Nov: embeddings ~1 cent, question drafting and judging a few cents, tuning answers $0.037, holdout answers $0.075.
