@@ -7,6 +7,7 @@ import { CitationChip } from "@/components/ui/CitationChip";
 import { Pill } from "@/components/ui/Pill";
 import { allowedWorkspaces } from "@/core/auth/access";
 import { getServices } from "./api/_lib/services";
+import { LABEL_TEXT, loadEval } from "./_lib/runs";
 import { pageUser } from "./_lib/session";
 
 const STEPS = [
@@ -32,9 +33,16 @@ export default async function Home() {
   }));
   const lc = counts.find((c) => c.w.id === "langchain");
 
-  // Proof card: a real answered trace if one exists, else a live retrieval for the example question.
-  const answered = lc ? store.traces("langchain", 50).find((t) => t.status === "answered") : undefined;
-  const firstClaim = answered ? (answered.result as { claims: { text: string; labels: string[]; chunkIds: string[] }[] }).claims[0] : null;
+  const ev = loadEval("holdout");
+  // Proof card: a real answered trace, else a real answer from the holdout run, else a live retrieval.
+  const trace = lc ? store.traces("langchain", 50).find((t) => t.status === "answered") : undefined;
+  const fromRun = !trace ? ev.answers?.cases.find((c) => c.workspaceId === "langchain" && c.status === "answered" && c.queryClass === "paraphrase") : undefined;
+  const answered = trace ?? (fromRun ? { id: fromRun.id, question: fromRun.question } : undefined);
+  const firstClaim = trace
+    ? (trace.result as { claims: { text: string; labels: string[]; chunkIds: string[] }[] }).claims[0]
+    : fromRun
+      ? { text: fromRun.claims[0].text, labels: ["c1"], chunkIds: fromRun.claims[0].chunkIds }
+      : null;
   const proofChunk = firstClaim
     ? store.chunk("langchain", firstClaim.chunkIds[0])
     : lc && lc.chunks
@@ -83,7 +91,13 @@ export default async function Home() {
                 <p className="mt-3 line-clamp-6 whitespace-pre-wrap text-sm leading-relaxed">{passageBlocks(proofChunk.text).map((b) => b.text).join("\n\n")}</p>
               </div>
               <div className="flex flex-wrap items-center gap-3 border-t border-line pt-3 md:col-span-2">
-                {firstClaim ? <Pill tone="success" dot mono>cited answer · {answered!.id}</Pill> : <Pill mono>live retrieval · no answer yet</Pill>}
+                {firstClaim ? (
+                  <Pill tone="success" dot mono>
+                    cited answer · {trace ? trace.id : `holdout ${answered!.id}`}
+                  </Pill>
+                ) : (
+                  <Pill mono>live retrieval · no answer yet</Pill>
+                )}
                 <span className="font-mono text-xs text-muted">index v{lc?.version ?? 0}</span>
               </div>
             </div>
@@ -117,12 +131,27 @@ export default async function Home() {
                 </dd>
               </div>
             ))}
-            {["Recall@5, hybrid", "Cited-claim rate", "Abstention accuracy"].map((m) => (
-              <div key={m} className="flex justify-between gap-3 py-2">
-                <dt>{m}</dt>
+            {ev.retrieval && ev.answers ? (
+              <>
+                {[
+                  ["Recall@5, hybrid (holdout)", ev.retrieval.scores.overall.hybrid["recall@5"].point.toFixed(3)],
+                  ["Right outcome (holdout)", `${(ev.answers.scores.overall.rightOutcome * 100).toFixed(1)}%`],
+                  ["Correct abstentions", `${ev.answers.cases.filter((c) => (c.queryClass === "unanswerable" || c.queryClass === "cross_workspace") && c.status === "abstained").length} / ${ev.answers.cases.filter((c) => c.queryClass === "unanswerable" || c.queryClass === "cross_workspace").length}`],
+                  ["Cross-workspace leaks", String(ev.answers.scores.overall.leaks)],
+                ].map(([k, val]) => (
+                  <div key={k} className="flex justify-between gap-3 py-2">
+                    <dt>{k}</dt>
+                    <dd className="num font-mono">{val}</dd>
+                  </div>
+                ))}
+                {ev.retrieval.manifest.labels !== "owner_reviewed" && <p className="pt-2 text-xs text-warn">{LABEL_TEXT[ev.retrieval.manifest.labels]}.</p>}
+              </>
+            ) : (
+              <div className="flex justify-between gap-3 py-2">
+                <dt>Retrieval and answer metrics</dt>
                 <dd className="font-mono text-xs text-muted">not measured yet</dd>
               </div>
-            ))}
+            )}
           </dl>
         </Card>
       </section>
