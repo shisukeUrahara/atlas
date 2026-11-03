@@ -9,7 +9,11 @@ import { execFileSync } from "node:child_process";
 const dir = path.resolve("e2e/.data");
 rmSync(dir, { recursive: true, force: true });
 mkdirSync(dir, { recursive: true });
-if (!existsSync(path.join(dir, "fixtures"))) symlinkSync(path.resolve("fixtures"), path.join(dir, "fixtures"), "dir");
+// Committed data the app reads: corpora, eval questions, run folders, embedding / answer caches, prices.
+for (const name of ["fixtures", "runs", "cache"]) {
+  if (!existsSync(path.join(dir, name))) symlinkSync(path.resolve(name), path.join(dir, name), "dir");
+}
+if (!existsSync(path.join(dir, "pricing.json"))) symlinkSync(path.resolve("pricing.json"), path.join(dir, "pricing.json"));
 for (const corpus of ["langchain-old", "langchain", "cookbook"]) {
   execFileSync("pnpm", ["-s", "atlas", "ingest", "--corpus", corpus], { stdio: "inherit", env: { ...process.env, ATLAS_DATA_DIR: dir } });
 }

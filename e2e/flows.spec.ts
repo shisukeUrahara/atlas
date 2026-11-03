@@ -1,11 +1,25 @@
 import { expect, test } from "@playwright/test";
 
-test("Retrieval Lab: three columns, dense explains it is off in replay mode", async ({ page }) => {
+test("Retrieval Lab: a labeled question shows three columns and its expected chunk", async ({ page }) => {
   await page.goto("/lab?ws=langchain");
-  await page.getByRole("button", { name: "InMemorySaver", exact: true }).click();
-  await expect(page.getByRole("region", { name: "BM25 results" }).getByText("#1", { exact: true })).toBeVisible();
-  await expect(page.getByRole("region", { name: "Dense results" })).toContainText("Dense search is off");
-  await expect(page).toHaveURL(/q=InMemorySaver/);
+  await page.getByRole("button", { name: /^paraphrase/ }).first().click();
+  await expect(page.getByRole("region", { name: "BM25 results" }).getByText(/^#1(\D|$)/)).toBeVisible();
+  // the question's embedding is in the committed cache, so dense runs with no key
+  await expect(page.getByRole("region", { name: "Dense results" }).getByText(/^#1(\D|$)/)).toBeVisible();
+  await expect(page.getByText("expected", { exact: true }).first()).toBeVisible();
+  await expect(page).toHaveURL(/q=/);
+});
+
+test("Retrieval Lab: a new question in replay mode says dense needs a key", async ({ page }) => {
+  await page.goto("/lab?ws=langchain&q=zz%20uncached%20question%20about%20checkpointers");
+  await expect(page.getByRole("region", { name: "Dense results" })).toContainText("OPENAI_API_KEY");
+});
+
+test("Evaluation shows the committed holdout runs with the label status", async ({ page }) => {
+  await page.goto("/evaluation");
+  await expect(page.getByText("Recall@5 · hybrid")).toBeVisible();
+  await expect(page.getByRole("note")).toContainText("pending owner review");
+  await expect(page.getByText("Failures only")).toBeVisible();
 });
 
 test("Ask without an API key shows the replay-mode state", async ({ page }) => {

@@ -44,7 +44,7 @@ export default async function EvaluationPage({ searchParams }: PageProps<"/evalu
               <strong>{LABEL_TEXT[m.labels]}.</strong> Gold passages and classes were drafted by an LLM and checked by an LLM judge (docs/labeling_guide.md). Treat these numbers as provisional.
             </p>
           )}
-          <p className="overflow-x-auto whitespace-nowrap rounded-xl border border-line bg-surface/70 px-4 py-2 font-mono text-xs text-muted">
+          <p tabIndex={0} aria-label="Run manifest" className="overflow-x-auto whitespace-nowrap rounded-xl border border-line bg-surface/70 px-4 py-2 font-mono text-xs text-muted">
             {[v.retrieval?.manifest.run_id, v.answers?.manifest.run_id].filter(Boolean).join(" + ")} · git {m.git_sha.slice(0, 7)}
             {m.git_dirty ? " (dirty)" : ""} · questions {m.questions_sha256.slice(0, 8)} · index {Object.entries(m.index_versions).map(([w, n]) => `${w} v${n}`).join(", ")} · {v.answers?.manifest.answer_model ?? ""} · {v.answers?.manifest.prompt_version ?? ""} · {m.replay ? "replay" : "live"}
           </p>
@@ -54,7 +54,7 @@ export default async function EvaluationPage({ searchParams }: PageProps<"/evalu
           <div className="grid gap-6 lg:grid-cols-12">
             {v.retrieval && (
               <Card className="lg:col-span-7" title="Retrieval by question class" hint={`Recall@5, ${v.retrieval.scores.n} answerable questions`}>
-                <div className="overflow-x-auto">
+                <div tabIndex={0} role="region" aria-label="Recall@5 by class table" className="overflow-x-auto">
                   <table className="w-full min-w-[420px] text-sm">
                     <thead>
                       <tr className="micro border-b border-line text-left">
@@ -161,7 +161,7 @@ function Failures({ v }: { v: ReturnType<typeof loadEval> }) {
   const questionOf = new Map(v.answers!.cases.map((c) => [c.id, c.question]));
   return (
     <Card title="Failures only" hint={`${wrong.length} wrong answer outcomes · ${misses.length} hybrid misses at rank 5`}>
-      <div className="overflow-x-auto">
+      <div tabIndex={0} role="region" aria-label="Failures table" className="overflow-x-auto">
         <table className="w-full min-w-[640px] text-left text-sm">
           <thead>
             <tr className="micro border-b border-line">
