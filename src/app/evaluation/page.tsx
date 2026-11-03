@@ -132,7 +132,13 @@ function Kpis({ v }: { v: ReturnType<typeof loadEval> }) {
     { label: "Right outcome", value: pct(a.rightOutcome), hint: `${v.answers!.cases.filter(rightOutcome).length} of ${a.n} questions` },
     { label: "Correct abstentions", value: `${abst.filter((c) => c.status === "abstained").length} / ${abst.length}`, hint: "unanswerable + cross-workspace" },
     { label: "Cross-workspace leaks", value: String(a.leaks), hint: "must be 0", tone: a.leaks === 0 ? "text-success" : "text-danger" },
-    { label: "Latency p95", value: `${(a.p95Ms / 1000).toFixed(2)} s`, hint: `p50 ${(a.p50Ms / 1000).toFixed(2)} s · run cost $${a.costUsd.toFixed(3)}` },
+    v.timing
+      ? {
+          label: "Latency p95",
+          value: `${(v.timing.summary.p95Ms / 1000).toFixed(2)} s`,
+          hint: `p50 ${(v.timing.summary.p50Ms / 1000).toFixed(2)} s · cost $${v.timing.summary.costUsd.toFixed(3)} · ${v.timing.runId === v.answers!.manifest.run_id ? "this run" : `live run ${v.timing.runId}`}`,
+        }
+      : { label: "Latency p95", value: "—", hint: "replayed from cache: no live timing" },
   ];
   return (
     <div className="grid gap-6 lg:grid-cols-12">
