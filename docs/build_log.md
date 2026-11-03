@@ -23,3 +23,8 @@ What happened while building Atlas, including what broke. Commit subjects in quo
 - Capturing the phone screenshot found two real bugs: a long recent question pushed the Ask button off screen (x = 786 on a 390 px phone), and the evidence sheet opened by itself over the citation chips. Both fixed, with a regression test.
 - A security review flagged that the Overview's holdout-answer fallback ignored workspace access (bob could see a LangChain passage). Fixed.
 - Costs on 3 Nov: embeddings ~1 cent, question drafting and judging a few cents, tuning answers $0.037, holdout answers $0.075.
+
+## Fresh-clone check (3 Nov 2026)
+Followed the README's Docker quick start in a new clone with no `.env` (replay mode):
+- First try: `atlas ingest` in the container failed with "unable to open database file". The named volume for the SQLite file was created root-owned. Fixed in "Let the container write its database volume".
+- Second try: ingest gave the same numbers as the dev machine (+633, then +1,226 / −557 / 76, Cookbook +405). All six pages 200, unknown page 404. Search: BM25, Dense (Qdrant, embeddings from the committed cache) and Hybrid all ran. A holdout question was answered with 4 cited claims from the committed response cache (`cached: true`). The Evaluation page showed 0.938, 96.3% and 31 / 32. No errors or SQLite warnings in the container log.
