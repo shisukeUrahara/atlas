@@ -7,7 +7,7 @@ import type { DraftQuestion } from "./draft";
 /** fixtures/eval/questions.jsonl: the scored set. */
 export const LabeledCase = EvalCase.extend({
   /** "pending" until the owner reviews it; numbers on pending labels are marked as such. */
-  review: z.enum(["pending", "ok", "fixed"]),
+  review: z.enum(["pending", "ok", "fixed", "dropped"]),
   labelSource: z.enum(["llm_draft", "owner"]),
   seedChunkId: z.string().nullable(),
   flag: z.string().nullable(),

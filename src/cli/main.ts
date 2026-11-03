@@ -7,6 +7,7 @@ import { fetchCorpus } from "./commands/fetch";
 import { ingest } from "./commands/ingest";
 import { judgePool } from "./commands/judgePool";
 import { replaceFlaggedCmd } from "./commands/replaceFlagged";
+import { applyReviewCmd, reviewSheet } from "./commands/review";
 import { verify } from "./commands/verify";
 import { EXIT } from "./exit";
 
@@ -21,6 +22,8 @@ export const COMMANDS: Record<string, Command> = {
   "judge-pool": judgePool,
   "replace-flagged": replaceFlaggedCmd,
   "build-questions": buildQuestions,
+  "review-sheet": reviewSheet,
+  "apply-review": applyReviewCmd,
 };
 
 export async function main(argv: string[], deps: Deps, commands = COMMANDS): Promise<number> {
